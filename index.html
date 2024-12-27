@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
     <style>
-        :root {
+        /* Theme definitions */
+        :root[data-theme="dark"] {
             --black: #0d1117;
             --darker-black: #090c10;
             --blue: #1158c7;
@@ -16,6 +17,60 @@
             --text: #c9d1d9;
             --text-secondary: #8b949e;
             --border: #21262d;
+        }
+
+        :root[data-theme="light"] {
+            --black: #ffffff;
+            --darker-black: #f0f0f0;
+            --blue: #2760d8;
+            --light-blue: #1e88e5;
+            --red: #d32f2f;
+            --text: #24292e;
+            --text-secondary: #586069;
+            --border: #e1e4e8;
+        }
+
+        :root[data-theme="nord"] {
+            --black: #2e3440;
+            --darker-black: #242933;
+            --blue: #5e81ac;
+            --light-blue: #88c0d0;
+            --red: #bf616a;
+            --text: #eceff4;
+            --text-secondary: #d8dee9;
+            --border: #434c5e;
+        }
+
+        /* Theme switcher styles */
+        .theme-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--darker-black);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Cascadia Mono', monospace;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .theme-btn.active {
+            background: var(--red);
+            color: var(--black);
+            border-color: var(--red);
         }
 
         * {
@@ -30,6 +85,7 @@
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+            transition: all 0.3s ease;
         }
 
         header {
@@ -102,7 +158,7 @@
             padding: 1.5rem;
             border: 1px solid var(--border);
             border-radius: 4px;
-            background: rgba(13, 17, 23, 0.8);
+            background: var(--black);
             transition: all 0.2s ease;
         }
 
@@ -114,7 +170,6 @@
         .project h3 {
             color: var(--red);
             margin-bottom: 1rem;
-            font-family: 'Cascadia Mono', monospace;
         }
 
         .project p {
@@ -123,7 +178,6 @@
         }
 
         .stack {
-            font-family: 'Cascadia Mono', monospace;
             color: var(--light-blue);
             font-size: 0.9rem;
             margin-top: 1rem;
@@ -169,7 +223,6 @@
         }
 
         code {
-            font-family: 'Cascadia Mono', monospace;
             background: var(--black);
             padding: 0.2rem 0.4rem;
             border-radius: 3px;
@@ -190,10 +243,23 @@
             .social-links {
                 gap: 1.5rem;
             }
+
+            .theme-switcher {
+                top: auto;
+                bottom: 1rem;
+                right: 1rem;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="theme-switcher">
+        <button class="theme-btn" data-theme="light">Light</button>
+        <button class="theme-btn active" data-theme="dark">Dark</button>
+        <button class="theme-btn" data-theme="nord">Nord</button>
+    </div>
+
     <header>
         <nav>
             <h1>root@Hash_Cr4cker:~#</h1>
@@ -209,59 +275,58 @@
         <section id="about">
             <h2>whoami</h2>
             <p><code>cat Hash_Cr4cker.txt</code></p>
-    <p>Myself <span style="color: #e63946;">Amiitesh</span>, currently a college student with good amount experience in <span style="color: #e63946;">C/C++, Java, Bash Scripting and Python</span>. I code mostly in <span style="color: #e63946;">C/C++ and Java and prefer more of Low Level Languages</span> due to its harware interactions and applications that can be created using them like Game Engines, Device Drivers, Kernel Development and much more that no language can ever match their superiority. <br>I aspire to be a <span style="color: #e63946;">Cybersecurity Engineer</span> and a <span style="color: #e63946;">Linux Kernel Developer</span> and I have <span style="color: #e63946;">developed</span> and <span style="color: #e63946;">Open Sourced projects</span> based on <span style="color: #e63946;">Linux </span> and<span style="color: #e63946;"> C</span>.<br> I like to rice Linux distros and quite active on Reddit communities trying to solve problems. <br>I prefer to <span style="color: #e63946;">write optimised code</span> and was <span style="color: #e63946;">inspired</span> to do so from <span style="color: #e63946;">my Dad</span> a professor in CSE with very good experience in EEE and Electronics, and from the <span style="color: #e63946;">creator of Linux, Linus Torvalds</span>.<br></p>
+            <p>Myself <span style="color: var(--red);">Amiitesh</span>, currently a college student with good amount experience in <span style="color: var(--red);">C/C++, Java, Bash Scripting and Python</span>. I code mostly in <span style="color: var(--red);">C/C++ and Java and prefer more of Low Level Languages</span> due to its harware interactions and applications that can be created using them like Game Engines, Device Drivers, Kernel Development and much more that no language can ever match their superiority. <br>I aspire to be a <span style="color: var(--red);">Cybersecurity Engineer</span> and a <span style="color: var(--red);">Linux Kernel Developer</span> and I have <span style="color: var(--red);">developed</span> and <span style="color: var(--red);">Open Sourced projects</span> based on <span style="color: var(--red);">Linux </span> and<span style="color: var(--red);"> C</span>.<br> I like to rice Linux distros and quite active on Reddit communities trying to solve problems. <br>I prefer to <span style="color: var(--red);">write optimised code</span> and was <span style="color: var(--red);">inspired</span> to do so from <span style="color: var(--red);">my Dad</span> a professor in CSE with very good experience in EEE and Electronics, and from the <span style="color: var(--red);">creator of Linux, Linus Torvalds</span>.<br></p>
         </section>
 
         <section id="projects">
             <h2>ls ~/projects</h2>
             <div class="project">
                 <a href="https://github.com/Hash-Cracker/Automation_Scripts" target="_blank">
-                <h3>./Automation_Scripts</h3>
-                <p>All of my Automation Scripts made in Bash from System monitoring to README update and much more.</p>
-                <div class="stack">Technologies: Bash | Terminal | Linux</div>
+                    <h3>./Automation_Scripts</h3>
+                    <p>All of my Automation Scripts made in Bash from System monitoring to README update and much more.</p>
+                    <div class="stack">Technologies: Bash | Terminal | Linux</div>
                 </a>
             </div>
 
             <div class="project">
                 <a href="https://github.com/Hash-Cracker/Nosh" target="_blank">
-                <h3>./Nosh</h3>
-                <p>Nosh (NovaShell) is my custom shell still under process where I am making it powerful than Bash and purely for the purpose of faster scripting</p>
-                <div class="stack">Technologies: C | Linux | GCC</div>
+                    <h3>./Nosh</h3>
+                    <p>Nosh (NovaShell) is my custom shell still under process where I am making it powerful than Bash and purely for the purpose of faster scripting</p>
+                    <div class="stack">Technologies: C | Linux | GCC</div>
                 </a>
             </div>
 
             <div class="project">
                 <a href="https://github.com/Hash-Cracker/ptop-for-linux" target="_blank">
-                <h3>./ptop-process-viewer</h3>
-                <p>Personal Process viewer for Linux, was really bored and came across this idea of building a process viewer and will make it more advanced soon</p>
-                <div class="stack">Technologies: C | ncurses</div>
+                    <h3>./ptop-process-viewer</h3>
+                    <p>Personal Process viewer for Linux, was really bored and came across this idea of building a process viewer and will make it more advanced soon</p>
+                    <div class="stack">Technologies: C | ncurses</div>
                 </a>
             </div>
 
             <div class="project">
                 <a href="https://github.com/Hash-Cracker/dtree-for-linux" target="_blank">
-                <h3>./dtree-for-linux</h3>
-                <p>dtree stands for "Directory Tree" which is a utility for Linux terminal to view directory contents in a tree-like manner with the file contents in the form of branches, inspired by the "GNU Tree viewer".</p>
-                <div class="stack">Technologies: C | Linux</div>
+                    <h3>./dtree-for-linux</h3>
+                    <p>dtree stands for "Directory Tree" which is a utility for Linux terminal to view directory contents in a tree-like manner with the file contents in the form of branches, inspired by the "GNU Tree viewer".</p>
+                    <div class="stack">Technologies: C | Linux</div>
                 </a>
             </div>
 
             <div class="project">
                 <a href="https://github.com/Hash-Cracker/Hash-Generator" target="_blank">
-                <h3>./Hash-Generator</h3>
-                <p>A hash generator is a tool or program that produces a fixed-size hash value from input data, such as a string, file, or binary. Regardless of the input size, the size of the output Hash is always the same such that even the smallest change results in a completely different hash.</p>
-                <div class="stack">Technologies: C | Cryptography | OpenSSL</div>
+                    <h3>./Hash-Generator</h3>
+                    <p>A hash generator is a tool or program that produces a fixed-size hash value from input data, such as a string, file, or binary. Regardless of the input size, the size of the output Hash is always the same such that even the smallest change results in a completely different hash.</p>
+                    <div class="stack">Technologies: C | Cryptography | OpenSSL</div>
                 </a>
             </div>
 
             <div class="project">
                 <a href="https://github.com/Hash-Cracker/archHypr_dotfiles" target="_blank">
-                <h3>./Arch-Hyprland-Rice</h3>
-                <p>This is my personal Arch Hyprland Rice dotfiles for which I had to learn languages like Lua, CSS, and HTML to customize the stylesheets.</p>
-                <div class="stack">Technologies: Bash | CSS</div>
+                    <h3>./Arch-Hyprland-Rice</h3>
+                    <p>This is my personal Arch Hyprland Rice dotfiles for which I had to learn languages like Lua, CSS, and HTML to customize the stylesheets.</p>
+                    <div class="stack">Technologies: Bash | CSS</div>
                 </a>
             </div>
-
         </section>
 
         <section id="contact">
@@ -270,10 +335,10 @@
             <p>For contacting and with collaborating me:</p>
             <p><a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a></p>
             <div class="social-links">
-                <a href="https://linkedin.com/in/amiitesh-pradeep-kumar-582bb831a" title="LinkedIn" target = "_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.youtube.com/@system-level" title="YouTube"><i class="fab fa-youtube" target = "_blank"></i></a>
-                <a href="https://github.com/Hash-Cracker" title="GitHub"><i class="fab fa-github" target = "_blank"></i></a>
-                <a href="https://stackoverflow.com/users/28921629/hash-cracker" title="StackOverflow" target = "_blank"><i class="fab fa-stack-overflow"></i></a>
+                <a href="https://linkedin.com/in/amiitesh-pradeep-kumar-582bb831a" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@system-level" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://github.com/Hash-Cracker" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://stackoverflow.com/users/28921629/hash-cracker" title="StackOverflow" target="_blank"><i class="fab fa-stack-overflow"></i></a>
             </div>
         </section>
     </main>
@@ -281,5 +346,43 @@
     <footer>
         <p>SHA256(portfolio) = 2024 © All rights reserved</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.documentElement;
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            // Set initial theme
+            const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
+            root.setAttribute('data-theme', savedTheme);
+            
+            // Update active button based on saved theme
+            themeButtons.forEach(btn => {
+                if (btn.getAttribute('data-theme') === savedTheme) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Theme switching functionality
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const theme = button.getAttribute('data-theme');
+                    
+                    // Update theme
+                    root.setAttribute('data-theme', theme);
+                    
+                    // Update active button
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Save theme preference
+                    localStorage.setItem('preferred-theme', theme);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+                    
