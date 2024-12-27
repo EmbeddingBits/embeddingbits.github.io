@@ -352,11 +352,11 @@
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
             
-            // Set initial theme
+
             const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
             root.setAttribute('data-theme', savedTheme);
             
-            // Update active button based on saved theme
+
             themeButtons.forEach(btn => {
                 if (btn.getAttribute('data-theme') === savedTheme) {
                     btn.classList.add('active');
