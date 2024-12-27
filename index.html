@@ -365,19 +365,19 @@
                 }
             });
 
-            // Theme switching functionality
+
             themeButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const theme = button.getAttribute('data-theme');
                     
-                    // Update theme
+
                     root.setAttribute('data-theme', theme);
                     
-                    // Update active button
+
                     themeButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     
-                    // Save theme preference
+
                     localStorage.setItem('preferred-theme', theme);
                 });
             });
