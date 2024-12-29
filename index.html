@@ -136,6 +136,7 @@
             margin-bottom: 2.5rem;
             border: 1px solid var(--border);
             border-radius: 4px;
+            position: relative;
         }
 
         section::before {
@@ -143,6 +144,11 @@
             color: var(--red);
             font-weight: bold;
             margin-right: 0.5rem;
+            position: absolute;
+            top: 1rem; /* Adjusts vertical alignment */
+            left: 1rem; /* Positions it slightly outside the section's padding */
+            font-size: 1.2rem;
+            
         }
 
         h2 {
