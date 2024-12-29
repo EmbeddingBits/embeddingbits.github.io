@@ -259,6 +259,39 @@
                 flex-direction: column;
             }
         }
+
+        /* New typing animation styles */
+        .typing-container {
+            background: var(--darker-black);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 2px solid var(--red);
+            white-space: nowrap;
+            margin: 0 auto;
+            color: var(--light-blue);
+            font-size: 1.5rem;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--red) }
+        }
+
+        /* Keep all previous styles */
     </style>
 </head>
 <body>
@@ -278,8 +311,11 @@
             </ul>
         </nav>
     </header>
-
     <main>
+        <section class="typing-container">
+            <div class="typing-text" id="typing-text"></div>
+        </section>
+        <main>
         <section id="about">
             <h2 style="text-align: center;">whoami</h2>
             <p><code>cat Hash_Cr4cker.txt</code></p>
@@ -347,21 +383,13 @@
             <p><code>gpg --encrypt</code></p>
             <p>For contacting and with collaborating me:</p>
             <p><a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a></p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/amiitesh-pradeep-kumar-582bb831a" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.youtube.com/@system-level" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://github.com/Hash-Cracker" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://stackoverflow.com/users/28921629/hash-cracker" title="StackOverflow" target="_blank"><i class="fab fa-stack-overflow"></i></a>
-            </div>
-        </section>
     </main>
 
     <footer>
         <p>SHA256(portfolio) = 2024 © All rights reserved</p>
     </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
             
@@ -395,7 +423,42 @@
                 });
             });
         });
+
+        // Add typing animation script
+        document.addEventListener('DOMContentLoaded', () => {
+            const texts = [
+                "I'm Hash-Cracker",
+                'Linux Enthusiast',
+                'Cybersecurity Engineer',
+                'Linux Kernel Developer'
+            ];
+            let textIndex = 0;
+            let charIndex = 0;
+            const typingElement = document.getElementById('typing-text');
+            
+            function type() {
+                if (charIndex < texts[textIndex].length) {
+                    typingElement.textContent += texts[textIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 100);
+                } else {
+                    setTimeout(erase, 2000);
+                }
+            }
+            
+            function erase() {
+                if (charIndex > 0) {
+                    typingElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, 50);
+                } else {
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(type, 500);
+                }
+            }
+            
+            setTimeout(type, 1000);
+        });
     </script>
 </body>
 </html>
-                    
