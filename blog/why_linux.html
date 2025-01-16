@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vim vs Neovim: Which One Should You Choose?</title>
+    <title>What is Linux and Why Linux?</title>
     <style>
         /* Theme definitions */
         :root[data-theme="dark"] {
@@ -135,6 +135,20 @@
             color: var(--red);
         }
 
+        .container {
+            display: flex;
+            justify-content: space-between; /* Ensures the images are at opposite sides */
+            align-items: center; /* Vertically aligns images if their heights differ */
+        }
+        .container div {
+            flex: 1; /* Makes both divs equal in width */
+            text-align: center; /* Centers the images within their respective divs */
+        }
+        img {
+            max-width: 100%; /* Ensures the images stay responsive */
+            height: auto; /* Maintains the aspect ratio */
+        }
+
         footer {
             background: var(--darker-black);
             padding: 1rem;
@@ -191,6 +205,26 @@ The Linux Kernel is made on C programming language and some of the parts are bei
         <h3>Cost Efficiency</h3>
         <p>Most of the best and popular Linux distros are completely free unlike Windows which requires us to pay Rs. 12000 ($139) to buy the OS.</p>
         <p>There are many kinds of Updates in Linux, like Desktop Environment update, Distro update and Kernel level updates which are completely free of cost to get them updated.</p>
+
+        <h3>Customizability</h3>
+          <p>Linux is highly customizable and is relatively easy when compared to customising other non-linux Operating Systems.
+        <p>There are many distros and there are many Desktop Environments (shortly known as DE) like Gnome, KDE, Sway, XFCE. We can choose whatever DEs we want on our system depending on our requirements.
+        <p> There are many tiling window managers like Hyprland, i3, AwesomeWM, DWM and BSPWM. Window Managers are nothing but automatic window tiling instead of manually.</p>
+        <div class="container">
+        <div align="left">
+            <img src="2025-01-16-075754_hyprshot.png" alt="Hyprland" width="800" height="500">
+        </div>
+        <div align="right">
+            <img src="all.png" alt="KDE" width="800" height="500">
+        </div>
+    </div>
+        <p>The above two are my Linux configurations. The one on the left is Hyprland, a WM (Window Manager) and the one on the right is KDE Plasma a DE (Desktop Envornment).</p>
+
+        <p>Likewise, we can customise them accordig to out personal needs and also make them visually pleasing.</p>
+
+        <h3>Software Availability</h3>
+        <p>One of the common conceptions of Linux is that it lacks software, but in reality its quite the opposite.
+        
         </section>
 
     </article>
