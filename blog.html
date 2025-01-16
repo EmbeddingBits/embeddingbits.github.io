@@ -42,42 +42,6 @@
             --border: #434c5e;
         }
 
-<<<<<<< HEAD
-        /* Theme switcher styles */
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-            font-family: 'Cascadia Mono', monospace;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
-=======
->>>>>>> 341ad9d5ba47e633c9e4e4e37e58b903f43ef604
         * {
             margin: 0;
             padding: 0;
@@ -100,6 +64,7 @@
             padding: 2rem;
             text-align: center;
             border-bottom: 1px solid var(--border);
+            margin-left: 250px;
         }
 
         header h1 {
@@ -126,13 +91,7 @@
             top: 0;
             left: 0;
             height: 100%;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
             z-index: 1000;
-        }
-
-        .sidebar.active {
-            transform: translateX(0);
         }
 
         .sidebar a {
@@ -185,10 +144,8 @@
         }
 
         .main-content:hover {
-          transform: translateX(5px);
+            transform: translateX(5px);
         }
-
-        
 
         .post {
             background: var(--darker-black);
@@ -223,7 +180,6 @@
             border-color: var(--red);
         }
 
-
         footer {
             background: var(--darker-black);
             padding: 1rem;
@@ -231,42 +187,26 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
             border-top: 1px solid var(--border);
-        }
-
-        .menu-toggle {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: var(--darker-black);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 1rem;
+            margin-left: 250px;
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                padding: 1rem;
-                margin-left: 0;
+            .sidebar {
+                width: 100%;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
             }
 
-            .menu-toggle {
-                font-size: 1.2rem;
+            .main-content, header, footer {
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
-    <button class="menu-toggle">☰ Menu</button>
-
-    <header>
-        <h1>Hash-Cr4cker's Blog</h1>
-        <a href="https://hash-cracker.github.io">~/Portfolio</a>
-    </header>
-
     <aside class="sidebar">
         <h3>Navigation</h3>
         <a href="blog/vim_nvim.html">Vim vs Neovim, What are the differences?</a>
@@ -280,24 +220,25 @@
         </div>
     </aside>
 
-    <div class="main-content full-width">
-    <a href="blog/vim_nvim.html" class="post-link">
-        <section id="post1" class="post">
-            <h2>Vim vs Neovim, What are the differences?</h2>
-            <p>In this blog, I will be discussing the differences between Vim and Neovim. And which is better to use...</p>
-        </section>
-    </a>
-</div>
+    <header>
+        <h1>Hash-Cr4cker's Blog</h1>
+        <a href="https://hash-cracker.github.io">~/Portfolio</a>
+    </header>
 
-<div class="main-content full-width">
-    <a href="blog/why_linux.html" class="post-link">
-        <section id="post2" class="post">
-            <h2>What is Linux and why is it a better option for a daily driver</h2>
-            <p>In this blog, I will be discussing what Linux is and why it is a better choice for a daily driver experience.</p>
-        </section>
-    </a>
-</div>
+    <div class="main-content">
+        <a href="blog/vim_nvim.html" class="post-link">
+            <section id="post1" class="post">
+                <h2>Vim vs Neovim, What are the differences?</h2>
+                <p>In this blog, I will be discussing the differences between Vim and Neovim. And which is better to use...</p>
+            </section>
+        </a>
 
+        <a href="blog/why_linux.html" class="post-link">
+            <section id="post2" class="post">
+                <h2>What is Linux and why is it a better option for a daily driver</h2>
+                <p>In this blog, I will be discussing what Linux is and why it is a better choice for a daily driver experience.</p>
+            </section>
+        </a>
 
         <section id="contact">
             <h2>Contact</h2>
@@ -310,16 +251,8 @@
     </footer>
 
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        const mainContent = document.querySelector('.main-content');
         const themeButtons = document.querySelectorAll('.theme-btn');
         const root = document.documentElement;
-
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            mainContent.classList.toggle('full-width');
-        });
 
         const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
         root.setAttribute('data-theme', savedTheme);
