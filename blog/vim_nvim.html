@@ -119,7 +119,7 @@
         }
 
         section h3 {
-            color: var(--red);
+            color: var(--blue);
         }
 
         section ul {
@@ -169,20 +169,20 @@
             <ul>
                 <li>
                     <strong>Extensibility:</strong>
-                    <p><strong>1. Vim:</strong> Vim uses Vimscript (A scripting language made for Vim). It has more of a restricted plugin system since the plugins are required to be written on Vimscript. So, getting more advanced features on Vim can be a very challenging task.</p>
-                    <p><strong>2. Neovim:</strong> Neovim, on the other hand, is a fork of Vim, which is made on Lua language, a language which has way better documentation than Vimscript and has support for plugins to be made on other programming languages as the function calls are supported by other programming languages too (Isn't that great!?). Neovim also supports asynchronous plugins which makes it more performant and responsive than Vim.</p>
+                    <p><strong style="color: var(--light-blue);">1. Vim:</strong> Vim uses Vimscript (A scripting language made for Vim). It has more of a restricted plugin system since the plugins are required to be written on Vimscript. So, getting more advanced features on Vim can be a very challenging task.</p>
+                    <p><strong style="color: var(--light-blue);">2. Neovim:</strong> Neovim, on the other hand, is a fork of Vim, which is made on Lua language, a language which has way better documentation than Vimscript and has support for plugins to be made on other programming languages as the function calls are supported by other programming languages too (Isn't that great!?). Neovim also supports asynchronous plugins which makes it more performant and responsive than Vim.</p>
                 </li>
 
                 <li>
                     <strong>UI Features:</strong>
-                    <p><strong>1. Vim:</strong> Vim basically runs on a terminal emulator, even though it can be run in GUIs like GVim the UI features are heavily limited when in the case of Vim.</p>
-                    <p><strong>2. Neovim:</strong> Neovim on the other hand was also made to support external user interfaces. So it can be run on all sorts of terminal emulators and also in other GUIs (Neovide is a very good example which was made to run Neovim) for different user preferences and user workflows, thus giving us more opportunity to make use of the Open Source freedom when in the case of Neovim.</p>
+                    <p><strong style="color: var(--light-blue);">1. Vim:</strong> Vim basically runs on a terminal emulator, even though it can be run in GUIs like GVim the UI features are heavily limited when in the case of Vim.</p>
+                    <p><strong style="color: var(--light-blue);">2. Neovim:</strong> Neovim on the other hand was also made to support external user interfaces. So it can be run on all sorts of terminal emulators and also in other GUIs (Neovide is a very good example which was made to run Neovim) for different user preferences and user workflows, thus giving us more opportunity to make use of the Open Source freedom when in the case of Neovim.</p>
                 </li>
 
                 <li>
                     <strong>Built-In Terminal:</strong>
-                    <p><strong>1. Vim:</strong> Vim does not have a built-in terminal emulator, so we have to rely on another terminal tab opened up to run code.</p>
-                    <p><strong>2. Neovim:</strong> Neovim comes equipped with a built-in terminal emulator, making it easier to run code and commands in the emulator and interact with REPL within the editor.</p>
+                    <p><strong style="color: var(--light-blue);">1. Vim:</strong> Vim does not have a built-in terminal emulator, so we have to rely on another terminal tab opened up to run code.</p>
+                    <p><strong style="color: var(--light-blue);">2. Neovim:</strong> Neovim comes equipped with a built-in terminal emulator, making it easier to run code and commands in the emulator and interact with REPL within the editor.</p>
                 </li>
             </ul>
 
@@ -190,14 +190,14 @@
             <ul>
                 <li>
                     <strong>LSP Support (Language Server Protocol):</strong>
-                    <p><strong>1. Vim:</strong> Vim does not have built-in support for LSPs.</p>
-                    <p><strong>2. Neovim:</strong> Neovim on the other hand, has very good built-in support for LSPs which is a JSON-RPC based protocol to interact with the LSP. This allows Neovim to interact with the LSPs of different languages to access language-specific features like code linting and code snippet completions.</p>
+                    <p><strong style="color: var(--light-blue);">1. Vim:</strong> Vim does not have built-in support for LSPs.</p>
+                    <p><strong style="color: var(--light-blue);">2. Neovim:</strong> Neovim on the other hand, has very good built-in support for LSPs which is a JSON-RPC based protocol to interact with the LSP. This allows Neovim to interact with the LSPs of different languages to access language-specific features like code linting and code snippet completions.</p>
                 </li>
 
                 <li>
                     <strong>Directory Structure:</strong>
-                    <p><strong>1. Vim:</strong> Vim hardcodes its config file location and requires the users to only change that specific file for the changes to act upon which affects configuration maintenance.</p>
-                    <p><strong>2. Neovim:</strong> Neovim uses the "XDG Base Directory" structure. So, programs that have these specifications have their config files stored in XDG_CONFIG_HOME i.e., <i>~/.config/nvim/init.lua</i></p>
+                    <p><strong style="color: var(--light-blue);">1. Vim:</strong> Vim hardcodes its config file location and requires the users to only change that specific file for the changes to act upon which affects configuration maintenance.</p>
+                    <p><strong style="color: var(--light-blue);">2. Neovim:</strong> Neovim uses the "XDG Base Directory" structure. So, programs that have these specifications have their config files stored in XDG_CONFIG_HOME i.e., <i>~/.config/nvim/init.lua</i></p>
                 </li>
 
                 <li>
@@ -209,8 +209,8 @@
                 
                 <li>
                     <strong>Plugin Support:</strong>
-                    <p><strong>1. Vim:</strong> Vim has a very rich plugin support and also has a plugin support of its own. But, it is harder to use it for IDE-like features due to the reason that it was made in Vimscript.
-                    <p><strong>2. Neovim:</strong> Neovim supports the plugin to be written in various languages. With the use of a "actual" programming language it became easier to implement IDE-like features on to Neovim unlike Vim.
+                    <p><strong style="color: var(--light-blue);">1. Vim:</strong> Vim has a very rich plugin support and also has a plugin support of its own. But, it is harder to use it for IDE-like features due to the reason that it was made in Vimscript.
+                    <p><strong style="color: var(--light-blue);">2. Neovim:</strong> Neovim supports the plugin to be written in various languages. With the use of a "actual" programming language it became easier to implement IDE-like features on to Neovim unlike Vim.
                 </li>
             </ul>
         </section>
