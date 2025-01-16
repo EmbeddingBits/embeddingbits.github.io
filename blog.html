@@ -181,12 +181,14 @@
             flex-grow: 1;
             padding: 2rem;
             margin-left: 250px;
-            transition: margin-left 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        .main-content.full-width {
-            margin-left: 0;
+        .main-content:hover {
+          transform: translateX(5px);
         }
+
+        
 
         .post {
             background: var(--darker-black);
@@ -210,6 +212,17 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
+
+        a.post-link {
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        a.post-link:hover .post {
+            border-color: var(--red);
+        }
+
 
         footer {
             background: var(--darker-black);
@@ -268,19 +281,23 @@
     </aside>
 
     <div class="main-content full-width">
+    <a href="blog/vim_nvim.html" class="post-link">
         <section id="post1" class="post">
-            <a href="blog/vim_nvim.html">
             <h2>Vim vs Neovim, What are the differences?</h2>
             <p>In this blog, I will be discussing the differences between Vim and Neovim. And which is better to use...</p>
-            </a>
         </section>
+    </a>
+</div>
 
+<div class="main-content full-width">
+    <a href="blog/why_linux.html" class="post-link">
         <section id="post2" class="post">
-            <a href="blog/why_linux.html">
             <h2>What is Linux and why is it a better option for a daily driver</h2>
             <p>In this blog, I will be discussing what Linux is and why it is a better choice for a daily driver experience.</p>
-            </a>
         </section>
+    </a>
+</div>
+
 
         <section id="contact">
             <h2>Contact</h2>
