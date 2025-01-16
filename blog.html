@@ -41,38 +41,6 @@
             --border: #434c5e;
         }
 
-        /* Theme switcher styles */
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -104,6 +72,12 @@
             letter-spacing: 1px;
         }
 
+        header a {
+            color: var(--light-blue);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
         .sidebar {
             background: var(--darker-black);
             width: 250px;
@@ -111,6 +85,17 @@
             color: var(--text-secondary);
             border-right: 1px solid var(--border);
             flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
         }
 
         .sidebar a {
@@ -126,9 +111,44 @@
             color: var(--red);
         }
 
+        .theme-switcher {
+            margin-top: 2rem;
+        }
+
+        .theme-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--darker-black);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Cascadia Mono', monospace;
+            transition: all 0.2s ease;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .theme-btn.active {
+            background: var(--red);
+            color: var(--black);
+            border-color: var(--red);
+        }
+
         .main-content {
             flex-grow: 1;
             padding: 2rem;
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.full-width {
+            margin-left: 0;
         }
 
         .post {
@@ -163,63 +183,68 @@
             border-top: 1px solid var(--border);
         }
 
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                padding: 1rem;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
+        .menu-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--darker-black);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
 
+        @media (max-width: 768px) {
             .main-content {
                 padding: 1rem;
+                margin-left: 0;
             }
 
-            header h1 {
-                font-size: 1.8rem;
+            .menu-toggle {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="light">Light</button>
-        <button class="theme-btn active" data-theme="dark">Dark</button>
-        <button class="theme-btn" data-theme="nord">Nord</button>
-    </div>
+    <button class="menu-toggle">☰ Menu</button>
 
     <header>
         <h1>Hash-Cr4cker's Blog</h1>
         <a href="https://hash-cracker.github.io">~/Portfolio</a>
     </header>
 
-    <div style="display: flex; height: 100vh;">
-        <aside class="sidebar">
-            <h3>Navigation</h3>
-            <a href="blog/vim_nvim.html">Vim vs Neovim, What are the differences?</a>
-            <a href="blog/why_linux.html">What is Linux, and why is it a better option for a daily driver</a>
-            <a href="#contact">Contact</a>
-        </aside>
+    <aside class="sidebar">
+        <h3>Navigation</h3>
+        <a href="blog/vim_nvim.html">Vim vs Neovim, What are the differences?</a>
+        <a href="blog/why_linux.html">What is Linux, and why is it a better option for a daily driver</a>
+        <a href="#contact">Contact</a>
 
-        <div class="main-content">
-            <section id="post1" class="post">
-              <a href="https://hash-cracker.github.io/blog/vim_nvim.html">
-                <h2>Vim vs Neovim, What are the differences?</h2>
-                <p>In this blog, I will be discussing about the differences between Vim and Neovim. And which is better to use...</p>
-              </a>
-            </section>
-
-            <section id="https://hash-cracker.github.io/blog/why_linux.html" class="post">
-                <h2>What is Linux and why is it a better option for a daily driver</h2>
-                <p>In this blog, I will be discussing about the what is Linux and why is it a better choice for a daily driver experience.</p>
-            </section>
-
-
-            <section id="contact">
-                <h2>Contact</h2>
-                <p>If you'd like to collaborate or have any questions, feel free to reach out to me via email at <a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a>.</p>
-            </section>
+        <div class="theme-switcher">
+            <button class="theme-btn" data-theme="light">Light Mode</button>
+            <button class="theme-btn active" data-theme="dark">Dark Mode</button>
+            <button class="theme-btn" data-theme="nord">Nord Mode</button>
         </div>
+    </aside>
+
+    <div class="main-content full-width">
+        <section id="post1" class="post">
+            <h2>Vim vs Neovim, What are the differences?</h2>
+            <p>In this blog, I will be discussing the differences between Vim and Neovim. And which is better to use...</p>
+        </section>
+
+        <section id="post2" class="post">
+            <h2>What is Linux and why is it a better option for a daily driver</h2>
+            <p>In this blog, I will be discussing what Linux is and why it is a better choice for a daily driver experience.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>If you'd like to collaborate or have any questions, feel free to reach out to me via email at <a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a>.</p>
+        </section>
     </div>
 
     <footer>
@@ -227,32 +252,34 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const root = document.documentElement;
-            const themeButtons = document.querySelectorAll('.theme-btn');
-            
-            const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
-            root.setAttribute('data-theme', savedTheme);
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const root = document.documentElement;
 
-            themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('full-width');
+        });
 
-            themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
+        const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
+        root.setAttribute('data-theme', savedTheme);
+
+        themeButtons.forEach(btn => {
+            if (btn.getAttribute('data-theme') === savedTheme) {
+                btn.classList.add('active');
+            }
+
+            btn.addEventListener('click', () => {
+                const theme = btn.getAttribute('data-theme');
+                root.setAttribute('data-theme', theme);
+                localStorage.setItem('preferred-theme', theme);
+
+                themeButtons.forEach(button => button.classList.remove('active'));
+                btn.classList.add('active');
             });
         });
     </script>
 </body>
 </html>
-
