@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <style>
+    
     <title>Vim vs Neovim: Which One Should You Choose?</title>
     <style>
         /* Theme definitions */
@@ -61,7 +61,30 @@
             background: var(--red);
             color: var(--black);
             border-color: var(--red);
+
         }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--blue);
+            color: var(--black);
+            text-decoration: none;
+            font-family: 'Cascadia Mono', monospace;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .home-btn:hover {
+           background: var(--light-blue);
+            color: var(--red);
+        }
+
 
         * {
             margin: 0;
@@ -145,6 +168,9 @@
 
     <header>
         <h1>Vim vs Neovim: Which One Should You Choose?</h1>
+      <nav>
+        <a href="../blog.html" class="home-btn">Home</a>
+    </nav>
     </header>
     <article>
         <section>

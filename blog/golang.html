@@ -79,6 +79,28 @@
             transition: all 0.3s ease;
         }
 
+        nav {
+            margin-top: 1rem;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--blue);
+            color: var(--black);
+            text-decoration: none;
+            font-family: 'Cascadia Mono', monospace;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: background 0.2s, color 0.2s;
+        }
+
+      .home-btn:hover {
+          background: var(--light-blue);
+          color: var(--red);
+        }
+
+
         header {
             background: var(--darker-black);
             padding: 2rem;
@@ -167,6 +189,9 @@
 
     <header>
         <h1>Golang: Getting Started, its philosophy and its use cases</h1>
+        <nav>
+          <a href="../blog.html" class="home-btn">Home</a>
+        </nav>
     </header>
     <article>
       <section>
