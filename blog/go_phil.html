@@ -103,6 +103,10 @@
             color: var(--red);
         }
 
+        .container {
+          display: flex;
+          gap: 20px;
+        }
 
         header {
             background: var(--darker-black);
@@ -145,6 +149,10 @@
 
         section h3 {
             color: var(--red);
+        }
+
+        section h4 {
+          color: var(--light-blue);
         }
 
         section ul {
@@ -249,32 +257,51 @@
       <h3>Go fmt</h3>
       <p>This command is really a useful and a interesting feature of Go. This command formats a file with indents and newline characters to make it readable.</p>
       <pre><code>go fmt filename.go </code></pre>
-        <h4>Unformatted File</h4>
-        <pre><code>
-          package main
-          import "fmt"
-          func main(){
-          fmt.Println("Sample Addition")
-          a:=5
-          b:=4
-          c:=a+b
-          fmt.Println(c)
-          } 
-        </code></pre>
-        <h4>Formatted File with go fmt</h4>
-        <pre><code>
-          package main
+        <div class="container">
+        <div class="code-block">
+            <h4>Unformatted File</h4>
+            <pre><code>
+package main
+import "fmt"
+func main(){
+fmt.Println("Sample Addition")
+a:=5
+b:=4
+c:=a+b
+fmt.Println(c)
+}
+            </code></pre>
+        </div>
+        <div class="code-block">
+            <h4>Formatted File with go fmt</h4>
+            <pre><code>
+package main
 
-          import "fmt"
+import "fmt"
 
-          func main(){
-              fmt.Println("Sample Addition")
-              a:=5
-              b:=4
-              c:=a+b
-              fmt.Println(c)
-          } 
-        </code></pre>
+func main() {
+    fmt.Println("Sample Addition")
+    a := 5
+    b := 4
+    c := a + b
+    fmt.Println(c)
+}
+            </code></pre>
+        </div>
+    </div>
+        <p>You can see how the commands formats the code to make more readable.</p>
+      </section>
+
+      <section>
+        <h2>What is Go used for?</h2>
+        <p>Go is used for many useful purposes:</p>
+        <ul style="list-style-type: disc;">
+          <li><strong>Container Services: </strong></li>
+          <li><strong>Network and cloud services: </strong></li>
+          <li><strong>Web services: </strong></li>
+          <li><strong>Command-line tools: </strong></li>
+          <li><strong>Microservices: </strong></li>
+          <li><strong>Data Science: </strong></li>
       </section>
     </article>
     <footer>
