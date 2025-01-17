@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="nord">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Go Philosophy</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <style>
-        /* Theme definitions */
         
         :root[data-theme="light"] {
             --black: #ffffff;
@@ -30,7 +33,7 @@
             --border: #434c5e;
         }
 
-        /* Theme switcher styles */
+        
         .theme-switcher {
             position: fixed;
             top: 1rem;
@@ -95,9 +98,9 @@
             transition: background 0.2s, color 0.2s;
         }
 
-      .home-btn:hover {
-          background: var(--light-blue);
-          color: var(--red);
+        .home-btn:hover {
+            background: var(--light-blue);
+            color: var(--red);
         }
 
 
@@ -159,8 +162,16 @@
 
         img {
             max-width: 100%; 
-            height: auto;  
+            height: auto;
         }
+
+        pre code {
+            width: 500px;
+            text-align: left;
+            font-size: 15px;
+            padding: 10px;
+        }
+
 
         footer {
             background: var(--darker-black);
@@ -170,6 +181,7 @@
             font-size: 0.9rem;
             border-top: 1px solid var(--border);
         }
+
     </style>
 </head>
 <body>
@@ -186,10 +198,84 @@
     </header>
     <article>
       <section>
-        <h2>What is Golang? Why and Where is it used?</h2>
+        <h2>What is Golang? Where and Why is it used?</h2>
         <p>Go (or Golang), is an Open Source programming language developed by Google. Go has many use cases like used in building Microservices, Cloud Computing, Web Applications and is used in creating CLI Tools.</p>
-        <p>Go is a statically typed language and its structures and syntaxes resembles the C Programming Language.</p>
+        <p>Go is a statically typed language and its structures and syntaxes resembles the C Programming Language. Due to Golang's fast startup time, low runtime overhead and the language being platform-independent, it has become very popular language for writing microservices and other use cases. Go is also popular for its concurrency, meaning that it can execute multiple processes at the same time.</p>
+        <p>Golang uses Goroutines (lighweight processes) and a collection of packages and commands for dependancy management. It was designed to solve problems like slow build times and difficulty writing tools and for cross-language development.</p>
+        <p>In this blog, I'll be discussing about the Golang and some basics and resources to get started with Golang.</p>
+      </section>
 
+      <section>
+        <h2>History of Go</h2>
+        <p>Golang was created by Google to solve their own software engineering issues and was created as an alternative to the infamous C++. Google started creating Go in 2007, and their goal was to create a programming language that was easier to use and have the useful features of other programming language like C++, Javascript and Python. It was released as a Open Source project by Google in 2009 where people could contribute to the development of Go.</p>
+        <p>Since then, many new features are being added to the language with the most major update in 2022 where Generics was introduced into the language (major feature of Java).</p>
+        <p>Due to increasing and fast development of the language, major companies started using the language into their codebase like Netflix, Microsoft, Cloudfare, Docker, Twitch and Dropbox.</p>
+        
+      </section>
+
+      <section>
+        <h2>Philosophy of Go</h2>
+        <p>The philosophy of Go and the issues fixed through the langauge is quite interesting:</p>
+        <ul style="list-style: disc;">
+          <li><strong>Simplicity: </strong>Go focuses on simplicity. Every other languages keep adding features which at the end makes it bloated but Go on the other hand only adds features that are considered useful in the long term.</li>
+          <li><strong>Efficiency: </strong>Go is written to be efficient and faster and its very well evident from its concurrency feature.</li>          
+          <li><strong>Error Handling: </strong>Go also focuses on handling errors like a true boss. It has built-in error handling parameters in most of its built-in functions as a second argument.</li>          
+          <li><strong>Pragmatism: </strong>Go is focused on creating logical and practical solutions to real world problems.</li>          
+        </ul>
+      </section>
+
+      <section>
+        <h2>Features of Go:</h2>
+        <ul style="list-style-type: disc;">
+          <li><strong>Standard Library: </strong>Go has a rich amounts of standard libraries ranging from basic math libs to libs for Networking.</li>
+          <li><strong>Package Management: </strong>It allows managing of user created packages and publishing them with set of commands in the CLI.</li>
+          <li><strong>Static-Typed: </strong>It assigns types to variables during compile times and looking for type related errors thus fixing issues that come with dynamically typed languages.</li>
+          <li><strong>Unit Test Support: </strong>Go supports unit tests that run in parallel with the codebase which ensures effective debugging and ensure code quality.</li>                   
+          <li><strong>Platform Independent: </strong>Go is platform-independent and can run and compile on any given hardware and Operating System</li>                   
+          <li><strong>Concurrency: </strong>They are also called as Goroutines and behave like that of threads that allows running multiple tasks at the same time parallely which is one of the most important features of Golang.</li>                   
+        </ul>
+      </section>
+      <section>
+        <h2>Some of the useful Go commands:</h2>
+        <h3>Go run</h3>
+        <p>It is self-evident from the command, this commands compiles and executes the code simulataneously.</p>
+        <pre><code>go run filename.go </code></pre>
+        <h3>Go build</h3>
+        <p>This command compiles the code and is stored in a executable file.</p>
+        <pre><code>go build filename.go </code></pre>
+      <h3>Go get</h3>
+      <p>It integrates with GitHub to import libraries defined by other users in GitHub.</p>
+      <pre><code>go get github.com/libname </code></pre>
+      <h3>Go fmt</h3>
+      <p>This command is really a useful and a interesting feature of Go. This command formats a file with indents and newline characters to make it readable.</p>
+      <pre><code>go fmt filename.go </code></pre>
+        <h4>Unformatted File</h4>
+        <pre><code>
+          package main
+          import "fmt"
+          func main(){
+          fmt.Println("Sample Addition")
+          a:=5
+          b:=4
+          c:=a+b
+          fmt.Println(c)
+          } 
+        </code></pre>
+        <h4>Formatted File with go fmt</h4>
+        <pre><code>
+          package main
+
+          import "fmt"
+
+          func main(){
+              fmt.Println("Sample Addition")
+              a:=5
+              b:=4
+              c:=a+b
+              fmt.Println(c)
+          } 
+        </code></pre>
+      </section>
     </article>
     <footer>
         <p>2024 © The Philosophy of Golang. All rights reserved.</p>
@@ -200,7 +286,7 @@
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
             
-            const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
+            const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {
