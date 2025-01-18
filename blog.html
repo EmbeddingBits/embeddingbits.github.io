@@ -306,7 +306,7 @@
         const themeButtons = document.querySelectorAll('.theme-btn');
         const root = document.documentElement;
 
-        const savedTheme = localStorage.getItem('preferred-theme') || 'dark';
+        const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
         root.setAttribute('data-theme', savedTheme);
 
         themeButtons.forEach(btn => {
