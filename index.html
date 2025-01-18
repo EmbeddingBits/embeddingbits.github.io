@@ -134,10 +134,9 @@
             font-weight: bold;
             margin-right: 0.5rem;
             position: absolute;
-            top: 1rem; /* Adjusts vertical alignment */
-            left: 1rem; /* Positions it slightly outside the section's padding */
+            top: 1rem;
+            left: 1rem;
             font-size: 1.2rem;
-            
         }
 
         h2 {
@@ -232,30 +231,6 @@
             font-size: 0.9em;
         }
 
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            section {
-                padding: 1.5rem;
-            }
-
-            .social-links {
-                gap: 1.5rem;
-            }
-
-            .theme-switcher {
-                top: auto;
-                bottom: 1rem;
-                right: 1rem;
-                flex-direction: column;
-            }
-        }
-
-        /* New typing animation styles */
         .typing-container {
             background: var(--darker-black);
             padding: 2rem;
@@ -286,7 +261,154 @@
             50% { border-color: var(--red) }
         }
 
-        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Header and Navigation */
+            header {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem;
+                border: 1px solid var(--border);
+                border-radius: 4px;
+            }
+
+            /* Main Content */
+            main {
+                margin: 1.5rem auto;
+                padding: 0 1rem;
+            }
+
+            /* Typing Container */
+            .typing-container {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .typing-text {
+                font-size: 1.2rem;
+                max-width: 100%;
+                padding: 0 0.5rem;
+            }
+
+            /* Sections */
+            section {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            section::before {
+                top: 0.8rem;
+                left: 0.8rem;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1.2rem;
+                padding-left: 1rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Projects */
+            .project {
+                padding: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .project:hover {
+                transform: none;
+                border-color: var(--red);
+            }
+
+            .project h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .project p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .stack {
+                font-size: 0.8rem;
+                margin-top: 0.8rem;
+            }
+
+            /* Theme Switcher */
+            .theme-switcher {
+                bottom: 1rem;
+                right: 1rem;
+                top: auto;
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+
+            .theme-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            /* Code blocks */
+            code {
+                font-size: 0.85rem;
+                padding: 0.15rem 0.3rem;
+                word-break: break-word;
+            }
+
+            /* Footer */
+            footer {
+                padding: 1rem;
+                font-size: 0.8rem;
+                margin-bottom: 4rem;
+            }
+
+            /* Typography */
+            p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Small Screen Optimizations */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .typing-text {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .project {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -310,12 +432,11 @@
         <section class="typing-container">
             <div class="typing-text" id="typing-text"></div>
         </section>
-        <main>
         <section id="about">
             <h2 style="text-align: center;">whoami</h2>
             <p><code>cat Bits_Expl0ited.txt</code></p>
             <h3 style="text-align: center;">General About Me</h3>
-            <p>I am freshman currently pursuing BTech in Electronics and Computer Engineering with a deep interest towards <span style="color: var(--red);">Cybersecurity</span> and <span style="color: var(--red);">Linux Kernel Development.</span> I have developed knowledge in the field of Cybersecurity and Kernel Development and looking forward to contribute to the Linux Kernel.</span></p>
+            <p>I am freshman currently pursuing BTech in Electronics and Computer Engineering with a deep interest towards <span style="color: var(--red);">Cybersecurity</span> and <span style="color: var(--red);">Linux Kernel Development.</span> I have developed knowledge in the field of Cybersecurity and Kernel Development and looking forward to contribute to the Linux Kernel.</p>
             <h3 style="text-align: center;">How it started</h3>
             <p>I have always been fascinated by <span style="color: var(--red);">computer hardware</span> and <span style="color: var(--red);">digital systems</span>. My journey began with using Linux, which sparked my interest in cybersecurity and kernel development, as these areas are closely intertwined with the underlying hardware and digital systems of computers.</p>
             <h3 style="text-align: center;">Experience</h3>
@@ -335,7 +456,7 @@
             <div class="project">
                 <a href="https://github.com/BitsExploited/vat-viewer" target="_blank">
                     <h3>./Vat-Viewer</h3>
-              <p>This is a better version of <code>cat</code> file reader made on Golang which features Nord-theme syntax highlighting and Line numbering or better code readability.</p>
+                    <p>This is a better version of <code>cat</code> file reader made on Golang which features Nord-theme syntax highlighting and Line numbering or better code readability.</p>
                     <div class="stack">Technologies: Go | Lexers</div>
                 </a>
             </div>
