@@ -202,6 +202,44 @@
             margin-left: 250px;
         }
 
+        /* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+    display: none;
+    background: var(--darker-black);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 0.5rem;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: var(--text-secondary);
+    display: block;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    color: var(--red);
+}
+
+/* Expand dropdown when active */
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+/* Change cursor to indicate it's expandable */
+.dropbtn {
+    cursor: pointer;
+}
+
+
         /* Updated media queries */
         @media (max-width: 768px) {
             .nav-toggle {
@@ -325,13 +363,17 @@
         </a>
     </div>
     <div class="main-content">
-        <a href="blog/vim_nvim.html" class="post-link">
-            <section id="post2" class="post">
-                <h2>Computer Networks</h2>
+        <div class="post dropdown">
+            <a href="#" class="post-link dropbtn">
+                <h2>Computer Networks ▾</h2>
                 <p>In this blog, I will be discussing about computer network basics from theory to network programming in C.</p>
-            </section>
-        </a>
+            </a>
+            <div class="dropdown-content">
+                <a href="blog/Networks/intro.html">Network Sockets and Types</a>
+            </div>
+        </div>
     </div>
+    
         <div class="main-content">
         <section id="contact">
             <h2>Contact</h2>
@@ -387,6 +429,14 @@
                 }
             });
         });
+        // Toggle dropdown for main content
+document.querySelectorAll(".dropbtn").forEach(button => {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        this.parentElement.classList.toggle("active");
+    });
+});
+
     </script>
 </body>
 </html>
