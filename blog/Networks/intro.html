@@ -209,7 +209,7 @@
     <header>
         <h1>An Introduction to Computer Networks</h1>
         <nav>
-          <a href="../blog.html" class="home-btn">Home</a>
+          <a href="../../blog.html" class="home-btn">Home</a>
         </nav>
     </header>
     <article>
@@ -222,62 +222,66 @@
         <h2>What is a Network Socket?</h2>
         <p>A network socket is nothing but a endpoint for communication between two devices in a network, that is used to recieve and send data over a network. It is a interface to share data with each other.</p>
         <p>The server creates a socket, binds it to an IP header and a port number and makes it search for connections. Then, the client creates another socket and connects itselves to the server. The data is sent by the socket in the server to the socket in the client that is waiting to receieve the data. When the communication is done the, the connection in closed.</p>
-        <p>This is the basic idea behind a socket and how is it created and managed. Now, Let us see what are the different types of network sockets that can be used to transmit data.</p>
+        <p>This is the basic idea behind a socket and how it is created and managed. Now, Let us see what are the different types of network sockets that can be used to transmit data.</p>
       </section>
 
         <section>
-          <h2>How are windows managed</h2>
-
-          <p>In <span>tiled mode</span>, the windows are stacked above one another as a new wondow is created everytime. Stack in the sense not "literally" stack but the windows act stacked in the memory as in the data structure "stack".</p>
-
-          <p>In <span>monocle layout</span>, all the windows are fullscreen and now are literally stacked above each other when they are created.</p>
-          <p>In the <span>floating layout</span>, it is like what we use in rest of the desktop environments and in Windows. All the newly created windows are floating.</p>
-       <div align="center">
-          <img src="stacked.png" alt="Tags" height=1600 width=1000>
-        </div> 
+          <h2>Types of Network Sockets:</h2>
+          <ul>
+            <li>Stream Socket</li>
+            <li>Datagram Socket</li>
+            <li>Raw Socket</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Stream Socket</h2>
+          <p><span>Stream Socket </span>is a two-way reliable connected communication streams. If we give two items in an order into the socket say, "a, b" then in the output it arrives "a, b" and they will also be error-free.</p>
+          <p>Applications like <span>telnet </span>and <span>ssh </span> use stream socket. Web browsers also use stream sockets to get the web pages. Stream sockets are used in these situations because for the application to work perfectly fine we require that all the packets reach and all the packets reach in the order as we specify.</p>
+          <p>Stream sockets have hihg level of data transmission quality because they use, <span>"TCP" (Transmission Control Protocol). </span>The job of TCP is that it ensures that all the packets reach the destination sequentially and error-free. You must have heard TCP in the term <span>TCP/IP</span>. In TCP/IP, <span>"IP" </span>stands for <span>Internet Protocol, </span>they are used in internet routing meaning that they ensure that the destination and the sender has an address so that the packet can reach to the desired address destination.</p>
         </section>
 
         <section>
-          <h2>Workspaces/Tags</h2> 
-          <p>In DWM, the workspaces are called as "tags". By default, there are 10 tags but we can change them to how much we want. We can also replace them with a logo instead of just numbers.</p>
-          <p>We can switch between them with shortcut key, ALT + "tag_number". We can also change the keybinds to whatever we feel comfortable. </p>
-         <div align="center">
-          <img src="tags.png" alt="Tags" height=1600 width=1000>
-        </div>
-        <p>The red circled is what is called tags</p>
+          <h2>Datagram Socket</h2>
+          <p><span>Datagram Socket</span> is one another important network socket. Datagram sockets also use IP for internet routing but they don't use TCP instead they use <span>"UDP" (User Datagram Protocol). </span>Datagram sockets are also called "connectionless sockets" and they are not as reliable as Stream sockets. They are considered not reliable because when using a datagram socket, the packet may arrive, may arrive out of order and its error-free.</p>
+          <p>They are called connectionless sockets because they don't need to establish a open connection like stream sockets to send data. Just build a packet, slap on a IP header and then send it. They are generally used in cases when there is no availability of TCP or in cases when losing packets do not matter.</p>
+          <p><span>TFTP (Trivial File Transfer Protocol)</span> and <span>DHCPCD (DHCP Client) </span> and <span> multiplier games, audio and video calls</span> use Datagram Sockets. In the case of TFTP and DHCPCD, to avoid loss of data, they use a protocol on top of UDP, which ensures whether a packet as reached the destiantion or not. Whenever a packet is sent using TFTP, the protocol expects a packet in return from destination saying that it has recieved the packet and are called ACK packets or Acknowledgement packets. If the ACK packets are not recieved then the socket keeps sending the same packet until the ACK packet is recieved.</p>
+          <p>Datagram sockets are used in audio, video calls and multiplier games as they do not require all the data in ordered format.</p>
+          <p>One of the main reasons to using datagram sockets is that they are very fast than stream sockets as there is no need to ensure whether all the packets are reached and whether they have reached in an order.</p>
+          
         </section>
         <section>
-         <h2>Status Bar</h2>
-         <p>There is a status bar by default in provided by DWM. We can also add our own status bar if we want with "patches" (I'll cover that in the upcoming heading). The status bar is divided into three parts, left part for the tags, middle part for the activity that we are doing like the window name and right one is for custom modules that we would display by script files for everything. By default, there is nothing on the right part</p>
-         <p>There are many status bars for the left part: slstatus, dwmblocks, dwmblocks with color support and anybar (which allows us to use any bar other than the default one provided by DWM).</p>
-         <div align="center">
-          <img src="bar1.png" alt="Tags" height=1600 width=1000>
-        </div>
+          <h2>Raw Sockets</h2>
+          <p><span>Raw sockets </span>are a type of network socket that allows direct access to lower-level network protocols. Unlike standard sockets (like TCP or UDP sockets), raw sockets enable users to construct their own packet headers and interact directly with network protocols such as ICMP, IP, or custom protocols.</p>
+          <h3>Key Features of Raw Sockets:</h3>
+    <ul>
+        <li><strong>Bypass Standard Protocol Handling:</strong> Raw sockets operate at the network layer (Layer 3 of the OSI model), allowing users to send and receive packets with custom headers.</li>
+        <li><strong>Custom Packet Headers:</strong> Users can construct packets with specific IP, TCP, UDP, or ICMP headers.</li>
+        <li><strong>Low-Level Network Access:</strong> Raw sockets provide direct interaction with network interfaces, making them useful for network monitoring, testing, and security applications.</li>
+        <li><strong>Requires Elevated Privileges:</strong> In many operating systems, root or administrator privileges are required to create and use raw sockets to prevent misuse.</li>
+    </ul>
+
+    <h3>Common Use Cases:</h3>
+    <ul>
+        <li><strong>Network diagnostics:</strong> Tools like ping and traceroute use raw sockets to send ICMP packets.</li>
+        <li><strong>Packet sniffing:</strong> Network monitoring tools like Wireshark and tcpdump capture raw network traffic.</li>
+        <li><strong>Custom protocol implementation:</strong> Developing non-standard or experimental network protocols.</li>
+        <li><strong>Security testing:</strong> Ethical hacking and penetration testing tools use raw sockets to craft and inject packets.</li>
+    </ul>
+    <p>Raw sockets let you bypass all the fancy, safe, hand-holding of TCP and UDP and just craft your own packets. You want to forge an ICMP packet? Go ahead. You want to send a custom TCP SYN packet without a full TCP handshake? Be my guest. You want to build your own networking protocol entirely from scratch? Raw sockets are the way.
+
+With great power comes great responsibility, though. Because raw sockets give you the bare-metal ability to send and receive packets, you can do all kinds of weird, cool, dangerous, and amazing things. Network monitoring, custom protocol development, security testing… or if you're feeling mischievous, packet spoofing (not that I’m saying you should do that).</p>
+    <p>Raw socket is one of the best socket, its pretty much like Linux, we can configure everything we want from scratch or build on top or in whatever way we want to. Raw Sockets are mostly run as sudo in Linux or "Run as administrator" in Windows. Some features are also restricted by some operating system, restrict? an OS? yes you guessed it right, its "Windows" that restricts Raw sockets from sending TCP packets. Since, we have to define all the headers by ourselves unlike TCP and UDP where the OS builds the headers, but for raw sockets we have to do everything manually.</p>
         </section>
 
         <section>
-          <h2>Patches</h2>
-          <p>We can add many other features we require by "<span>patching</span>" the main source code. This is one of the most exhausting part of DWM for people who want extra features.</p>
-          <p>The patches are mostly written by other users by themselves. Patches are nothing but adding extra functionality to the source code.</p>
-          <p>When applying the patches there is <span>7/10 chance</span> for a patch error to occur. The error is put into a <span>.rej</span> file with the changes taht are to be made undicated with "+" and "-". We have to manually edit them ourselves and compile the code. We have to add the lines that start with + and delete the line that start with "-".</p>
-          <p>This is part where most quit because its exhausting.</p>
-          <p>This is because that the patches are not intelligent enough to make all the changes by itself. They expect some block of code to be there but when there is no code block that the patch is expecting it returns and error and as I said after we edit the file ourselves and if there are errors in teh main source code the DWM won't allow us to get into the DWM.</p>
+          <h2>Summary</h2>
+          <p>In summary, Network Socket is nothing but a endpoint in devices that recieves and send packets to the destination. The server builds a socket, the socket listens to connections, recieves the packet and sends it to the desitnation and the connection and socket are closed. There are three main types of sockets: Stream, Datagram and Raw Sockets. Stream socket is a reliable two way socket and ensures that all the packets reach destination and in an ordered form. Datagram packets are very fast and send data without a open connection (connectionless) and raw sockets are low-level network sockets where we can define our own headers for packets, and interact directly with protocols like ICMP and IP and raw sockets are highly secure way of sending packets and require admin perms to run them and takes a lot of time to get them configured. In the next blog, it'll be a short one on the Networking model, the classic one and the OSI model.</p>
         </section>
-
-        <section>
-          <h2>Bottom Note</h2>
-          <p>There are different Window managers but I really felt that this one was peculiar and thought of writing a blog on it.</p>
-          <p>There are many window managers that are a fork of this like <a href="https://i3wm.org/" style="color: var(--blue);">i3</a> and <a href="https://github.com/baskerville/bspwm" style="color: var(--blue);">bspwm</a>, <a href="https://codeberg.org/dwl/dwl" style="color: var(--blue);">dwl (which is a wayland fork of dwm)</a> and much more.</p>
-          <p>You can try and install dwm if you want from the link below</p>
-          DWM: <a href="https://dwm.suckless.org/" style="color: var(--blue);">https://dwm.suckless.org/</a>
-        </section>
-        <section>
         <div align="center">
-          <h2>Thank you for reading this blog</h2>
+        <section>
+          <h2>Thanks for reading the blog</h2>
+        </section>
         </div>
-      </section>
-
-
     </article>
 
 
