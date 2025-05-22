@@ -78,7 +78,14 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            align-items: center; /* Center horizontally */
             transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px; /* Limit max width for better readability */
+            padding: 0 1rem;  /* Add some padding on smaller screens */
         }
 
         nav {
@@ -105,8 +112,9 @@
         header {
             background: var(--darker-black);
             padding: 2rem;
-            text-align: left;
+            text-align: center;
             border-bottom: 1px solid var(--border);
+            width: 100%;
         }
 
         header h1 {
@@ -127,6 +135,9 @@
             background: var(--darker-black);
             border-radius: 4px;
             margin-top: 2rem;
+            width: 100%;
+            max-width: 800px;
+            text-align: center; /* Center text content */
         }
 
         section {
@@ -146,9 +157,16 @@
             color: var(--light-blue);
         }
 
+        section p {
+            text-align: center; /* Center paragraph text */
+            margin-bottom: 1rem;
+        }
+
         section ul {
             list-style: none;
             padding-left: 1.5rem;
+            display: inline-block; /* Center bullet points */
+            text-align: left; /* Keep list item text left-aligned */
         }
 
         section ul li {
@@ -165,12 +183,19 @@
             height: auto;
         }
 
+        pre {
+            text-align: left; /* Code blocks should remain left-aligned */
+            margin: 0 auto; /* Center the code block container */
+            max-width: 90%; /* Limit width of code blocks */
+        }
+
         pre code {
-            width: 500px;
+            width: 100%;
             text-align: left;
             font-size: 15px;
             padding: 10px;
             font-family: 'Cascadia Mono', monospace;
+            display: block;
         }
 
         span {
@@ -184,6 +209,8 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
             border-top: 1px solid var(--border);
+            width: 100%; 
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -193,38 +220,39 @@
         <button class="theme-btn" data-theme="nord">Nord</button>
     </div>
 
-    <header>
-        <h1>Learning Zig: A Simple Guide to Its Basics</h1>
-        <nav>
-            <a href="../../blog.html" class="home-btn">Home</a>
-        </nav>
-    </header>
-    <article>
-        <section>
-            <h2>Introduction</h2>
-            <p>Zig is a modern programming language that is meant to be the successor of C programming language. Zig is a general-purpose programming language and toolchain for maintaining robust, optimal and reusable software. There is no hidden control flow, no hidden memory allocations and no preprocessors and macros as in C. Zig has a very important and maybe the standout feature of the language and a new approach to metaprogramming. In zig, we can call the functions at compile time and the datatypes can be assign the datatype at compile time and much more to it.</p>
-        </section>
+    <div class="container">
+        <header>
+            <h1>Learning Zig: A Simple Guide to Its Basics</h1>
+            <nav>
+                <a href="../../blog.html" class="home-btn">Home</a>
+            </nav>
+        </header>
+        <article>
+            <section>
+                <h2>Introduction</h2>
+                <p>Zig is a modern programming language that is meant to be the successor of C programming language. Zig is a general-purpose programming language and toolchain for maintaining robust, optimal and reusable software. There is no hidden control flow, no hidden memory allocations and no preprocessors and macros as in C. Zig has a very important and maybe the standout feature of the language and a new approach to metaprogramming. In zig, we can call the functions at compile time and the datatypes can be assign the datatype at compile time and much more to it.</p>
+            </section>
 
-        <section>
-            <h2>What Makes Zig Special</h2>
-            <p>Zig is built on three big ideas: it’s <strong>simple</strong>, it’s <strong>fast</strong>, and it gives you <strong>control</strong>. Unlike some languages that make things complicated or force rules on you, Zig keeps things clear and lets you decide what to do.</p>
-            <p>Here’s a simple Zig program that says hello:</p>
-            <pre><code>
+            <section>
+                <h2>What Makes Zig Special</h2>
+                <p>Zig is built on three big ideas: it's <strong>simple</strong>, it's <strong>fast</strong>, and it gives you <strong>control</strong>. Unlike some languages that make things complicated or force rules on you, Zig keeps things clear and lets you decide what to do.</p>
+                <p>Here's a simple Zig program that says hello:</p>
+                <pre><code>
 const std = @import("std");
 
 pub fn main() !void {
     const stdout = std.io.getStdOut().writer();
     try stdout.print("Hello, {s}!\n", .{"Zig"});
 }
-            </code></pre>
-            <p>This code prints "Hello, Zig!" to your screen. The <code>!void</code> part means the program might fail, and Zig makes sure you know it. We’ll talk more about that later.</p>
-        </section>
+                </code></pre>
+                <p>This code prints "Hello, Zig!" to your screen. The <code>!void</code> part means the program might fail, and Zig makes sure you know it. We'll talk more about that later.</p>
+            </section>
 
-        <section>
-            <h2>Managing Memory in Zig</h2>
-            <p>Memory is like space your program uses to store things. In Zig, you get to decide how to use that space—no automatic system does it for you. This makes your program fast and safe.</p>
-            <p>Here’s an example of making a list of numbers:</p>
-            <pre><code>
+            <section>
+                <h2>Managing Memory in Zig</h2>
+                <p>Memory is like space your program uses to store things. In Zig, you get to decide how to use that space—no automatic system does it for you. This makes your program fast and safe.</p>
+                <p>Here's an example of making a list of numbers:</p>
+                <pre><code>
 const std = @import("std");
 
 pub fn main() !void {
@@ -241,22 +269,22 @@ pub fn main() !void {
     const stdout = std.io.getStdOut().writer();
     try stdout.print("List: {any}\n", .{numbers});
 }
-            </code></pre>
-            <p>What’s happening here:
-                <ul>
-                    <li><strong>You Choose:</strong> You tell Zig how to create and free the list.</li>
-                    <li><strong>Cleanup:</strong> <code>defer</code> makes sure the list is deleted when you’re done.</li>
-                    <li><strong>Safety:</strong> Zig checks everything when you build the program.</li>
-                </ul>
-            </p>
-            <p>This way, you avoid mistakes like losing track of memory or using it twice by accident.</p>
-        </section>
+                </code></pre>
+                <p>What's happening here:
+                    <ul>
+                        <li><strong>You Choose:</strong> You tell Zig how to create and free the list.</li>
+                        <li><strong>Cleanup:</strong> <code>defer</code> makes sure the list is deleted when you're done.</li>
+                        <li><strong>Safety:</strong> Zig checks everything when you build the program.</li>
+                    </ul>
+                </p>
+                <p>This way, you avoid mistakes like losing track of memory or using it twice by accident.</p>
+            </section>
 
-        <section>
-            <h2>Handling Problems in Zig</h2>
-            <p>Zig doesn’t hide problems—it tells you when something might go wrong and helps you fix it. It uses a special way to show if a task worked or failed.</p>
-            <p>Here’s an example of reading a file:</p>
-            <pre><code>
+            <section>
+                <h2>Handling Problems in Zig</h2>
+                <p>Zig doesn't hide problems—it tells you when something might go wrong and helps you fix it. It uses a special way to show if a task worked or failed.</p>
+                <p>Here's an example of reading a file:</p>
+                <pre><code>
 const std = @import("std");
 
 pub fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
@@ -282,21 +310,21 @@ pub fn main() !void {
     defer allocator.free(content);
     try stdout.print("File says: {s}\n", .{content});
 }
-            </code></pre>
-            <p>What’s going on:
-                <ul>
-                    <li><strong>Success or Fail:</strong> The <code>!</code> means this might work or might not.</li>
-                    <li><strong>Try:</strong> Tries something and checks if it fails.</li>
-                    <li><strong>Catch:</strong> If it fails, this part runs to handle the problem.</li>
-                </ul>
-            </p>
-            <p>This makes sure you always know what’s happening—no surprises!</p>
-        </section>
+                </code></pre>
+                <p>What's going on:
+                    <ul>
+                        <li><strong>Success or Fail:</strong> The <code>!</code> means this might work or might not.</li>
+                        <li><strong>Try:</strong> Tries something and checks if it fails.</li>
+                        <li><strong>Catch:</strong> If it fails, this part runs to handle the problem.</li>
+                    </ul>
+                </p>
+                <p>This makes sure you always know what's happening—no surprises!</p>
+            </section>
 
-        <section>
-            <h2>Wrapping Up</h2>
-            <p>Zig is great for people who like to keep things simple and clear. It lets you control your program’s memory and warns you about problems before they ruin everything. Here’s the full file-reading code again:</p>
-            <pre><code>
+            <section>
+                <h2>Wrapping Up</h2>
+                <p>Zig is great for people who like to keep things simple and clear. It lets you control your program's memory and warns you about problems before they ruin everything. Here's the full file-reading code again:</p>
+                <pre><code>
 const std = @import("std");
 
 fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
@@ -321,22 +349,23 @@ pub fn main() !void {
     defer allocator.free(content);
     try stdout.print("File says: {s}\n", .{content});
 }
-            </code></pre>
-            <p>Want to learn more? Check out Zig’s home on <span>GitHub:</span> <a href="https://github.com/ziglang/zig" style="color: var(--blue);">https://github.com/ziglang/zig</a>. Have fun exploring Zig!</p>
-        </section>
+                </code></pre>
+                <p>Want to learn more? Check out Zig's home on <span>GitHub:</span> <a href="https://github.com/ziglang/zig" style="color: var(--blue);">https://github.com/ziglang/zig</a>. Have fun exploring Zig!</p>
+            </section>
 
-        <section>
-            <div align="center">
-                <h2>Thanks for Reading!</h2>
+            <section>
+                <div align="center">
+                    <h2>Thanks for Reading!</h2>
+                </div>
+            </section>
+        </article>
+
+        <footer>
+            <div align="right">
+                <p>Posted in February 2025</p>
             </div>
-        </section>
-    </article>
-
-    <footer>
-        <div align="right">
-            <p>Posted in February 2025</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
