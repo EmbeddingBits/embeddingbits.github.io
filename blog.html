@@ -1,450 +1,673 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amiitesh's Blog</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <style>
-        /* Theme definitions */
-
-        :root[data-theme="light"] {
-            --black: #ffffff;
-            --darker-black: #f0f0f0;
-            --blue: #2760d8;
-            --light-blue: #1e88e5;
-            --red: #d32f2f;
-            --text: #24292e;
-            --text-secondary: #586069;
-            --border: #e1e4e8;
-        }
-
-        :root[data-theme="nord"] {
-            --black: #2e3440;
-            --darker-black: #242933;
-            --blue: #5e81ac;
-            --light-blue: #88c0d0;
-            --red: #bf616a;
-            --text: #eceff4;
-            --text-secondary: #d8dee9;
-            --border: #434c5e;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cascadia Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        /* New mobile nav toggle button */
-        .nav-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: var(--darker-black);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 0.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        .nav-toggle:hover {
-            color: var(--red);
-            border-color: var(--red);
-        }
-
-        header {
-            background: var(--darker-black);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            margin-left: 250px;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--red);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        header a {
-            color: var(--light-blue);
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .sidebar {
-            background: var(--darker-black);
-            width: 250px;
-            padding: 2rem;
-            color: var(--text-secondary);
-            border-right: 1px solid var(--border);
-            flex-shrink: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar a {
-            color: var(--light-blue);
-            text-decoration: none;
-            display: block;
-            padding: 0.5rem 0;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .sidebar a:hover {
-            color: var(--red);
-        }
-
-        .theme-switcher {
-            margin-top: 2rem;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-            margin-bottom: 0.5rem;
-            display: block;
-            text-align: center;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
-        .main-content {
-            flex-grow: 1;
-            padding: 2rem;
-            margin-left: 250px;
-            transition: all 0.3s ease;
-        }
-
-        .main-content:hover {
-            transform: translateX(5px);
-        }
-
-        .post {
-            background: var(--darker-black);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .post:hover {
-            border-color: var(--blue);
-        }
-
-        .post h2 {
-            color: var(--light-blue);
-            margin-bottom: 1rem;
-        }
-
-        .post p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        a.post-link {
-            text-decoration: none;
-            display: block;
-            color: inherit;
-        }
-
-        a.post-link:hover .post {
-            border-color: var(--red);
-        }
-
-        footer {
-            background: var(--darker-black);
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            margin-left: 250px;
-        }
-
-        /* Dropdown container */
-.dropdown {
-    position: relative;
-}
-
-/* Style the dropdown content */
-.dropdown-content {
-    display: none;
-    background: var(--darker-black);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    margin-top: 5px;
-    padding: 0.5rem;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: var(--text-secondary);
-    display: block;
-    padding: 0.5rem;
-    transition: all 0.2s ease;
-}
-
-.dropdown-content a:hover {
-    color: var(--red);
-}
-
-/* Expand dropdown when active */
-.dropdown.active .dropdown-content {
-    display: block;
-}
-
-/* Change cursor to indicate it's expandable */
-.dropbtn {
-    cursor: pointer;
-}
-
-
-        /* Updated media queries */
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Amiitesh's Portfolio</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
+            <style>
+            /* Theme definitions */ 
+            :root[data-theme="light"] {
+                  --black: #ffffff;
+                  --darker-black: #f0f0f0;
+                  --blue: #2760d8;
+                  --light-blue: #1e88e5;
+                  --red: #d32f2f;
+                  --text: #24292e;
+                  --text-secondary: #586069;
+                  --border: #e1e4e8;
             }
 
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content, header, footer {
-                margin-left: 0;
-            }
-
-            /* Add overlay when sidebar is active */
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 999;
+            :root[data-theme="nord"] {
+                  --black: #2e3440;
+                  --darker-black: #242933;
+                  --blue: #5e81ac;
+                  --light-blue: #88c0d0;
+                  --red: #bf616a;
+                  --text: #eceff4;
+                  --text-secondary: #d8dee9;
+                  --border: #434c5e;
             }
 
-            .overlay.active {
-                display: block;
+            /* Theme switcher styles */
+            .theme-switcher {
+                  position: fixed;
+                  top: 1rem;
+                  right: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
+                  z-index: 1000;
             }
-        }
-    </style>
-</head>
-<body>
-    <!-- Add nav toggle button -->
-    <button class="nav-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
 
-    <!-- Add overlay div -->
-    <div class="overlay"></div>
+            .theme-btn {
+                  padding: 0.5rem 1rem;
+                  border: 1px solid var(--border);
+                  background: var(--darker-black);
+                  color: var(--text);
+                  cursor: pointer;
+                  border-radius: 4px;
+                  font-family: 'Cascadia Mono', monospace;
+                  transition: all 0.2s ease;
+            }
 
-    <aside class="sidebar">
-        <h3>Navigation</h3>
-        <a href="blog/workflow.html">My Developer Workflow</a>
-        <a href="blog/vim_nvim.html">Vim vs Neovim, What are the differences?</a>
-        <a href="blog/why_linux.html">What is Linux, and why is it a better option for a daily driver</a>
-        <a href="blog/go_phil.html">What is Golang and how to get started?</a>
-        <a href="blog/tmux_config.html">Configuring Tmux</a>
-        <a href="blog/dwm/dwm.html">DWM, Bloat-free Window Manager</a>
-        <a href="blog/Networks/intro.html">Computer Networks</a>
-        <a href="blog/zig-lang/zig.html">Zig Programming Language</a>
-        <a href="#contact">Contact</a>
+            .theme-btn:hover {
+                  border-color: var(--red);
+                  color: var(--red);
+            }
 
-        <div class="theme-switcher">
-            <button class="theme-btn" data-theme="light">Light Mode</button>
-            <button class="theme-btn" data-theme="nord">Nord Mode</button>
-        </div>
-    </aside>
+            .theme-btn.active {
+                  background: var(--red);
+                  color: var(--black);
+                  border-color: var(--red);
+            }
 
-    <header>
-        <h1>Bits-Expl0it3d's Blog</h1>
-        <a href="https://bitsexploited.github.io">~/Portfolio</a>
-      <p style="color: #d08770;">Welcome to my blog, I write blogs whenever I'm bored. I write blogs on Linux, programming languages like C/C++, Golang, Zig, Rust and Python, Cybersecurity, Networks, DevOps, Hardware, Low Level programming and Linux tools and software to improve workflow. :)</p>
-      
-    </header>
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+            }
 
-    <div class="main-content">
-        <a href="blog/workflow.html" class="post-link">
-            <section id="post1" class="post">
-                <h2>My Developer Workflow: OS, DE/WM, Editor and Tools</h2>
-                <p>In this blog, I will be discussing about the software and tools I use to develop projects.</p>
-            </section>
-        </a>
-    </div>
+            body {
+                  font-family: 'Cascadia Mono', monospace;
+                  background: var(--black);
+                  color: var(--text);
+                  line-height: 1.6;
+                  min-height: 100vh;
+                  transition: all 0.3s ease;
+            }
 
-    <div class="main-content">
-        <a href="blog/vim_nvim.html" class="post-link">
-            <section id="post2" class="post">
-                <h2>Vim vs Neovim, What are the differences?</h2>
-                <p>In this blog, I will be discussing the differences between Vim and Neovim. And which is better to use...</p>
-            </section>
-        </a>
-    </div>
-    <div class="main-content">
-        <a href="blog/why_linux.html" class="post-link">
-            <section id="post3" class="post">
-                <h2>What is Linux and why is it a better option for a daily driver?</h2>
-                <p>In this blog, I will be discussing what Linux is and why it is a better choice for a daily driver experience.</p>
-            </section>
-        </a>
-    </div>
+            header {
+                  background: var(--darker-black);
+                  padding: 1.5rem;
+                  border-bottom: 1px solid var(--border);
+            }
 
-    <div class="main-content">
-        <a href="blog/go_phil.html" class="post-link">
-            <section id="post4" class="post">
-          <h2>What is Golang and how to get started?</h2>
-                <p>In this blog, I will be discussing about Golang and covering the basics of The Go Programming Language.</p>
-            </section>
-        </a>
-    </div>
+            header h1 {
+                  font-size: 1.8rem;
+                  text-align: center;
+                  margin-bottom: 1rem;
+                  color: var(--red);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
 
-    
-    <div class="main-content">
-        <a href="blog/tmux_config.html" class="post-link">
-            <section id="post5" class="post">
-                <h2>Configuring Tmux</h2>
-                <p>This blog is about configuring tmux from scratch, from setting custom keybinds to plugins manager</p>
-            </section>
-        </a>
-    </div>
+            nav ul {
+                  list-style: none;
+                  display: flex;
+                  justify-content: center;
+                  gap: 2.5rem;
+            }
 
-    <div class="main-content">
-        <a href="blog/dwm/dwm.html" class="post-link">
-            <section id="post5" class="post">
-                <h2>DWM, A bloat-free Window Manager made in C</h2>
-                <p>This blog is about DWM, a window manager made in C to reduce bloat as much as possible</p>
-            </section>
-        </a>
-    </div>
-    <div class="main-content">
-        <div class="post dropdown">
-            <a href="#" class="post-link dropbtn">
-                <h2>Computer Networks ▾</h2>
-                <p>In this blog, I will be discussing about computer network basics from theory to network programming in C.</p>
-            </a>
-            <div class="dropdown-content">
-                <a href="blog/Networks/intro.html">Network Sockets and Types</a>
+            nav a {
+                  color: var(--light-blue);
+                  text-decoration: none;
+                  font-weight: 500;
+                  padding: 0.5rem 1rem;
+                  border: 1px solid transparent;
+                  transition: all 0.2s ease;
+            }
+
+            nav a:hover {
+                  color: var(--text);
+                  border-bottom: 2px solid var(--red);
+            }
+
+            main {
+                  max-width: 1000px;
+                  margin: 3rem auto;
+                  padding: 0 2rem;
+            }
+
+            section {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  margin-bottom: 2.5rem;
+                  border: 1px solid var(--border);
+                  border-radius: 4px;
+                  position: relative;
+            }
+
+            section::before {
+                  content: ">";
+                  color: var(--red);
+                  font-weight: bold;
+                  margin-right: 0.5rem;
+                  position: absolute;
+                  top: 1rem;
+                  left: 1rem;
+                  font-size: 1.2rem;
+            }
+
+            h2 {
+                  color: var(--light-blue);
+                  margin-bottom: 1.5rem;
+                  padding-bottom: 0.5rem;
+                  border-bottom: 1px solid var(--border);
+                  font-weight: 600;
+            }
+
+            h3 {
+                  color: var(--red);
+                  margin-bottom: 1.5rem;
+                  padding-bottom: 0.5rem;
+                  border-bottom: 1px solid var(--border);
+                  font-weight: 550;
+            }
+
+            .project {
+                  margin-bottom: 2rem;
+                  padding: 1.5rem;
+                  border: 1px solid var(--border);
+                  border-radius: 4px;
+                  background: var(--black);
+                  transition: all 0.2s ease;
+            }
+
+            .project:hover {
+                  border-color: var(--blue);
+                  transform: translateX(5px);
+            }
+
+            .project h3 {
+                  color: var(--red);
+                  margin-bottom: 1rem;
+            }
+
+            .project p {
+                  color: var(--text-secondary);
+                  margin-bottom: 1rem;
+            }
+
+            .stack {
+                  color: var(--light-blue);
+                  font-size: 0.9rem;
+                  margin-top: 1rem;
+                  padding-top: 0.5rem;
+                  border-top: 1px solid var(--border);
+            }
+
+            .skills {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  margin-bottom: 2.5rem;
+                  border: 1px solid var(--border);
+                  border-radius: 4px;
+            }
+
+            .skills h2 {
+                  color: var(--light-blue);
+                  margin-bottom: 1.5rem;
+                  padding-bottom: 0.5rem;
+                  border-bottom: 1px solid var(--border);
+                  font-weight: 600;
+                  text-align: center;
+            }
+
+            .skill-category {
+                  margin-bottom: 1.5rem;
+            }
+
+            .skill-category h3 {
+                  color: var(--red);
+                  font-weight: 550;
+                  margin-bottom: 0.8rem;
+            }
+
+            .skill-category ul {
+                  list-style-type: square;
+                  padding-left: 1.5rem;
+            }
+
+            .skill-category ul li {
+                  margin-bottom: 0.4rem;
+                  color: var(--text-secondary);
+            }
+
+            .skill-tags {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 0.6rem;
+                  margin-top: 0.5rem;
+            }
+
+            .skill-tag {
+                  background: var(--black);
+                  border: 1px solid var(--border);
+                  color: var(--light-blue);
+                  padding: 0.4rem 0.8rem;
+                  border-radius: 999px;
+                  font-size: 0.85rem;
+                  font-family: 'Cascadia Mono', monospace;
+                  transition: all 0.2s ease;
+                  cursor: default;
+            }
+
+            .skill-tag:hover {
+                  background: var(--light-blue);
+                  color: var(--black);
+                  border-color: var(--red);
+                  transform: scale(1.05);
+            }
+
+
+
+            .social-links {
+                  display: flex;
+                  justify-content: center;
+                  gap: 2rem;
+                  margin-top: 1.5rem;
+            }
+
+            .social-links a {
+                  color: var(--text);
+                  font-size: 1.5rem;
+                  transition: all 0.3s ease;
+            }
+
+            .social-links a:hover {
+                  color: var(--red);
+                  transform: translateY(-3px);
+            }
+
+            a {
+                  color: var(--light-blue);
+                  text-decoration: none;
+                  transition: color 0.2s ease;
+            }
+
+            a:hover {
+                  color: var(--red);
+            }
+
+            footer {
+                  background: var(--darker-black);
+                  padding: 1.5rem;
+                  text-align: center;
+                  border-top: 1px solid var(--border);
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+            }
+
+            code {
+                  background: var(--black);
+                  padding: 0.2rem 0.4rem;
+                  border-radius: 3px;
+                  font-size: 0.9em;
+            }
+
+            .typing-container {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  margin-bottom: 2.5rem;
+                  border: 1px solid var(--border);
+                  border-radius: 4px;
+                  text-align: center;
+            }
+
+            .typing-text {
+                  display: inline-block;
+                  overflow: hidden;
+                  border-right: 2px solid var(--red);
+                  white-space: nowrap;
+                  margin: 0 auto;
+                  color: var(--light-blue);
+                  font-size: 1.5rem;
+                  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            }
+
+            @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+            }
+
+            @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--red) }
+            }
+
+            /* Mobile Responsive Styles */
+            @media (max-width: 768px) {
+                  /* Header and Navigation */
+                  header {
+                        padding: 1rem;
+                  }
+
+                  header h1 {
+                        font-size: 1.4rem;
+                        margin-bottom: 1.5rem;
+                  }
+
+                  nav ul {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.8rem;
+                  }
+
+                  nav a {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        padding: 0.8rem;
+                        border: 1px solid var(--border);
+                        border-radius: 4px;
+                  }
+
+                  /* Main Content */
+                  main {
+                        margin: 1.5rem auto;
+                        padding: 0 1rem;
+                  }
+
+                  /* Typing Container */
+                  .typing-container {
+                        padding: 1.5rem 1rem;
+                        margin-bottom: 1.5rem;
+                  }
+
+                  .typing-text {
+                        font-size: 1.2rem;
+                        max-width: 100%;
+                        padding: 0 0.5rem;
+                  }
+
+                  /* Sections */
+                  section {
+                        padding: 1.5rem 1rem;
+                        margin-bottom: 1.5rem;
+                  }
+
+                  section::before {
+                        top: 0.8rem;
+                        left: 0.8rem;
+                        font-size: 1rem;
+                  }
+
+                  h2 {
+                        font-size: 1.3rem;
+                        margin-bottom: 1.2rem;
+                        padding-left: 1rem;
+                  }
+
+                  h3 {
+                        font-size: 1.1rem;
+                        margin-bottom: 1rem;
+                  }
+
+                  /* Projects */
+                  .project {
+                        padding: 1.2rem;
+                        margin-bottom: 1.5rem;
+                  }
+
+                  .project:hover {
+                        transform: none;
+                        border-color: var(--red);
+                  }
+
+                  .project h3 {
+                        font-size: 1.1rem;
+                        margin-bottom: 0.8rem;
+                  }
+
+                  .project p {
+                        font-size: 0.9rem;
+                        line-height: 1.5;
+                  }
+
+                  .stack {
+                        font-size: 0.8rem;
+                        margin-top: 0.8rem;
+                  }
+
+                  /* Theme Switcher */
+                  .theme-switcher {
+                        bottom: 1rem;
+                        right: 1rem;
+                        top: auto;
+                        flex-direction: row;
+                        gap: 0.5rem;
+                  }
+
+                  .theme-btn {
+                        padding: 0.4rem 0.8rem;
+                        font-size: 0.8rem;
+                  }
+
+                  /* Code blocks */
+                  code {
+                        font-size: 0.85rem;
+                        padding: 0.15rem 0.3rem;
+                        word-break: break-word;
+                  }
+
+                  /* Footer */
+                  footer {
+                        padding: 1rem;
+                        font-size: 0.8rem;
+                        margin-bottom: 4rem;
+                  }
+
+                  /* Typography */
+                  p {
+                        font-size: 0.9rem;
+                        line-height: 1.6;
+                        margin-bottom: 1rem;
+                  }
+            }
+
+            /* Small Screen Optimizations */
+            @media (max-width: 480px) {
+                  header h1 {
+                        font-size: 1.2rem;
+                  }
+
+                  .typing-text {
+                        font-size: 1rem;
+                  }
+
+                  section {
+                        padding: 1.2rem 0.8rem;
+                  }
+
+                  .project {
+                        padding: 1rem;
+                  }
+            }
+            </style>
+      </head>
+      <body>
+            <div class="theme-switcher">
+                  <button class="theme-btn" data-theme="light">Light</button>
+                  <button class="theme-btn" data-theme="nord">Nord</button>
             </div>
-        </div>
-    </div>
-    <div class="main-content">
-        <a href="blog/zig-lang/zig.html" class="post-link">
-            <section id="post1" class="post">
-                <h2>Zig Programming Language: A better alternative for C...</h2>
-                <p>In this blog, I will br discussing about the advantages of Zig programming over C and its feature that might change the way of programming.</p>
-            </section>
-        </a>
-    </div>
-        <div class="main-content">
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>If you'd like to collaborate or have any questions, feel free to reach out to me via email at <a href="mailto:tspamiitesh@gmail.com" style="color: var(--light-blue);">tspamiitesh@gmail.com</a>.</p>
-        </section>
-    </div>
 
-    <footer>
-        <p>2024 © Amiitesh's Blog. All rights reserved.</p>
-    </footer>
+            <header>
+                  <nav>
+                        <h1>root@Embedding_Bits:~#</h1>
+                        <ul>
+                              <li><a href="#about">~/about</a></li>
+                              <li><a href="#projects">~/projects</a></li>
+                              <li><a href="#contact">~/contact</a></li>
+                              <li><a href="blog.html">~/blog</a></li>
+                        </ul>
+                  </nav>
+            </header>
+            <main>
+                  <section class="typing-container">
+                        <div class="typing-text" id="typing-text"></div>
+                  </section>
+                  <section id="about">
+                        <h2 style="text-align: center;">whoami</h2>
+                        <p><code>cat Embedding_Bits.txt</code></p>
+                        <h3 style="text-align: center;">General About Me</h3>
+                        <p>I am freshman currently pursuing BTech in Electronics and Computer Engineering with a deep interest towards <span style="color: var(--red);">Embedded Systems</span> and <span style="color: var(--red);">Computer Networks.</span> I have developed knowledge in the field of Embedded Systems and Kernel Development and looking forward to contribute to open source projects.</p>
+                        <h3 style="text-align: center;">How it started</h3>
+                        <p>I have always been fascinated by <span style="color: var(--red);">computer hardware</span> and <span style="color: var(--red);">digital systems</span>. My journey began with using Linux, which sparked my interest in Embedded Systems and Computer Networks.</p>
+                        <h3 style="text-align: center;">Experience</h3>
+                        <p>Through the course of my career, I have developed several projects related to Embedded Systems and Networks which has given me opportunities to bring theories to life. The projects I have developed ranges from <span style="color: var(--red);">several mini-projects</span> to <span style="color: var(--red);">large-scale projects</span> which has <span style="color: var(--red);">improved my problem-solving skills</span>.</p>
+                  </section>
 
-    <script>
-        const themeButtons = document.querySelectorAll('.theme-btn');
-        const root = document.documentElement;
+                  <section id="skills" class="skills">
+                        <h2>ls ~/skills</h2>
+                        <div class="skill-category">
+                              <div class="skill-tags">
+                                    <span class="skill-tag">C</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">Golang</span>
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Verilog</span>
+                                    <span class="skill-tag">Assembly: x86 | ARM</span>
+                                    <span class="skill-tag">CPU, GPU Architecture</span>
+                                    <span class="skill-tag">AI/ML/DL</span>
+                                    <span class="skill-tag">RTL Simulation, FSM and Synthesis</span>
+                                    <span class="skill-tag">Operating Systems</span>
+                                    <span class="skill-tag">Computer Networks</span>
+                                    <span class="skill-tag">Linux</span>
+                                    <span class="skill-tag">Git, GitHub</span>
+                                    <span class="skill-tag">Docker | Kubernetes</span>
+                              </div>
+                        </div>
+                  </section>
 
-        const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
-        root.setAttribute('data-theme', savedTheme);
 
-        themeButtons.forEach(btn => {
+
+                  <section id="project">
+                        <h2>ls ~/projects</h2>
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/GortScanner" target="_blank">
+                                    <h3>./Gort_Scanner</h3>
+                                    <p>This is a simple implementation of a port scanner made in Golang with Goroutines and Channeling</p>
+                                    <div class="stack">Technologies: Golang | Linux | Networks</div>
+                              </a>
+                        </div>
+
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/vat-viewer" target="_blank">
+                                    <h3>./Vat-Viewer</h3>
+                                    <p>This is a better version of <code>cat</code> file reader made on Golang which features Nord-theme syntax highlighting and Line numbering or better code readability.</p>
+                                    <div class="stack">Technologies: Go | Lexers</div>
+                              </a>
+                        </div>
+
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/ptop-for-linux" target="_blank">
+                                    <h3>./ptop-process-viewer</h3>
+                                    <p>Personal Process viewer for Linux, was really bored and came across this idea of building a process viewer and will make it more advanced soon</p>
+                                    <div class="stack">Technologies: C | ncurses</div>
+                              </a>
+                        </div>
+
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/multi-threaded-file-downloader" target="_blank">
+                                    <h3>./Threaded_File_Downloader</h3>
+                                    <p>This is a multi threaded file downloaded made in Golang which splits a file into smaller parts, installs them parallely and joins it together dinally, which significantly increases installation periods.</p>
+                                    <div class="stack">Technologies: Golang</div>
+                              </a>
+                        </div>
+
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/Hash-Generator" target="_blank">
+                                    <h3>./Hash-Generator</h3>
+                                    <p>A hash generator is a tool or program that produces a fixed-size hash value from input data, such as a string, file, or binary. Regardless of the input size, the size of the output Hash is always the same such that even the smallest change results in a completely different hash.</p>
+                                    <div class="stack">Technologies: C | Cryptography | OpenSSL</div>
+                              </a>
+                        </div>
+
+                  </section>
+
+                  <section id="contact">
+                        <h2>contact --init</h2>
+                        <p><code>gpg --encrypt</code></p>
+                        <p>For contacting and with collaborating me:</p>
+                        <p><a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a></p>
+                        <div class="social-links">
+                              <a href="https://github.com/EmbeddingBits" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                              </a>
+                              <a href="https://www.linkedin.com/in/amiitesh-pradeep-kumar-582bb831a/" target="_blank" title="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                              </a>
+                        </div>
+                  </section>
+            </main>
+
+            <footer>
+                  <p>SHA256(Bits-Exl0ited) = 2024 © All rights reserved</p>
+            </footer>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            const root = document.documentElement;
+            const themeButtons = document.querySelectorAll('.theme-btn');
+
+
+            const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
+            root.setAttribute('data-theme', savedTheme);
+
+
+            themeButtons.forEach(btn => {
             if (btn.getAttribute('data-theme') === savedTheme) {
-                btn.classList.add('active');
+            btn.classList.add('active');
+            } else {
+            btn.classList.remove('active');
+            }
+            });
+
+
+            themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+            const theme = button.getAttribute('data-theme');
+
+
+            root.setAttribute('data-theme', theme);
+
+
+            themeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+
+            localStorage.setItem('preferred-theme', theme);
+            });
+            });
+            });
+
+            // Add typing animation script
+            document.addEventListener('DOMContentLoaded', () => {
+            const texts = [
+            "I'm Amiitesh",
+            'Linux Enthusiast',
+            'Embedded Systems Engineer',
+            'Computer Networks'
+            ];
+            let textIndex = 0;
+            let charIndex = 0;
+            const typingElement = document.getElementById('typing-text');
+
+            function type() {
+            if (charIndex < texts[textIndex].length) {
+            typingElement.textContent += texts[textIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 100);
+            } else {
+            setTimeout(erase, 2000);
+            }
             }
 
-            btn.addEventListener('click', () => {
-                const theme = btn.getAttribute('data-theme');
-                root.setAttribute('data-theme', theme);
-                localStorage.setItem('preferred-theme', theme);
+            function erase() {
+            if (charIndex > 0) {
+            typingElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, 50);
+            } else {
+            textIndex = (textIndex + 1) % texts.length;
+            setTimeout(type, 500);
+            }
+            }
 
-                themeButtons.forEach(button => button.classList.remove('active'));
-                btn.classList.add('active');
+            setTimeout(type, 1000);
             });
-        });
-
-        // Mobile navigation code
-        const navToggle = document.querySelector('.nav-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.overlay');
-
-        function toggleNav() {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        navToggle.addEventListener('click', toggleNav);
-        overlay.addEventListener('click', toggleNav);
-
-        // Close sidebar when clicking a link (for better mobile UX)
-        const sidebarLinks = document.querySelectorAll('.sidebar a');
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    toggleNav();
-                }
-            });
-        });
-        // Toggle dropdown for main content
-document.querySelectorAll(".dropbtn").forEach(button => {
-    button.addEventListener("click", function (event) {
-        event.preventDefault();
-        this.parentElement.classList.toggle("active");
-    });
-});
-
-    </script>
-</body>
+            </script>
+      </body>
 </html>
