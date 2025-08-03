@@ -1,262 +1,277 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="nord">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>My Workflow</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+      <head>
 
-    <style>
-        
-        :root[data-theme="light"] {
-            --black: #ffffff;
-            --darker-black: #f0f0f0;
-            --blue: #2760d8;
-            --light-blue: #1e88e5;
-            --red: #d32f2f;
-            --text: #24292e;
-            --text-secondary: #586069;
-            --border: #e1e4e8;
-        }
+            <style>
+.content-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+}
+</style>
 
-        :root[data-theme="nord"] {
-            --black: #2e3440;
-            --darker-black: #242933;
-            --blue: #5e81ac;
-            --light-blue: #88c0d0;
-            --red: #bf616a;
-            --text: #eceff4;
-            --text-secondary: #d8dee9;
-            --border: #434c5e;
-        }
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <title>My Workflow</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+            <script>hljs.highlightAll();</script>
 
-        
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
+            <style>
 
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-        }
+            :root[data-theme="light"] {
+                  --black: #ffffff;
+                  --darker-black: #f0f0f0;
+                  --blue: #2760d8;
+                  --light-blue: #1e88e5;
+                  --red: #d32f2f;
+                  --text: #24292e;
+                  --text-secondary: #586069;
+                  --border: #e1e4e8;
+            }
 
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cascadia Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            margin-top: 1rem;
-        }
-
-        .home-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--blue);
-            color: var(--black);
-            text-decoration: none;
-            font-family: 'Cascadia Mono', monospace;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .home-btn:hover {
-            background: var(--light-blue);
-            color: var(--red);
-        }
-
-        .container {
-          display: flex;
-          gap: 20px;
-        }
-
-        header {
-            background: var(--darker-black);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--red);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        header h4 {
-        
-            color: var(--light-blue);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+            :root[data-theme="nord"] {
+                  --black: #2e3440;
+                  --darker-black: #242933;
+                  --blue: #5e81ac;
+                  --light-blue: #88c0d0;
+                  --red: #bf616a;
+                  --text: #eceff4;
+                  --text-secondary: #d8dee9;
+                  --border: #434c5e;
+            }
 
 
-        article {
-            padding: 2rem;
-            background: var(--darker-black);
-            border-radius: 4px;
-            margin-top: 2rem;
-        }
+            .theme-switcher {
+                  position: fixed;
+                  top: 1rem;
+                  right: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
+                  z-index: 1000;
+            }
+
+            .theme-btn {
+                  padding: 0.5rem 1rem;
+                  border: 1px solid var(--border);
+                  background: var(--darker-black);
+                  color: var(--text);
+                  cursor: pointer;
+                  border-radius: 4px;
+                  font-family: 'JetBrains Mono', monospace;
+                  transition: all 0.2s ease;
+            }
+
+            .theme-btn:hover {
+                  border-color: var(--red);
+                  color: var(--red);
+            }
+
+            .theme-btn.active {
+                  background: var(--red);
+                  color: var(--black);
+                  border-color: var(--red);
+            }
+
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+            }
+
+            body {
+                  font-family: 'JetBrains Mono', monospace;
+                  background: var(--black);
+                  color: var(--text);
+                  line-height: 1.6;
+                  min-height: 100vh;
+                  display: flex;
+                  flex-direction: column;
+                  transition: all 0.3s ease;
+            }
+
+            nav {
+                  margin-top: 1rem;
+            }
+
+            .home-btn {
+                  display: inline-block;
+                  padding: 0.5rem 1rem;
+                  background: var(--blue);
+                  color: var(--black);
+                  text-decoration: none;
+                  font-family: 'JetBrains Mono', monospace;
+                  border-radius: 4px;
+                  border: 1px solid var(--border);
+                  transition: background 0.2s, color 0.2s;
+            }
+
+            .home-btn:hover {
+                  background: var(--light-blue);
+                  color: var(--red);
+            }
+
+            .container {
+                  display: flex;
+                  gap: 20px;
+            }
+
+            header {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  text-align: center;
+                  border-bottom: 1px solid var(--border);
+            }
+
+            header h1 {
+                  font-size: 2.2rem;
+                  color: var(--red);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
+
+            header h4 {
+
+                  color: var(--light-blue);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
 
 
-        section {
-            margin-bottom: 2rem;
-        }
-
-        section h2 {
-            color: var(--light-blue);
-            margin-bottom: 1rem;
-        }
-
-        section h3 {
-            color: var(--blue);
-        }
-
-        section h4 {
-          color: var(--light-blue);
-        }
-
-        section ul {
-            list-style: none;
-            padding-left: 1.5rem;
-          
-        }
-
-        section ul li {
-            margin-bottom: 1rem;
-            list-style-type: disc;
-        }
-
-        section ul li strong {
-            color: var(--red);
-        }
-
-        img {
-            max-width: 100%; 
-            height: auto;
-        }
-
-        pre code {
-            width: 500px;
-            text-align: left;
-            font-size: 15px;
-            padding: 10px;
-            font-family: 'Cascadia Mono', monospace;
-
-        }
-
-        span {
-          color: var(--red);
-        }
+            article {
+                  padding: 2rem;
+                  background: var(--darker-black);
+                  border-radius: 4px;
+                  margin-top: 2rem;
+            }
 
 
-        footer {
-            background: var(--darker-black);
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
+            section {
+                  margin-bottom: 2rem;
+            }
 
-    </style>
-</head>
-<body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="light">Light</button>
-        <button class="theme-btn" data-theme="nord">Nord</button>
-    </div>
+            section h2 {
+                  color: var(--light-blue);
+                  margin-bottom: 1rem;
+            }
 
-    <header>
-        <h1>My Developer Workflow</h1>
-        <nav>
-          <a href="../blog.html" class="home-btn">Home</a>
-        </nav>
-    </header>
-    <article>
-      <section>
-        <h2>Introduction</h2>
-          <h3 style="padding-left: 20px; font-size: 20px;">About Myself</h3>
-            <p style="padding-left: 25px;">Welcome to this blog, in this blog I'll be discussing about my developer workflow.</p>
-        <p style="padding-left: 25px;">I am a college student, currently in my freshman year. I develop many open source projects and through my journey of developing projects, I have tried many tools and software to make my job easier and interesting to work on. In this blog, I will be sharing all the tools and software I use everyday ranging from Desktop to CLI Tools.</p>
-      </section>
+            section h3 {
+                  color: var(--blue);
+            }
 
-      <section>
-        <h2>Operating System</h2>
-        <p>This is one of my most favourite part. I have used <span>Linux</span> since my childhood, because I was influenced by my dad that I started using Linux as he uses Linux and MacOS most of the time. I am so used to using Linux that is often annoys me when I have to use Windows here at college during labs cause I am more used to coding in terminal and terminal-based editors.</p>
-        <p>Now, for the part of the operating system, <span>I use Arch Linux (i use arch btw)</span>. I used to use Ubuntu and wanted to try out Arch Linux for fun and it turned out that I liked it. Arch Linux is more of a DIY Operating System, it gives up complete freedom over what we want to do right from the time of installation.</p> 
-        <p>It has one of the most powerful package managers, <span>pacman</span> and <span>AUR (Arch User Repository)</span> package managers like <span>yay</span> and <span>paru</span>. There is almost every imaginable package or software in the AUR, so much so that anything that does not exist in the AUR can be said "uninvented".</p>
-        <p>Arch is a very <span>lightweight distro</span> and can be very well suitable to be used on old hardware. Almost every desktop environment is stable on Arch and we can choose whatever we find suitable for us.</p>
-        <p>Another advantage of using Linux is that we can configure almost everything right from the kernel to the visually-pleasing DEs.</p>
-      </section>
+            section h4 {
+                  color: var(--light-blue);
+            }
 
-      <section>
-        <h2>Desktop Environment</h2>
-        <p>For the desktop environment, I use two different desktop environments: <span style="color: var(--red);">Hyprland</span> and <span style="color: var(--red);">KDE Plasma.</span></p>
-        <p>My primary DE is Hyprland, Hyprland is not exactly a DE but its called Window Manager, they automatically tile windows when they are created instead of manually adjusting them by ourselves.</p>
-        <p>I use KDE Plasma whenever I need to use the X11 protocol, as the Wayland protocol does not yet fully support NVIDIA hardware (you know, the typical NVIDIA Linux issues). However, since it has not caused me any trouble so far, I primarily use Hyprland.</p>
-        <p>Now, I'll explain why and how I use Hyprland. I follow certain rules that have become a habit for me over time. I initially got this idea from one of my favorite tech YouTubers, ThePrimeagen, and his way of using window managers.</p>
-        <p>Window Managers are convenient for people who use keyboard more than the mouse like myself. Everything can be configured with keybinds right from switching panes to switching workspaces. In my config, I have 5 workspaces by default and I could switch them using "SUPER + workspace_number" (SUPER is nothing but the window key).</p>
-        <h3>So, here's how I use it:</h3>
-        <ul style="list-style-type: disc;">
-          <li><strong>Workspace 1: </strong>In the first workspace, I have the <span>text editor</span> and the <span>terminal</span> I'm working running on a <span>tmux session</span>.</li>
-          <li><strong>Workspace 2: </strong>In workspace 2, I have my <span>browser</span> open for whenever I encounter issues; I get them fixed with Stack Overflow.</li>
-          <li><strong>Workspace 3: </strong>I usually have my <span>entertainment setup</span> here, because when I'm bored I would usually open up a browser, watch YT and get back to what I'm doing. (I don't listen to songs when I'm working).</li>
-          <li><strong>Workspace 4: </strong>I don't usually use 4 and 5 but it depends. But, most of the times its just junk that I have in here.</li>
-        </ul>
-        <p>So, following the above rules over time, they became ingrained in my muscle memory. Now, when I think 'editor,' my fingers instinctively press 'SUPER + 1,' and when I think 'browser,' they press 'SUPER + 2,' and so on for the rest.</p>
-      </section>
+            section ul {
+                  list-style: none;
+                  padding-left: 1.5rem;
 
-      <section>
-        <h2>Terminal and Code Editor</h2>
-        <p>This is also one of the most parts of my workflow. I live in the terminal/command line (Shortly as TUI). The only time I use the GUI is for browsing the web, the rest of the time I only spend it in the terminal. So configuring a good terminal and a good terminal-based code editor is one of the most important part for people like me.</p>
-        <ul>
-        <li>For the terminal emulator, I use <span style="color: var(--red);">kitty</span>.</li>
-        <li>For the code editor, I use <span style="color: var(--red);">Neovim</span>.</li>
-        </ul>
-        <h3>Kitty Terminal Emulator</h3>
-        <p>I use the kitty terminal with my minimal configuration like fonts, colorscheme and etc.</p>
-        <p>For the fonts, I use a global configuration with Caskaydia Mono and for the colorscheme I use Nord all over my Linux config.</p>
-        <pre><code>
+            }
+
+            section ul li {
+                  margin-bottom: 1rem;
+                  list-style-type: disc;
+            }
+
+            section ul li strong {
+                  color: var(--red);
+            }
+
+            img {
+                  max-width: 100%; 
+                  height: auto;
+            }
+
+            pre code {
+                  width: 500px;
+                  text-align: left;
+                  font-size: 15px;
+                  padding: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+
+            }
+
+            span {
+                  color: var(--red);
+            }
+
+
+            footer {
+                  background: var(--darker-black);
+                  padding: 1rem;
+                  text-align: center;
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  border-top: 1px solid var(--border);
+            }
+
+
+            .content-wrapper {
+                  max-width: 1100px;
+                  margin: 0 auto;
+                  padding: 0 1rem;
+            }</style>
+      </head>
+      <body>
+            <div class="theme-switcher">
+                  <button class="theme-btn" data-theme="light">Light</button>
+                  <button class="theme-btn" data-theme="nord">Nord</button>
+            </div>
+
+            <div class="content-wrapper">
+                  <header>
+                        <h1>My Developer Workflow</h1>
+                        <nav>
+                              <a href="../blog.html" class="home-btn">Home</a>
+                        </nav>
+                  </header>
+                  <article>
+                        <section>
+                              <h2>Introduction</h2>
+                              <h3 style="padding-left: 20px; font-size: 20px;">About Myself</h3>
+                              <p style="padding-left: 25px;">Welcome to this blog, in this blog I'll be discussing about my developer workflow.</p>
+                              <p style="padding-left: 25px;">I am a college student, currently in my freshman year. I develop many open source projects and through my journey of developing projects, I have tried many tools and software to make my job easier and interesting to work on. In this blog, I will be sharing all the tools and software I use everyday ranging from Desktop to CLI Tools.</p>
+                        </section>
+
+                        <section>
+                              <h2>Operating System</h2>
+                              <p>This is one of my most favourite part. I have used <span>Linux</span> since my childhood, because I was influenced by my dad that I started using Linux as he uses Linux and MacOS most of the time. I am so used to using Linux that is often annoys me when I have to use Windows here at college during labs cause I am more used to coding in terminal and terminal-based editors.</p>
+                              <p>Now, for the part of the operating system, <span>I use Arch Linux (i use arch btw)</span>. I used to use Ubuntu and wanted to try out Arch Linux for fun and it turned out that I liked it. Arch Linux is more of a DIY Operating System, it gives up complete freedom over what we want to do right from the time of installation.</p> 
+                              <p>It has one of the most powerful package managers, <span>pacman</span> and <span>AUR (Arch User Repository)</span> package managers like <span>yay</span> and <span>paru</span>. There is almost every imaginable package or software in the AUR, so much so that anything that does not exist in the AUR can be said "uninvented".</p>
+                              <p>Arch is a very <span>lightweight distro</span> and can be very well suitable to be used on old hardware. Almost every desktop environment is stable on Arch and we can choose whatever we find suitable for us.</p>
+                              <p>Another advantage of using Linux is that we can configure almost everything right from the kernel to the visually-pleasing DEs.</p>
+                        </section>
+
+                        <section>
+                              <h2>Desktop Environment</h2>
+                              <p>For the desktop environment, I use two different desktop environments: <span style="color: var(--red);">Hyprland</span> and <span style="color: var(--red);">KDE Plasma.</span></p>
+                              <p>My primary DE is Hyprland, Hyprland is not exactly a DE but its called Window Manager, they automatically tile windows when they are created instead of manually adjusting them by ourselves.</p>
+                              <p>I use KDE Plasma whenever I need to use the X11 protocol, as the Wayland protocol does not yet fully support NVIDIA hardware (you know, the typical NVIDIA Linux issues). However, since it has not caused me any trouble so far, I primarily use Hyprland.</p>
+                              <p>Now, I'll explain why and how I use Hyprland. I follow certain rules that have become a habit for me over time. I initially got this idea from one of my favorite tech YouTubers, ThePrimeagen, and his way of using window managers.</p>
+                              <p>Window Managers are convenient for people who use keyboard more than the mouse like myself. Everything can be configured with keybinds right from switching panes to switching workspaces. In my config, I have 5 workspaces by default and I could switch them using "SUPER + workspace_number" (SUPER is nothing but the window key).</p>
+                              <h3>So, here's how I use it:</h3>
+                              <ul style="list-style-type: disc;">
+                                    <li><strong>Workspace 1: </strong>In the first workspace, I have the <span>text editor</span> and the <span>terminal</span> I'm working running on a <span>tmux session</span>.</li>
+                                    <li><strong>Workspace 2: </strong>In workspace 2, I have my <span>browser</span> open for whenever I encounter issues; I get them fixed with Stack Overflow.</li>
+                                    <li><strong>Workspace 3: </strong>I usually have my <span>entertainment setup</span> here, because when I'm bored I would usually open up a browser, watch YT and get back to what I'm doing. (I don't listen to songs when I'm working).</li>
+                                    <li><strong>Workspace 4: </strong>I don't usually use 4 and 5 but it depends. But, most of the times its just junk that I have in here.</li>
+                              </ul>
+                              <p>So, following the above rules over time, they became ingrained in my muscle memory. Now, when I think 'editor,' my fingers instinctively press 'SUPER + 1,' and when I think 'browser,' they press 'SUPER + 2,' and so on for the rest.</p>
+                        </section>
+
+                        <section>
+                              <h2>Terminal and Code Editor</h2>
+                              <p>This is also one of the most parts of my workflow. I live in the terminal/command line (Shortly as TUI). The only time I use the GUI is for browsing the web, the rest of the time I only spend it in the terminal. So configuring a good terminal and a good terminal-based code editor is one of the most important part for people like me.</p>
+                              <ul>
+                                    <li>For the terminal emulator, I use <span style="color: var(--red);">kitty</span>.</li>
+                                    <li>For the code editor, I use <span style="color: var(--red);">Neovim</span>.</li>
+                              </ul>
+                              <h3>Kitty Terminal Emulator</h3>
+                              <p>I use the kitty terminal with my minimal configuration like fonts, colorscheme and etc.</p>
+                              <p>For the fonts, I use a global configuration with Caskaydia Mono and for the colorscheme I use Nord all over my Linux config.</p>
+                              <pre><code>
 # BEGIN_KITTY_THEME
 include onenord.conf
 # END_KITTY_THEME
@@ -270,111 +285,111 @@ font_size 14
 
 background_opacity 0.7 
 background_blur 1 
-          </code></pre>
-        <p>The above is my kitty config file. If you want more of my Linux configuration, I'll leave my GitHub repo for my dotfiles so you can check them out.</p>
-        <h3>Neovim Text Editor</h3>
-        <p>I use <span>Neovim</span> as a text editor for all purposes, from <span>editing LaTeX documents to writing code</span>. Neovim has a <span>steep learning curve</span>, but ultimately it's incredibly useful because I rarely need to take my hands off the keyboard.</p>
-        <p>I used to have my own custom configuration for neovim but I really wanted more features and I intended not to waste time trying to configure, so I went for "neovim distros". I use <span>NvChad</span> with my own custom modifications like extra plugins and much more.</p>
-        
-     </section>
+                              </code></pre>
+                              <p>The above is my kitty config file. If you want more of my Linux configuration, I'll leave my GitHub repo for my dotfiles so you can check them out.</p>
+                              <h3>Neovim Text Editor</h3>
+                              <p>I use <span>Neovim</span> as a text editor for all purposes, from <span>editing LaTeX documents to writing code</span>. Neovim has a <span>steep learning curve</span>, but ultimately it's incredibly useful because I rarely need to take my hands off the keyboard.</p>
+                              <p>I used to have my own custom configuration for neovim but I really wanted more features and I intended not to waste time trying to configure, so I went for "neovim distros". I use <span>NvChad</span> with my own custom modifications like extra plugins and much more.</p>
 
-      
-      <section>
-        <h2>Tools and Software</h2>
-        <p>There are many CLI tools and software that makes my job done easier and faster.</p>
-        <ul>
-          <li>Git/Github</li>
-          <li>LazyGit</li>
-          <li>Fish shell</li>
-          <li>Tmux</li>
-          <li>fzf</li>
-        </ul>
-        <h3>Git/GitHub and LazyGit</h3>
-        <p>One of the most important tool that I use everyday is <span>Git/GitHub combined with LazyGit</span>. I don't store my codes or projects locally. Even if the project is uncompleted I store them on GitHub under a public or a private repo. LazyGit makes Git a easy job. Instead of wanting to have type all the commands manually, LazyGit created a TUI (Terminal User Interface) driven by keybinds. It helps view changes, stage them, write commits and push them to remote repo under just keybinds.</p>
-        <p>This is how LazyGit looks: </p>
-        <div align="center">
-          <img src="lazygit.png" alt="LazyGit TUI" height="1600" width="1000">
-        </div>
-        <p>As you can see, viewing the changes and commits all under a same place makes us complete our job way faster.</p>
+                        </section>
 
-        <h3>Tmux Terminal Session and uses</h3>
-        <p>Tmux is another one of such useful tools that I use. Tmux stands for Terminal Multiplexer and is used in Unix-like operating systems. It allows to use multiple terminal sessions in the terminal window. Even if the actual terminal window closes, the tmux session runs in the background and can be accessed with the name of the session, which is helpful when we accidentally close the session without saveing the changes.</p>
-        <p>Here is how we can use tmux:</p>
-        <div align="center">
-          <video src="recording.mp4" height="1000" width="1500" style="top: 1000px;" autoplay controls></video>
-        </div>
-        <p>In the above video, I opened up a tmux session, created three split panes, created a tmux window and then and closed the terminal window and accessed back with the name of the session that I named as "test".</p>
-        
-        <h3>Fish Shell and fzf fuzzy finder</h3>
-        <p>The standard shell for all the Linux distros is bash. We can choose whatever shell we want after that. The most common choices for shells are bash, zsh and fish. The syntax and structure of fish is way different than what it is in zsh.</p>
-        <p>Fish is a interactive shell where we can directly interact with the terminal. For example: In bash if we type ls and hit tab it will display the files and directories but we cannot directly interact with the shell to choose, instead we have to look at the file we want and type it and hit tab to complete. Whereas, in fish we can select it directly using the keys.</p>
-        <p>With the combined use of fzf (a fuzzy finder), we can make fish shell more powerful than what it already is.</p>
-      </section>
-      <section>
-      <h2>Programming Language</h2>
-        <p>For the part of programming language, I am more into Cybersecurity, Network programming, DevOps and Kernel development. So I work mostly in C, C++, Assembly (for reverse engineering), Python and bash script.</p>
-        <ul>
-          <li>For Cybersecurity, I use C, C++, Assembly and I use Python and Bash script for scripting purposes.</li>
-          <li>For Network Programming, I use Golang and C.</li>
-          <li>For DevOps, I use Golang again.</li>
-          <li>For Kernel development, I use C programming.</li>
-      </section>
-      <section>
-      <h2>Bottom Note</h2>
-      <p>These are the tools and software that I use when I develop projects and much more. I uniformly use the Nord colorscheme.</p>
-        <h4>Here are the links to everything I use: </h4>
-        <ul style="list-style-type: disc;">
-          <li><strong>My Linux Configuration: </strong><a href="https://github.com/embeddingbits/archhypr_dotfiles" style="color: var(--blue);">https://github.com/embeddingbits/ArchHypr_dotfiles</a></li>
-          <li><strong>Arch Linux: </strong><a href="https://archlinux.org/" style="color: var(--blue);">https://archlinux.org/</a></li>
-          <li><strong>Hyprland DE: </strong><a href="https://hyprland.org/" style="color: var(--blue);">https://hyprland.org/</a></li>
-          <li><strong>Kitty Terminal: </strong><a href="https://github.com/kovidgoyal/kitty" style="color: var(--blue);">https://github.com/kovidgoyal/kitty</a></li>
-          <li><strong>Neovim: </strong><a href="https://neovim.io/" style="color: var(--blue);">https://neovim.io/</a></li>
-          <li><strong>NvChad: </strong><a href="https://nvchad.com/" style="color: var(--blue);">https://nvchad.com/</a></li>
-          <li><strong>LazyGit: </strong><a href="https://github.com/jesseduffield/lazygit" style="color: var(--blue);">https://github.com/jesseduffield/lazygit</a></li>
-          <li><strong>Tmux: </strong><a href="https://github.com/tmux/tmux/wiki" style="color: var(--blue);">https://github.com/tmux/tmux/wiki</a></li>
-          <li><strong>Fish Shell: </strong><a href="https://fishshell.com/" style="color: var(--blue);">https://fishshell.com/</a></li>
-        </ul>
-        <p>In the upcoming blogs, I'll write on how to configure Tmux for a better work experience.</p>
-        
-      </section>
-      <section>
-        <div align="center">
-          <h2>Thank you for reading this blog</h2>
-        </div>
-      </section>
-    </article>
-    <footer>
-      <div align="right">
-        <p>Posted on January 2025</p>
-      </div>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+                        <section>
+                              <h2>Tools and Software</h2>
+                              <p>There are many CLI tools and software that makes my job done easier and faster.</p>
+                              <ul>
+                                    <li>Git/Github</li>
+                                    <li>LazyGit</li>
+                                    <li>Fish shell</li>
+                                    <li>Tmux</li>
+                                    <li>fzf</li>
+                              </ul>
+                              <h3>Git/GitHub and LazyGit</h3>
+                              <p>One of the most important tool that I use everyday is <span>Git/GitHub combined with LazyGit</span>. I don't store my codes or projects locally. Even if the project is uncompleted I store them on GitHub under a public or a private repo. LazyGit makes Git a easy job. Instead of wanting to have type all the commands manually, LazyGit created a TUI (Terminal User Interface) driven by keybinds. It helps view changes, stage them, write commits and push them to remote repo under just keybinds.</p>
+                              <p>This is how LazyGit looks: </p>
+                              <div align="center">
+                                    <img src="lazygit.png" alt="LazyGit TUI" height="1600" width="1000">
+                              </div>
+                              <p>As you can see, viewing the changes and commits all under a same place makes us complete our job way faster.</p>
+
+                              <h3>Tmux Terminal Session and uses</h3>
+                              <p>Tmux is another one of such useful tools that I use. Tmux stands for Terminal Multiplexer and is used in Unix-like operating systems. It allows to use multiple terminal sessions in the terminal window. Even if the actual terminal window closes, the tmux session runs in the background and can be accessed with the name of the session, which is helpful when we accidentally close the session without saveing the changes.</p>
+                              <p>Here is how we can use tmux:</p>
+                              <div align="center">
+                                    <video src="recording.mp4" height="500" width="750" style="top: 1000px;" autoplay controls></video>
+                              </div>
+                              <p>In the above video, I opened up a tmux session, created three split panes, created a tmux window and then and closed the terminal window and accessed back with the name of the session that I named as "test".</p>
+
+                              <h3>Fish Shell and fzf fuzzy finder</h3>
+                              <p>The standard shell for all the Linux distros is bash. We can choose whatever shell we want after that. The most common choices for shells are bash, zsh and fish. The syntax and structure of fish is way different than what it is in zsh.</p>
+                              <p>Fish is a interactive shell where we can directly interact with the terminal. For example: In bash if we type ls and hit tab it will display the files and directories but we cannot directly interact with the shell to choose, instead we have to look at the file we want and type it and hit tab to complete. Whereas, in fish we can select it directly using the keys.</p>
+                              <p>With the combined use of fzf (a fuzzy finder), we can make fish shell more powerful than what it already is.</p>
+                        </section>
+                        <section>
+                              <h2>Programming Language</h2>
+                              <p>For the part of programming language, I am more into Cybersecurity, Network programming, DevOps and Kernel development. So I work mostly in C, C++, Assembly (for reverse engineering), Python and bash script.</p>
+                              <ul>
+                                    <li>For Cybersecurity, I use C, C++, Assembly and I use Python and Bash script for scripting purposes.</li>
+                                    <li>For Network Programming, I use Golang and C.</li>
+                                    <li>For DevOps, I use Golang again.</li>
+                                    <li>For Kernel development, I use C programming.</li>
+                        </section>
+                        <section>
+                              <h2>Bottom Note</h2>
+                              <p>These are the tools and software that I use when I develop projects and much more. I uniformly use the Nord colorscheme.</p>
+                              <h4>Here are the links to everything I use: </h4>
+                              <ul style="list-style-type: disc;">
+                                    <li><strong>My Linux Configuration: </strong><a href="https://github.com/embeddingbits/archhypr_dotfiles" style="color: var(--blue);">https://github.com/embeddingbits/ArchHypr_dotfiles</a></li>
+                                    <li><strong>Arch Linux: </strong><a href="https://archlinux.org/" style="color: var(--blue);">https://archlinux.org/</a></li>
+                                    <li><strong>Hyprland DE: </strong><a href="https://hyprland.org/" style="color: var(--blue);">https://hyprland.org/</a></li>
+                                    <li><strong>Kitty Terminal: </strong><a href="https://github.com/kovidgoyal/kitty" style="color: var(--blue);">https://github.com/kovidgoyal/kitty</a></li>
+                                    <li><strong>Neovim: </strong><a href="https://neovim.io/" style="color: var(--blue);">https://neovim.io/</a></li>
+                                    <li><strong>NvChad: </strong><a href="https://nvchad.com/" style="color: var(--blue);">https://nvchad.com/</a></li>
+                                    <li><strong>LazyGit: </strong><a href="https://github.com/jesseduffield/lazygit" style="color: var(--blue);">https://github.com/jesseduffield/lazygit</a></li>
+                                    <li><strong>Tmux: </strong><a href="https://github.com/tmux/tmux/wiki" style="color: var(--blue);">https://github.com/tmux/tmux/wiki</a></li>
+                                    <li><strong>Fish Shell: </strong><a href="https://fishshell.com/" style="color: var(--blue);">https://fishshell.com/</a></li>
+                              </ul>
+                              <p>In the upcoming blogs, I'll write on how to configure Tmux for a better work experience.</p>
+
+                        </section>
+                        <section>
+                              <div align="center">
+                                    <h2>Thank you for reading this blog</h2>
+                              </div>
+                        </section>
+                  </article>
+                  <footer>
+                        <div align="right">
+                              <p>Posted on January 2025</p>
+                        </div>
+                  </footer>
+            </div>
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
-            
+
             const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            if (btn.getAttribute('data-theme') === savedTheme) {
+            btn.classList.add('active');
+            } else {
+            btn.classList.remove('active');
+            }
             });
 
             themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
+            button.addEventListener('click', () => {
+            const theme = button.getAttribute('data-theme');
+            root.setAttribute('data-theme', theme);
+            themeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            localStorage.setItem('preferred-theme', theme);
             });
-        });
-    </script>
-</body>
+            });
+            });
+            </script>
+      </body>
 </html>

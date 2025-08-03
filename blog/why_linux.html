@@ -1,361 +1,367 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What is Linux and Why Linux?</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <style>
-    <style>
-        /* Theme definitions */
-        
-
-        :root[data-theme="light"] {
-            --black: #ffffff;
-            --darker-black: #f0f0f0;
-            --blue: #2760d8;
-            --light-blue: #1e88e5;
-            --red: #d32f2f;
-            --text: #24292e;
-            --text-secondary: #586069;
-            --border: #e1e4e8;
-        }
-
-        :root[data-theme="nord"] {
-            --black: #2e3440;
-            --darker-black: #242933;
-            --blue: #5e81ac;
-            --light-blue: #88c0d0;
-            --red: #bf616a;
-            --text: #eceff4;
-            --text-secondary: #d8dee9;
-            --border: #434c5e;
-        }
-
-        /* Theme switcher styles */
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cascadia Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            margin-top: 1rem;
-        }
-
-        .home-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--blue);
-            color: var(--black);
-            text-decoration: none;
-            font-family: 'Cascadia Mono', monospace;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            transition: background 0.2s, color 0.2s;
-        }
-
-      .home-btn:hover {
-            background: var(--light-blue);
-            color: var(--red);
-        }
-
-        header {
-            background: var(--darker-black);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--red);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        header h4 {
-        
-            color: var(--light-blue);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>What is Linux and Why Linux?</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+            <style>
+            /* Theme definitions */
 
 
-        article {
-            padding: 2rem;
-            background: var(--darker-black);
-            border-radius: 4px;
-            margin-top: 2rem;
-        }
+            :root[data-theme="light"] {
+                  --black: #ffffff;
+                  --darker-black: #f0f0f0;
+                  --blue: #2760d8;
+                  --light-blue: #1e88e5;
+                  --red: #d32f2f;
+                  --text: #24292e;
+                  --text-secondary: #586069;
+                  --border: #e1e4e8;
+            }
+
+            :root[data-theme="nord"] {
+                  --black: #2e3440;
+                  --darker-black: #242933;
+                  --blue: #5e81ac;
+                  --light-blue: #88c0d0;
+                  --red: #bf616a;
+                  --text: #eceff4;
+                  --text-secondary: #d8dee9;
+                  --border: #434c5e;
+            }
+
+            /* Theme switcher styles */
+            .theme-switcher {
+                  position: fixed;
+                  top: 1rem;
+                  right: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
+                  z-index: 1000;
+            }
+
+            .theme-btn {
+                  padding: 0.5rem 1rem;
+                  border: 1px solid var(--border);
+                  background: var(--darker-black);
+                  color: var(--text);
+                  cursor: pointer;
+                  border-radius: 4px;
+                  font-family: 'JetBrains Mono', monospace;
+                  transition: all 0.2s ease;
+            }
+
+            .theme-btn:hover {
+                  border-color: var(--red);
+                  color: var(--red);
+            }
+
+            .theme-btn.active {
+                  background: var(--red);
+                  color: var(--black);
+                  border-color: var(--red);
+            }
+
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+            }
+
+            body {
+                  font-family: 'JetBrains Mono', monospace;
+                  background: var(--black);
+                  color: var(--text);
+                  line-height: 1.6;
+                  min-height: 100vh;
+                  display: flex;
+                  flex-direction: column;
+                  transition: all 0.3s ease;
+            }
+
+            nav {
+                  margin-top: 1rem;
+            }
+
+            .home-btn {
+                  display: inline-block;
+                  padding: 0.5rem 1rem;
+                  background: var(--blue);
+                  color: var(--black);
+                  text-decoration: none;
+                  font-family: 'JetBrains Mono', monospace;
+                  border-radius: 4px;
+                  border: 1px solid var(--border);
+                  transition: background 0.2s, color 0.2s;
+            }
+
+            .home-btn:hover {
+                  background: var(--light-blue);
+                  color: var(--red);
+            }
+
+            header {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  text-align: center;
+                  border-bottom: 1px solid var(--border);
+            }
+
+            header h1 {
+                  font-size: 2.2rem;
+                  color: var(--red);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
+
+            header h4 {
+
+                  color: var(--light-blue);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
+
+            .content-wrapper {
+                  max-width: 1100px;
+                  margin: 0 auto;
+                  padding: 0 1rem;
+            }
 
 
-        section {
-            margin-bottom: 2rem;
-        }
+            article {
+                  padding: 2rem;
+                  background: var(--darker-black);
+                  border-radius: 4px;
+                  margin-top: 2rem;
+            }
 
-        section h2 {
-            color: var(--light-blue);
-            margin-bottom: 1rem;
-        }
 
-        section h3 {
-            color: var(--red);
-        }
+            section {
+                  margin-bottom: 2rem;
+            }
 
-        section ul {
-            list-style: none;
-            padding-left: 1.5rem;
-        }
+            section h2 {
+                  color: var(--light-blue);
+                  margin-bottom: 1rem;
+            }
 
-        section ul li {
-            margin-bottom: 1rem;
-        }
+            section h3 {
+                  color: var(--red);
+            }
 
-        section ul li strong {
-            color: var(--red);
-        }
+            section ul {
+                  list-style: none;
+                  padding-left: 1.5rem;
+            }
 
-        .container {
-            display: flex;
-            justify-content: space-between; /* Ensures the images are at opposite sides */
-            align-items: center; /* Vertically aligns images if their heights differ */
-        }
-        .container div {
-            flex: 1; /* Makes both divs equal in width */
-            text-align: center; /* Centers the images within their respective divs */
-        }
-        img {
-            max-width: 100%; /* Ensures the images stay responsive */
-            height: auto; /* Maintains the aspect ratio */
-        }
+            section ul li {
+                  margin-bottom: 1rem;
+            }
 
-        footer {
-            background: var(--darker-black);
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
-    </style>
-</head>
-<body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="light">Light</button>
-        <button class="theme-btn" data-theme="nord">Nord</button>
-    </div>
+            section ul li strong {
+                  color: var(--red);
+            }
 
-    <header>
-        <h1>What is Linux and Why Linux?</h1>
-        <nav>
-          <a href="../blog.html" class="home-btn">Home</a>
-        </nav>
-    </header>
-    <article>
-        <section>
-            <h2>What is Linux?</h2>
-        <p>Did you know Linux powers 90% of the world's supercomputers and most of the internet's servers? But have you ever thought about using it as your daily driver?</p>
-        <p>Welcome to this blog, In this blog I will discussing about Linux and why its better to daily drive a Linux.</p>
-            <p>Linux is a Operating System (or more like Kernel) based on Unix-like operating systems created by Linus Torvalds in 1991. It is an open source operating system and has very huge use cases in the field of technology. 
-        <p>A kernel is nothing but a set of rules which instructs the computer hardware to follow given set of protocols and helps in interacting with the software and acts as a bridge between the hardware and the software.</p>
-The Linux Kernel is made on C programming language and some of the parts are being converted to Rust language for better functioning of the system.</p>
-        </section>
+            .container {
+                  display: flex;
+                  justify-content: space-between; /* Ensures the images are at opposite sides */
+                  align-items: center; /* Vertically aligns images if their heights differ */
+            }
+            .container div {
+                  flex: 1; /* Makes both divs equal in width */
+                  text-align: center; /* Centers the images within their respective divs */
+            }
+            img {
+                  max-width: 100%; /* Ensures the images stay responsive */
+                  height: auto; /* Maintains the aspect ratio */
+            }
 
-        <section>
-            <h2>Why is it a better option to daily drive Linux?</h2>
-        <p>Linux is a very lightweight operating system which only takes around 1.5 GB to 2.5 GB of RAM consumption on a 16 GB RAM CPU which is very much ideal for older laptops and PCs. Linux runs on any hardware like x86, ARMs and much more. Whereas. Windows takes 5 GB to 6 GB on average.</p>
+            footer {
+                  background: var(--darker-black);
+                  padding: 1rem;
+                  text-align: center;
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  border-top: 1px solid var(--border);
+            }
+            </style>
+      </head>
+      <body>
+            <div class="theme-switcher">
+                  <button class="theme-btn" data-theme="light">Light</button>
+                  <button class="theme-btn" data-theme="nord">Nord</button>
+            </div>
 
-        <p>Linux is faster than Windows by lightyears in any given situation and Windows simply cannot match with the speed of Linux.</p>
+            <div class="content-wrapper">
+                  <header>
+                        <h1>What is Linux and Why Linux?</h1>
+                        <nav>
+                              <a href="../blog.html" class="home-btn">Home</a>
+                        </nav>
+                  </header>
+                  <article>
+                        <section>
+                              <h2>What is Linux?</h2>
+                              <p>Did you know Linux powers 90% of the world's supercomputers and most of the internet's servers? But have you ever thought about using it as your daily driver?</p>
+                              <p>Welcome to this blog, In this blog I will discussing about Linux and why its better to daily drive a Linux.</p>
+                              <p>Linux is a Operating System (or more like Kernel) based on Unix-like operating systems created by Linus Torvalds in 1991. It is an open source operating system and has very huge use cases in the field of technology. 
+                              <p>A kernel is nothing but a set of rules which instructs the computer hardware to follow given set of protocols and helps in interacting with the software and acts as a bridge between the hardware and the software.</p>
+                              The Linux Kernel is made on C programming language and some of the parts are being converted to Rust language for better functioning of the system.</p>
+                        </section>
 
-        <p>Since Linux is a kernel, its source code is used to create many distributions of Linux (shortly called Distro). Every single distro serves for a general purpose as well as for specific purposes.</p>
+                        <section>
+                              <h2>Why is it a better option to daily drive Linux?</h2>
+                              <p>Linux is a very lightweight operating system which only takes around 1.5 GB to 2.5 GB of RAM consumption on a 16 GB RAM CPU which is very much ideal for older laptops and PCs. Linux runs on any hardware like x86, ARMs and much more. Whereas. Windows takes 5 GB to 6 GB on average.</p>
 
-        <p>For example:</p>
-        <ul>
-          <li>1. Mint Linux: This is a Linux mainly recommended for beginners and is a very stable operating system.</li>
-          <li>2. Ubuntu: A stable Linux distro for beginners which also serves as distro used to host internet servers.</li>
-          <li>3. Fedora: A Linux distro which is also used user-friendly and gets all the recent updates and applications and is constantly updated with newer technologies.</li>
-          <li>4. Arch Linux: A DIY Linux distro from intermediate to advance users, which is good for people who want their workflows built by themselves.</li>
-        </ul>
+                              <p>Linux is faster than Windows by lightyears in any given situation and Windows simply cannot match with the speed of Linux.</p>
 
-        <p>Likewise, there are more than hundreds of Linux operating systems to choose from.</p>
+                              <p>Since Linux is a kernel, its source code is used to create many distributions of Linux (shortly called Distro). Every single distro serves for a general purpose as well as for specific purposes.</p>
 
-        <h3>Security and Privacy</h3>
-        <p >Since, the Linux kernel is Open Source, it's source code is available to everyone to audit and improve. Vulnerabilities if discovered, are quickly fixed by the community.</p>
-        <p>Unlike proprietary systems like Windows Operating Systems where there is way less transparency, there are no hidden backdoors that would compromise user privacy.</p>
-        <p>Becasue of Linux's relatively low market share when compared to Windows and MacOS, there are way way waaayyy less malwares and viruses made for Linux.</p>
-        
-        <h3>Cost Efficiency</h3>
-        <p>Most of the best and popular Linux distros are completely free unlike Windows which requires us to pay Rs. 12000 ($139) to buy the OS.</p>
-        <p>There are many kinds of Updates in Linux, like Desktop Environment update, Distro update and Kernel level updates which are completely free of cost to get them updated.</p>
+                              <p>For example:</p>
+                              <ul>
+                                    <li>1. Mint Linux: This is a Linux mainly recommended for beginners and is a very stable operating system.</li>
+                                    <li>2. Ubuntu: A stable Linux distro for beginners which also serves as distro used to host internet servers.</li>
+                                    <li>3. Fedora: A Linux distro which is also used user-friendly and gets all the recent updates and applications and is constantly updated with newer technologies.</li>
+                                    <li>4. Arch Linux: A DIY Linux distro from intermediate to advance users, which is good for people who want their workflows built by themselves.</li>
+                              </ul>
 
-        <h3>Customizability</h3>
-          <p>Linux is highly customizable and is relatively easy when compared to customising other non-linux Operating Systems.
-        <p>There are many distros and there are many Desktop Environments (shortly known as DE) like Gnome, KDE, Sway, XFCE. We can choose whatever DEs we want on our system depending on our requirements.
-        <p> There are many tiling window managers like Hyprland, i3, AwesomeWM, DWM and BSPWM. Window Managers are nothing but automatic window tiling instead of manually.</p>
-        <div class="container">
-        <div align="left">
-            <img src="2025-01-16-075754_hyprshot.png" alt="Hyprland" width="800" height="500">
-        </div>
-        <div align="right">
-            <img src="all.png" alt="KDE" width="800" height="500">
-        </div>
-    </div>
-        <p>The above two are my Linux configurations. The one on the left is Hyprland, a WM (Window Manager) and the one on the right is KDE Plasma a DE (Desktop Envornment).</p>
+                              <p>Likewise, there are more than hundreds of Linux operating systems to choose from.</p>
 
-        <p>Likewise, we can customise them accordig to out personal needs and also make them visually pleasing.</p>
+                              <h3>Security and Privacy</h3>
+                              <p >Since, the Linux kernel is Open Source, it's source code is available to everyone to audit and improve. Vulnerabilities if discovered, are quickly fixed by the community.</p>
+                              <p>Unlike proprietary systems like Windows Operating Systems where there is way less transparency, there are no hidden backdoors that would compromise user privacy.</p>
+                              <p>Becasue of Linux's relatively low market share when compared to Windows and MacOS, there are way way waaayyy less malwares and viruses made for Linux.</p>
 
-        <h3>Software Availability</h3>
-        <p>One of the common conceptions of Linux is that it lacks software, but in reality its quite the opposite.</p>
-        <p>There are many package managers for every distros like:</p>
-        <ul>
-          <li>1. apt for Debian-based Operating Systems (Debian, Ubuntu, PopOS!, Kali Linux and much more).</li>
-          <li>2. dnf/yum for Red Hat-based Operating Systems (Fedora, CentOS, RHEL).</li>
-          <li>3. Pacman for Arch and Arch Linux-based Operating Systems (One of the best imo).</li>
-        </ul>
-        <p>There are also many Open Source alternatives:</p>
-        <ul>
-          <li>1. Office Suites: OnlyOffice, LibreOffice, OpenOdffice instead of Microsoft Office. (Use OnlyOffice for the best experience)</li>
-          <li>2. Graphics Design: GIMP (GNU Image Manipulation Program) instead Photoshop.</li>
-          <li>3. Code Editors: Vim, Neovim, Emacs, Nano, VSCodium and much more for various programming purposes</li>
-        </ul>
+                              <h3>Cost Efficiency</h3>
+                              <p>Most of the best and popular Linux distros are completely free unlike Windows which requires us to pay Rs. 12000 ($139) to buy the OS.</p>
+                              <p>There are many kinds of Updates in Linux, like Desktop Environment update, Distro update and Kernel level updates which are completely free of cost to get them updated.</p>
 
-          <p>There are much more softwares available on Linux which would take years to describe about, using Linux also increases interests in FOSS (Free and Open Source Software), since it's usage and software availability revolves around Open Source.</p>
+                              <h3>Customizability</h3>
+                              <p>Linux is highly customizable and is relatively easy when compared to customising other non-linux Operating Systems.
+                              <p>There are many distros and there are many Desktop Environments (shortly known as DE) like Gnome, KDE, Sway, XFCE. We can choose whatever DEs we want on our system depending on our requirements.
+                              <p> There are many tiling window managers like Hyprland, i3, AwesomeWM, DWM and BSPWM. Window Managers are nothing but automatic window tiling instead of manually.</p>
+                              <div class="container">
+                                    <div align="left">
+                                          <img src="2025-01-16-075754_hyprshot.png" alt="Hyprland" width="800" height="500">
+                                    </div>
+                                    <div align="right">
+                                          <img src="all.png" alt="KDE" width="800" height="500">
+                                    </div>
+                              </div>
+                              <p>The above two are my Linux configurations. The one on the left is Hyprland, a WM (Window Manager) and the one on the right is KDE Plasma a DE (Desktop Envornment).</p>
 
-        <h3>Perfomance and Stability</h3>
-          <p>Linux is well-known for it's perfomance due to less bloatware when compared to Windows and MacOS.</p>
-          <ul style="list-style-type: disc;">
-            <li><span style="color: var(--light-blue);">Minimal Resource Usage:</span> Linux uses significantly less amount memory for backgroung process unlike Windows and MacOS</li>
-            <li><span style="color: var(--light-blue);">No Forced Updates:</span> Updates in Linux are under our control. It does not force us to update the system at any point. So even if has not been update for more than 15 years, there won't be a single problem. This ensures that our system does not slow down overtime.</li>
-          
-          </ul>
-          <h4 style="color: var(--light-blue);">LTS Distributions and LTS Kernels</h4>
-          <p>LTS is a common terminology in Linux which abbreviates as Long Term Support.</p>
-          <p>There are Linux distros with long term support for particular version ensuring years of stability with tested updates and patches.</p>
-          <ul style="list-style-type: disc;">
-            <li> Ubuntu LTS: Supported for five years with security patches.</li>
-            <li> Debian Stable: Debian is already the most stable OS but Debian Stable version is known for its rock-solid stability for many years</li>
-          </ul>
-          <p>There is also LTS versions for Linux kernels which contain the stable driver updates with updates for kernel-level security protocols</p>
-          
-          <h3>Enhanced Productivity and many use cases</h3>
-          <p>Using Linux boosts productivity since it's faster allowing us to do more work in a short period of time. Linux has a very rich support for command line tools. Linux has very good support for GUI than Windows but using Linux for a period of time gets people encouraged on to using the CLI more than the GUI itself.</p>
-          
+                              <p>Likewise, we can customise them accordig to out personal needs and also make them visually pleasing.</p>
 
-          <p>90 percent of the internet servers run on Linux due to its extreme stability and its ability to handle network traffic very well when compared to other Operating Systems. Cybersecurity Engineers use more Linux than any other Operating System since many of the Cybersecurity tools work better in Linux.</p>
-          <p>Linux as a skill is helpful during interviews as it reflects our knowledge on troubleshooting and knowledge on being able to handle the command-line very well.</p>
-          
-        </section>
+                              <h3>Software Availability</h3>
+                              <p>One of the common conceptions of Linux is that it lacks software, but in reality its quite the opposite.</p>
+                              <p>There are many package managers for every distros like:</p>
+                              <ul>
+                                    <li>1. apt for Debian-based Operating Systems (Debian, Ubuntu, PopOS!, Kali Linux and much more).</li>
+                                    <li>2. dnf/yum for Red Hat-based Operating Systems (Fedora, CentOS, RHEL).</li>
+                                    <li>3. Pacman for Arch and Arch Linux-based Operating Systems (One of the best imo).</li>
+                              </ul>
+                              <p>There are also many Open Source alternatives:</p>
+                              <ul>
+                                    <li>1. Office Suites: OnlyOffice, LibreOffice, OpenOdffice instead of Microsoft Office. (Use OnlyOffice for the best experience)</li>
+                                    <li>2. Graphics Design: GIMP (GNU Image Manipulation Program) instead Photoshop.</li>
+                                    <li>3. Code Editors: Vim, Neovim, Emacs, Nano, VSCodium and much more for various programming purposes</li>
+                              </ul>
 
-        <section>
-        <h2>Common Myths about using Linux</h2>
-        <p>There are numerous myths about using Linux.</p>
-        <ul style="list-style-type: disc;">
-          <li style="color: var(--blue);">Myth 1: Linux is only for tech geeks</li>
-          <p>It can very well be used for general purposes. People often imagine these CLIs as some green line and a tech geek or a hacker typing commands rapidly as shown in movies. But, in reality its just to impress the viewers. Linux is very easy to use and CLI is not the only thing that exists about Linux. I have had people asking me whether is it possible to use web browsers :/</p>
-          <p>There are many user friendly distros like <a href="https://ubuntu.com/download/desktop" style="color: var(--light-blue);">Ubuntu</a>, <a href="https://fedoraproject.org/workstation/download" style="color: var(--light-blue);">Fedora</a> and much more. Personally, I would recommend you to try out Fedora.</p>
-          <li style="color: var(--blue);">Myth 2: It is harder to install software and use browsers</li>
-          <p>It is very easy to install software in Linux than installing softwares in Windows. The package managers in Linux make it easier to install softwares in Linux fast and smooth.</p>
-          <p> Aaand yes, you can use a web browser like a normal human without looking like a international level hacker 😭. Just search for the web browser in start using them.</p>
-       
-        </section>
+                              <p>There are much more softwares available on Linux which would take years to describe about, using Linux also increases interests in FOSS (Free and Open Source Software), since it's usage and software availability revolves around Open Source.</p>
 
-      <section>
-        <h2>How to get started using Linux?</h2>
-        <p>Try a beginner friendly distro like:</p>
-        <ul style="list-style-type: disc;">
-          <li>Linux Mint (Highly Recommended): <a href="https://www.linuxmint.com/download.php" style="color: var(--light-blue)">https://www.linuxmint.com/download.php</a></li>
-          <li>Ubuntu: <a href="https://ubuntu.com/download/desktop" style="color: var(--light-blue)">https://ubuntu.com/download/desktop</a></li>
-          <li>Fedora: <a href="https://fedoraproject.org/workstation/download" style="color: var(--light-blue)">https://fedoraproject.org/workstation/download</a></li>
-      </section>
+                              <h3>Perfomance and Stability</h3>
+                              <p>Linux is well-known for it's perfomance due to less bloatware when compared to Windows and MacOS.</p>
+                              <ul style="list-style-type: disc;">
+                                    <li><span style="color: var(--light-blue);">Minimal Resource Usage:</span> Linux uses significantly less amount memory for backgroung process unlike Windows and MacOS</li>
+                                    <li><span style="color: var(--light-blue);">No Forced Updates:</span> Updates in Linux are under our control. It does not force us to update the system at any point. So even if has not been update for more than 15 years, there won't be a single problem. This ensures that our system does not slow down overtime.</li>
 
-      <section>
-        <h2>Bottom Note</h2>
-        <p>Linux is more than just an operating system—it’s a philosophy of freedom, efficiency, and empowerment. With its vast software availability, robust security, exceptional performance, and endless customizability, Linux offers a compelling alternative to traditional operating systems for daily use. Whether you’re a developer, a creative professional, or someone simply looking for a reliable and cost-effective solution, Linux has something to offer for everyone.</p>
-        <p>Transitioning to Linux might feel unfamiliar at first, but its intuitive interfaces, active community support, and wealth of resources make the journey both rewarding and enjoyable. By taking the leap, you’re not just choosing an OS—you’re joining a global movement built on collaboration and innovation.</p>
+                              </ul>
+                              <h4 style="color: var(--light-blue);">LTS Distributions and LTS Kernels</h4>
+                              <p>LTS is a common terminology in Linux which abbreviates as Long Term Support.</p>
+                              <p>There are Linux distros with long term support for particular version ensuring years of stability with tested updates and patches.</p>
+                              <ul style="list-style-type: disc;">
+                                    <li> Ubuntu LTS: Supported for five years with security patches.</li>
+                                    <li> Debian Stable: Debian is already the most stable OS but Debian Stable version is known for its rock-solid stability for many years</li>
+                              </ul>
+                              <p>There is also LTS versions for Linux kernels which contain the stable driver updates with updates for kernel-level security protocols</p>
 
-        <p>So why not try using Linux? There is world of possibilities and you might just discover a new way of using computers. :)</p>
-      </section>
-      <section>
-        <div align="center">
-          <h2 style="font-size: 40;">Thank you for reading this blog</h2>
-        </div>
-      </section>
+                              <h3>Enhanced Productivity and many use cases</h3>
+                              <p>Using Linux boosts productivity since it's faster allowing us to do more work in a short period of time. Linux has a very rich support for command line tools. Linux has very good support for GUI than Windows but using Linux for a period of time gets people encouraged on to using the CLI more than the GUI itself.</p>
 
-    </article>
 
-    <footer>
-        <p>2024 © What is Linux and Why Linux. All rights reserved.</p>
-    </footer>
+                              <p>90 percent of the internet servers run on Linux due to its extreme stability and its ability to handle network traffic very well when compared to other Operating Systems. Cybersecurity Engineers use more Linux than any other Operating System since many of the Cybersecurity tools work better in Linux.</p>
+                              <p>Linux as a skill is helpful during interviews as it reflects our knowledge on troubleshooting and knowledge on being able to handle the command-line very well.</p>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+                        </section>
+
+                        <section>
+                              <h2>Common Myths about using Linux</h2>
+                              <p>There are numerous myths about using Linux.</p>
+                              <ul style="list-style-type: disc;">
+                                    <li style="color: var(--blue);">Myth 1: Linux is only for tech geeks</li>
+                                    <p>It can very well be used for general purposes. People often imagine these CLIs as some green line and a tech geek or a hacker typing commands rapidly as shown in movies. But, in reality its just to impress the viewers. Linux is very easy to use and CLI is not the only thing that exists about Linux. I have had people asking me whether is it possible to use web browsers :/</p>
+                                    <p>There are many user friendly distros like <a href="https://ubuntu.com/download/desktop" style="color: var(--light-blue);">Ubuntu</a>, <a href="https://fedoraproject.org/workstation/download" style="color: var(--light-blue);">Fedora</a> and much more. Personally, I would recommend you to try out Fedora.</p>
+                                    <li style="color: var(--blue);">Myth 2: It is harder to install software and use browsers</li>
+                                    <p>It is very easy to install software in Linux than installing softwares in Windows. The package managers in Linux make it easier to install softwares in Linux fast and smooth.</p>
+                                    <p> Aaand yes, you can use a web browser like a normal human without looking like a international level hacker 😭. Just search for the web browser in start using them.</p>
+
+                        </section>
+
+                        <section>
+                              <h2>How to get started using Linux?</h2>
+                              <p>Try a beginner friendly distro like:</p>
+                              <ul style="list-style-type: disc;">
+                                    <li>Linux Mint (Highly Recommended): <a href="https://www.linuxmint.com/download.php" style="color: var(--light-blue)">https://www.linuxmint.com/download.php</a></li>
+                                    <li>Ubuntu: <a href="https://ubuntu.com/download/desktop" style="color: var(--light-blue)">https://ubuntu.com/download/desktop</a></li>
+                                    <li>Fedora: <a href="https://fedoraproject.org/workstation/download" style="color: var(--light-blue)">https://fedoraproject.org/workstation/download</a></li>
+                        </section>
+
+                        <section>
+                              <h2>Bottom Note</h2>
+                              <p>Linux is more than just an operating system—it’s a philosophy of freedom, efficiency, and empowerment. With its vast software availability, robust security, exceptional performance, and endless customizability, Linux offers a compelling alternative to traditional operating systems for daily use. Whether you’re a developer, a creative professional, or someone simply looking for a reliable and cost-effective solution, Linux has something to offer for everyone.</p>
+                              <p>Transitioning to Linux might feel unfamiliar at first, but its intuitive interfaces, active community support, and wealth of resources make the journey both rewarding and enjoyable. By taking the leap, you’re not just choosing an OS—you’re joining a global movement built on collaboration and innovation.</p>
+
+                              <p>So why not try using Linux? There is world of possibilities and you might just discover a new way of using computers. :)</p>
+                        </section>
+                        <section>
+                              <div align="center">
+                                    <h2 style="font-size: 40;">Thank you for reading this blog</h2>
+                              </div>
+                        </section>
+
+                  </article>
+
+                  <footer>
+                        <p>2024 © What is Linux and Why Linux. All rights reserved.</p>
+                  </footer>
+            </div>
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
-            
+
             const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            if (btn.getAttribute('data-theme') === savedTheme) {
+            btn.classList.add('active');
+            } else {
+            btn.classList.remove('active');
+            }
             });
 
             themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
+            button.addEventListener('click', () => {
+            const theme = button.getAttribute('data-theme');
+            root.setAttribute('data-theme', theme);
+            themeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            localStorage.setItem('preferred-theme', theme);
             });
-        });
-    </script>
-</body>
+            });
+            });
+            </script>
+      </body>
 </html>

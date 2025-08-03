@@ -1,318 +1,333 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="nord">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DWM (Dynamic Window Manager)</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+      <head>
 
-    <style>
-        
-        :root[data-theme="light"] {
-            --black: #ffffff;
-            --darker-black: #f0f0f0;
-            --blue: #2760d8;
-            --light-blue: #1e88e5;
-            --red: #d32f2f;
-            --text: #24292e;
-            --text-secondary: #586069;
-            --border: #e1e4e8;
-        }
+            <style>
+.content-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+}
+            </style>
 
-        :root[data-theme="nord"] {
-            --black: #2e3440;
-            --darker-black: #242933;
-            --blue: #5e81ac;
-            --light-blue: #88c0d0;
-            --red: #bf616a;
-            --text: #eceff4;
-            --text-secondary: #d8dee9;
-            --border: #434c5e;
-        }
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <title>DWM (Dynamic Window Manager)</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+            <script>hljs.highlightAll();</script>
 
-        
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
+            <style>
 
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-        }
+            :root[data-theme="light"] {
+                  --black: #ffffff;
+                  --darker-black: #f0f0f0;
+                  --blue: #2760d8;
+                  --light-blue: #1e88e5;
+                  --red: #d32f2f;
+                  --text: #24292e;
+                  --text-secondary: #586069;
+                  --border: #e1e4e8;
+            }
 
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cascadia Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            margin-top: 1rem;
-        }
-
-        .home-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--blue);
-            color: var(--black);
-            text-decoration: none;
-            font-family: 'Cascadia Mono', monospace;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .home-btn:hover {
-            background: var(--light-blue);
-            color: var(--red);
-        }
-
-        .container {
-          display: flex;
-          gap: 20px;
-        }
-
-        header {
-            background: var(--darker-black);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--red);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        header h4 {
-        
-            color: var(--light-blue);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+            :root[data-theme="nord"] {
+                  --black: #2e3440;
+                  --darker-black: #242933;
+                  --blue: #5e81ac;
+                  --light-blue: #88c0d0;
+                  --red: #bf616a;
+                  --text: #eceff4;
+                  --text-secondary: #d8dee9;
+                  --border: #434c5e;
+            }
 
 
-        article {
-            padding: 2rem;
-            background: var(--darker-black);
-            border-radius: 4px;
-            margin-top: 2rem;
-        }
+            .theme-switcher {
+                  position: fixed;
+                  top: 1rem;
+                  right: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
+                  z-index: 1000;
+            }
+
+            .theme-btn {
+                  padding: 0.5rem 1rem;
+                  border: 1px solid var(--border);
+                  background: var(--darker-black);
+                  color: var(--text);
+                  cursor: pointer;
+                  border-radius: 4px;
+                  font-family: 'JetBrains Mono', monospace;
+                  transition: all 0.2s ease;
+            }
+
+            .theme-btn:hover {
+                  border-color: var(--red);
+                  color: var(--red);
+            }
+
+            .theme-btn.active {
+                  background: var(--red);
+                  color: var(--black);
+                  border-color: var(--red);
+            }
+
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+            }
+
+            body {
+                  font-family: 'JetBrains Mono', monospace;
+                  background: var(--black);
+                  color: var(--text);
+                  line-height: 1.6;
+                  min-height: 100vh;
+                  display: flex;
+                  flex-direction: column;
+                  transition: all 0.3s ease;
+            }
+
+            nav {
+                  margin-top: 1rem;
+            }
+
+            .home-btn {
+                  display: inline-block;
+                  padding: 0.5rem 1rem;
+                  background: var(--blue);
+                  color: var(--black);
+                  text-decoration: none;
+                  font-family: 'JetBrains Mono', monospace;
+                  border-radius: 4px;
+                  border: 1px solid var(--border);
+                  transition: background 0.2s, color 0.2s;
+            }
+
+            .home-btn:hover {
+                  background: var(--light-blue);
+                  color: var(--red);
+            }
+
+            .container {
+                  display: flex;
+                  gap: 20px;
+            }
+
+            header {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  text-align: center;
+                  border-bottom: 1px solid var(--border);
+            }
+
+            header h1 {
+                  font-size: 2.2rem;
+                  color: var(--red);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
+
+            header h4 {
+
+                  color: var(--light-blue);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
 
 
-        section {
-            margin-bottom: 2rem;
-        }
-
-        section h2 {
-            color: var(--light-blue);
-            margin-bottom: 1rem;
-        }
-
-        section h3 {
-            color: var(--blue);
-        }
-
-        section h4 {
-          color: var(--light-blue);
-        }
-
-        section ul {
-            list-style: none;
-            padding-left: 1.5rem;
-          
-        }
-
-        section ul li {
-            margin-bottom: 1rem;
-            list-style-type: disc;
-        }
-
-        section ul li strong {
-            color: var(--red);
-        }
-
-        img {
-            max-width: 100%; 
-            height: auto;
-        }
-
-        pre code {
-            width: 500px;
-            text-align: left;
-            font-size: 15px;
-            padding: 10px;
-            font-family: 'Cascadia Mono', monospace;
-
-        }
-
-        span {
-          color: var(--red);
-        }
+            article {
+                  padding: 2rem;
+                  background: var(--darker-black);
+                  border-radius: 4px;
+                  margin-top: 2rem;
+            }
 
 
-        footer {
-            background: var(--darker-black);
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
+            section {
+                  margin-bottom: 2rem;
+            }
 
-    </style>
-</head>
-<body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="light">Light</button>
-        <button class="theme-btn" data-theme="nord">Nord</button>
-    </div>
+            section h2 {
+                  color: var(--light-blue);
+                  margin-bottom: 1rem;
+            }
 
-    <header>
-        <h1>DWM, A window manager made in C to reduce bloat as much as possible</h1>
-        <nav>
-          <a href="../../blog.html" class="home-btn">Home</a>
-        </nav>
-    </header>
-    <article>
-      <section>
-        <h2>Introduction</h2>
-        <p>Welcome to this blog where I will be writing about DWM (Dyanmic Window Manager) which is written in C intended to reduce bloat as much as possible giving us a smooth user experience. Configuring DWM can be hard for a few, but the end result is worth it. I recently wanted to try DWM for fun and turned out it was actually a very good experienced that I have switched from Hyprland to DWM permanently. To configur, DWM we have to manually edit the C source code, after the changes we save. Compile it with the make command and then finally quit DWM adn log back in for the changes. If there are any errors with the source code, then DWM won't allow you to log inside the DWM until the error is corrected. So, what I did is i would backup after every stable change I make and in case of there are any errors I would copy the backup file or manually edit them in a tty.</p>
-      </section>
+            section h3 {
+                  color: var(--blue);
+            }
 
-      <section>
-        <h2>About DWM</h2>
-        <p>DWN is a window manager for X server made by suckless.org a group of programmers working together to make softwares that "suck less". They have made many tools like "st" (suckless terminal/simple terminal), surf (a web browser) and some other "core" programs for a suck less experience.</p>
-        <p>There are many layout to manage windows like tiled, monocle, floating layout. We can switch the between different layouts using keybinds dynamically to according to the application that we are working with.</p>
-      </section>
+            section h4 {
+                  color: var(--light-blue);
+            }
 
-        <section>
-          <h2>How are windows managed</h2>
+            section ul {
+                  list-style: none;
+                  padding-left: 1.5rem;
 
-          <p>In <span>tiled mode</span>, the windows are stacked above one another as a new wondow is created everytime. Stack in the sense not "literally" stack but the windows act stacked in the memory as in the data structure "stack".</p>
+            }
 
-          <p>In <span>monocle layout</span>, all the windows are fullscreen and now are literally stacked above each other when they are created.</p>
-          <p>In the <span>floating layout</span>, it is like what we use in rest of the desktop environments and in Windows. All the newly created windows are floating.</p>
-       <div align="center">
-          <img src="stacked.png" alt="Tags" height=1600 width=1000>
-        </div> 
-        </section>
+            section ul li {
+                  margin-bottom: 1rem;
+                  list-style-type: disc;
+            }
 
-        <section>
-          <h2>Workspaces/Tags</h2> 
-          <p>In DWM, the workspaces are called as "tags". By default, there are 10 tags but we can change them to how much we want. We can also replace them with a logo instead of just numbers.</p>
-          <p>We can switch between them with shortcut key, ALT + "tag_number". We can also change the keybinds to whatever we feel comfortable. </p>
-         <div align="center">
-          <img src="tags.png" alt="Tags" height=1600 width=1000>
-        </div>
-        <p>The red circled is what is called tags</p>
-        </section>
-        <section>
-         <h2>Status Bar</h2>
-         <p>There is a status bar by default in provided by DWM. We can also add our own status bar if we want with "patches" (I'll cover that in the upcoming heading). The status bar is divided into three parts, left part for the tags, middle part for the activity that we are doing like the window name and right one is for custom modules that we would display by script files for everything. By default, there is nothing on the right part</p>
-         <p>There are many status bars for the left part: slstatus, dwmblocks, dwmblocks with color support and anybar (which allows us to use any bar other than the default one provided by DWM).</p>
-         <div align="center">
-          <img src="bar1.png" alt="Tags" height=1600 width=1000>
-        </div>
-        </section>
+            section ul li strong {
+                  color: var(--red);
+            }
 
-        <section>
-          <h2>Patches</h2>
-          <p>We can add many other features we require by "<span>patching</span>" the main source code. This is one of the most exhausting part of DWM for people who want extra features.</p>
-          <p>The patches are mostly written by other users by themselves. Patches are nothing but adding extra functionality to the source code.</p>
-          <p>When applying the patches there is <span>7/10 chance</span> for a patch error to occur. The error is put into a <span>.rej</span> file with the changes taht are to be made undicated with "+" and "-". We have to manually edit them ourselves and compile the code. We have to add the lines that start with + and delete the line that start with "-".</p>
-          <p>This is part where most quit because its exhausting.</p>
-          <p>This is because that the patches are not intelligent enough to make all the changes by itself. They expect some block of code to be there but when there is no code block that the patch is expecting it returns and error and as I said after we edit the file ourselves and if there are errors in teh main source code the DWM won't allow us to get into the DWM.</p>
-        </section>
+            img {
+                  max-width: 100%; 
+                  height: auto;
+            }
 
-        <section>
-          <h2>Bottom Note</h2>
-          <p>There are different Window managers but I really felt that this one was peculiar and thought of writing a blog on it.</p>
-          <p>There are many window managers that are a fork of this like <a href="https://i3wm.org/" style="color: var(--blue);">i3</a> and <a href="https://github.com/baskerville/bspwm" style="color: var(--blue);">bspwm</a>, <a href="https://codeberg.org/dwl/dwl" style="color: var(--blue);">dwl (which is a wayland fork of dwm)</a> and much more.</p>
-          <p>You can try and install dwm if you want from the link below</p>
-          DWM: <a href="https://dwm.suckless.org/" style="color: var(--blue);">https://dwm.suckless.org/</a>
-        </section>
-        <section>
-        <div align="center">
-          <h2>Thank you for reading this blog</h2>
-        </div>
-      </section>
+            pre code {
+                  width: 500px;
+                  text-align: left;
+                  font-size: 15px;
+                  padding: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+
+            }
+
+            span {
+                  color: var(--red);
+            }
 
 
-    </article>
+            footer {
+                  background: var(--darker-black);
+                  padding: 1rem;
+                  text-align: center;
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  border-top: 1px solid var(--border);
+            }
 
 
-    <footer>
-      <div align="right">
-        <p>Posted on February 2025</p>
-      </div>
-    </footer>
+            .content-wrapper {
+                  max-width: 1100px;
+                  margin: 0 auto;
+                  padding: 0 1rem;
+            }</style>
+      </head>
+      <body>
+            <div class="theme-switcher">
+                  <button class="theme-btn" data-theme="light">Light</button>
+                  <button class="theme-btn" data-theme="nord">Nord</button>
+            </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            <div class="content-wrapper">
+                  <header>
+                        <h1>DWM, A window manager made in C to reduce bloat as much as possible</h1>
+                        <nav>
+                              <a href="../../blog.html" class="home-btn">Home</a>
+                        </nav>
+                  </header>
+                  <article>
+                        <section>
+                              <h2>Introduction</h2>
+                              <p>Welcome to this blog where I will be writing about DWM (Dyanmic Window Manager) which is written in C intended to reduce bloat as much as possible giving us a smooth user experience. Configuring DWM can be hard for a few, but the end result is worth it. I recently wanted to try DWM for fun and turned out it was actually a very good experienced that I have switched from Hyprland to DWM permanently. To configur, DWM we have to manually edit the C source code, after the changes we save. Compile it with the make command and then finally quit DWM adn log back in for the changes. If there are any errors with the source code, then DWM won't allow you to log inside the DWM until the error is corrected. So, what I did is i would backup after every stable change I make and in case of there are any errors I would copy the backup file or manually edit them in a tty.</p>
+                        </section>
+
+                        <section>
+                              <h2>About DWM</h2>
+                              <p>DWN is a window manager for X server made by suckless.org a group of programmers working together to make softwares that "suck less". They have made many tools like "st" (suckless terminal/simple terminal), surf (a web browser) and some other "core" programs for a suck less experience.</p>
+                              <p>There are many layout to manage windows like tiled, monocle, floating layout. We can switch the between different layouts using keybinds dynamically to according to the application that we are working with.</p>
+                        </section>
+
+                        <section>
+                              <h2>How are windows managed</h2>
+
+                              <p>In <span>tiled mode</span>, the windows are stacked above one another as a new wondow is created everytime. Stack in the sense not "literally" stack but the windows act stacked in the memory as in the data structure "stack".</p>
+
+                              <p>In <span>monocle layout</span>, all the windows are fullscreen and now are literally stacked above each other when they are created.</p>
+                              <p>In the <span>floating layout</span>, it is like what we use in rest of the desktop environments and in Windows. All the newly created windows are floating.</p>
+                              <div align="center">
+                                    <img src="stacked.png" alt="Tags" height=1600 width=1000>
+                              </div> 
+                        </section>
+
+                        <section>
+                              <h2>Workspaces/Tags</h2> 
+                              <p>In DWM, the workspaces are called as "tags". By default, there are 10 tags but we can change them to how much we want. We can also replace them with a logo instead of just numbers.</p>
+                              <p>We can switch between them with shortcut key, ALT + "tag_number". We can also change the keybinds to whatever we feel comfortable. </p>
+                              <div align="center">
+                                    <img src="tags.png" alt="Tags" height=1600 width=1000>
+                              </div>
+                              <p>The red circled is what is called tags</p>
+                        </section>
+                        <section>
+                              <h2>Status Bar</h2>
+                              <p>There is a status bar by default in provided by DWM. We can also add our own status bar if we want with "patches" (I'll cover that in the upcoming heading). The status bar is divided into three parts, left part for the tags, middle part for the activity that we are doing like the window name and right one is for custom modules that we would display by script files for everything. By default, there is nothing on the right part</p>
+                              <p>There are many status bars for the left part: slstatus, dwmblocks, dwmblocks with color support and anybar (which allows us to use any bar other than the default one provided by DWM).</p>
+                              <div align="center">
+                                    <img src="bar1.png" alt="Tags" height=1600 width=1000>
+                              </div>
+                        </section>
+
+                        <section>
+                              <h2>Patches</h2>
+                              <p>We can add many other features we require by "<span>patching</span>" the main source code. This is one of the most exhausting part of DWM for people who want extra features.</p>
+                              <p>The patches are mostly written by other users by themselves. Patches are nothing but adding extra functionality to the source code.</p>
+                              <p>When applying the patches there is <span>7/10 chance</span> for a patch error to occur. The error is put into a <span>.rej</span> file with the changes taht are to be made undicated with "+" and "-". We have to manually edit them ourselves and compile the code. We have to add the lines that start with + and delete the line that start with "-".</p>
+                              <p>This is part where most quit because its exhausting.</p>
+                              <p>This is because that the patches are not intelligent enough to make all the changes by itself. They expect some block of code to be there but when there is no code block that the patch is expecting it returns and error and as I said after we edit the file ourselves and if there are errors in teh main source code the DWM won't allow us to get into the DWM.</p>
+                        </section>
+
+                        <section>
+                              <h2>Bottom Note</h2>
+                              <p>There are different Window managers but I really felt that this one was peculiar and thought of writing a blog on it.</p>
+                              <p>There are many window managers that are a fork of this like <a href="https://i3wm.org/" style="color: var(--blue);">i3</a> and <a href="https://github.com/baskerville/bspwm" style="color: var(--blue);">bspwm</a>, <a href="https://codeberg.org/dwl/dwl" style="color: var(--blue);">dwl (which is a wayland fork of dwm)</a> and much more.</p>
+                              <p>You can try and install dwm if you want from the link below</p>
+                              DWM: <a href="https://dwm.suckless.org/" style="color: var(--blue);">https://dwm.suckless.org/</a>
+                        </section>
+                        <section>
+                              <div align="center">
+                                    <h2>Thank you for reading this blog</h2>
+                              </div>
+                        </section>
+
+
+                  </article>
+
+
+                  <footer>
+                        <div align="right">
+                              <p>Posted on February 2025</p>
+                        </div>
+                  </footer>
+            </div>
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
-            
+
             const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            if (btn.getAttribute('data-theme') === savedTheme) {
+            btn.classList.add('active');
+            } else {
+            btn.classList.remove('active');
+            }
             });
 
             themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
+            button.addEventListener('click', () => {
+            const theme = button.getAttribute('data-theme');
+            root.setAttribute('data-theme', theme);
+            themeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            localStorage.setItem('preferred-theme', theme);
             });
-        });
-    </script>
-</body>
+            });
+            });
+            </script>
+      </body>
 </html>
 

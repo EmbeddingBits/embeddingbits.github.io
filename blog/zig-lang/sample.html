@@ -1,398 +1,412 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="nord">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Learning Zig: A Simple Guide to Its Basics</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+      <head>
 
-    <style>
-        /* Keeping your original styles unchanged */
-        :root[data-theme="light"] {
-            --black: #ffffff;
-            --darker-black: #f0f0f0;
-            --blue: #2760d8;
-            --light-blue: #1e88e5;
-            --red: #d32f2f;
-            --text: #24292e;
-            --text-secondary: #586069;
-            --border: #e1e4e8;
-        }
-
-        :root[data-theme="nord"] {
-            --black: #2e3440;
-            --darker-black: #242933;
-            --blue: #5e81ac;
-            --light-blue: #88c0d0;
-            --red: #bf616a;
-            --text: #eceff4;
-            --text-secondary: #d8dee9;
-            --border: #434c5e;
-        }
-
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--darker-black);
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: 'Cascadia Mono', monospace;
-            transition: all 0.2s ease;
-        }
-
-        .theme-btn:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            background: var(--red);
-            color: var(--black);
-            border-color: var(--red);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cascadia Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center horizontally */
-            transition: all 0.3s ease;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px; /* Limit max width for better readability */
-            padding: 0 1rem;  /* Add some padding on smaller screens */
-        }
-
-        nav {
-            margin-top: 1rem;
-        }
-
-        .home-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--blue);
-            color: var(--black);
-            text-decoration: none;
-            font-family: 'Cascadia Mono', monospace;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .home-btn:hover {
-            background: var(--light-blue);
-            color: var(--red);
-        }
-
-        header {
-            background: var(--darker-black);
-            padding: 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            width: 100%;
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            color: var(--red);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        header h4 {
-            color: var(--light-blue);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        article {
-            padding: 2rem;
-            background: var(--darker-black);
-            border-radius: 4px;
-            margin-top: 2rem;
-            width: 100%;
-            max-width: 800px;
-            text-align: center; /* Center text content */
-        }
-
-        section {
-            margin-bottom: 2rem;
-        }
-
-        section h2 {
-            color: var(--light-blue);
-            margin-bottom: 1rem;
-        }
-
-        section h3 {
-            color: var(--blue);
-        }
-
-        section h4 {
-            color: var(--light-blue);
-        }
-
-        section p {
-            text-align: center; /* Center paragraph text */
-            margin-bottom: 1rem;
-        }
-
-        section ul {
-            list-style: none;
-            padding-left: 1.5rem;
-            display: inline-block; /* Center bullet points */
-            text-align: left; /* Keep list item text left-aligned */
-        }
-
-        section ul li {
-            margin-bottom: 1rem;
-            list-style-type: disc;
-        }
-
-        section ul li strong {
-            color: var(--red);
-        }
-
-        img {
-            max-width: 100%; 
-            height: auto;
-        }
-
-        pre {
-            text-align: left; /* Code blocks should remain left-aligned */
-            margin: 0 auto; /* Center the code block container */
-            max-width: 90%; /* Limit width of code blocks */
-        }
-
-        pre code {
-            width: 100%;
-            text-align: left;
-            font-size: 15px;
-            padding: 10px;
-            font-family: 'Cascadia Mono', monospace;
-            display: block;
-        }
-
-        span {
-            color: var(--red);
-        }
-
-        footer {
-            background: var(--darker-black);
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            width: 100%; 
-            margin-top: 2rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="light">Light</button>
-        <button class="theme-btn" data-theme="nord">Nord</button>
-    </div>
-
-    <div class="container">
-        <header>
-            <h1>Learning Zig: A Simple Guide to Its Basics</h1>
-            <nav>
-                <a href="../../blog.html" class="home-btn">Home</a>
-            </nav>
-        </header>
-        <article>
-            <section>
-                <h2>Introduction</h2>
-                <p>Zig is a modern programming language that is meant to be the successor of C programming language. Zig is a general-purpose programming language and toolchain for maintaining robust, optimal and reusable software. There is no hidden control flow, no hidden memory allocations and no preprocessors and macros as in C. Zig has a very important and maybe the standout feature of the language and a new approach to metaprogramming. In zig, we can call the functions at compile time and the datatypes can be assign the datatype at compile time and much more to it.</p>
-            </section>
-
-            <section>
-                <h2>What Makes Zig Special</h2>
-                <p>Zig is built on three big ideas: it's <strong>simple</strong>, it's <strong>fast</strong>, and it gives you <strong>control</strong>. Unlike some languages that make things complicated or force rules on you, Zig keeps things clear and lets you decide what to do.</p>
-                <p>Here's a simple Zig program that says hello:</p>
-                <pre><code>
-const std = @import("std");
-
-pub fn main() !void {
-    const stdout = std.io.getStdOut().writer();
-    try stdout.print("Hello, {s}!\n", .{"Zig"});
+            <style>
+.content-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
 }
-                </code></pre>
-                <p>This code prints "Hello, Zig!" to your screen. The <code>!void</code> part means the program might fail, and Zig makes sure you know it. We'll talk more about that later.</p>
-            </section>
+            </style>
 
-            <section>
-                <h2>Managing Memory in Zig</h2>
-                <p>Memory is like space your program uses to store things. In Zig, you get to decide how to use that space—no automatic system does it for you. This makes your program fast and safe.</p>
-                <p>Here's an example of making a list of numbers:</p>
-                <pre><code>
-const std = @import("std");
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <title>Learning Zig: A Simple Guide to Its Basics</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/index.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+            <script>hljs.highlightAll();</script>
 
-pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer gpa.deinit(); // Cleans up when done
-    const allocator = gpa.allocator();
+            <style>
+            /* Keeping your original styles unchanged */
+            :root[data-theme="light"] {
+                  --black: #ffffff;
+                  --darker-black: #f0f0f0;
+                  --blue: #2760d8;
+                  --light-blue: #1e88e5;
+                  --red: #d32f2f;
+                  --text: #24292e;
+                  --text-secondary: #586069;
+                  --border: #e1e4e8;
+            }
 
-    // Make a list of 5 numbers
-    var numbers = try allocator.alloc(i32, 5);
-    defer allocator.free(numbers); // Free the list later
+            :root[data-theme="nord"] {
+                  --black: #2e3440;
+                  --darker-black: #242933;
+                  --blue: #5e81ac;
+                  --light-blue: #88c0d0;
+                  --red: #bf616a;
+                  --text: #eceff4;
+                  --text-secondary: #d8dee9;
+                  --border: #434c5e;
+            }
 
-    // Fill the list with numbers 0 to 4
-    for (numbers, 0..) |*num, i| num.* = @intCast(i32, i);
-    const stdout = std.io.getStdOut().writer();
-    try stdout.print("List: {any}\n", .{numbers});
-}
-                </code></pre>
-                <p>What's happening here:
-                    <ul>
-                        <li><strong>You Choose:</strong> You tell Zig how to create and free the list.</li>
-                        <li><strong>Cleanup:</strong> <code>defer</code> makes sure the list is deleted when you're done.</li>
-                        <li><strong>Safety:</strong> Zig checks everything when you build the program.</li>
-                    </ul>
-                </p>
-                <p>This way, you avoid mistakes like losing track of memory or using it twice by accident.</p>
-            </section>
+            .theme-switcher {
+                  position: fixed;
+                  top: 1rem;
+                  right: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
+                  z-index: 1000;
+            }
 
-            <section>
-                <h2>Handling Problems in Zig</h2>
-                <p>Zig doesn't hide problems—it tells you when something might go wrong and helps you fix it. It uses a special way to show if a task worked or failed.</p>
-                <p>Here's an example of reading a file:</p>
-                <pre><code>
-const std = @import("std");
+            .theme-btn {
+                  padding: 0.5rem 1rem;
+                  border: 1px solid var(--border);
+                  background: var(--darker-black);
+                  color: var(--text);
+                  cursor: pointer;
+                  border-radius: 4px;
+                  font-family: 'Cascadia Mono', monospace;
+                  transition: all 0.2s ease;
+            }
 
-pub fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
-    var file = try std.fs.cwd().openFile(path, .{});
-    defer file.close();
+            .theme-btn:hover {
+                  border-color: var(--red);
+                  color: var(--red);
+            }
 
-    const size = try file.getEndPos();
-    const buffer = try allocator.alloc(u8, size);
-    _ = try file.readAll(buffer);
-    return buffer;
-}
+            .theme-btn.active {
+                  background: var(--red);
+                  color: var(--black);
+                  border-color: var(--red);
+            }
 
-pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer gpa.deinit();
-    const allocator = gpa.allocator();
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+            }
 
-    const stdout = std.io.getStdOut().writer();
-    const content = readFile(allocator, "example.txt") catch |err| {
-        try stdout.print("Oops! Something went wrong: {}\n", .{err});
-        return;
-    };
-    defer allocator.free(content);
-    try stdout.print("File says: {s}\n", .{content});
-}
-                </code></pre>
-                <p>What's going on:
-                    <ul>
-                        <li><strong>Success or Fail:</strong> The <code>!</code> means this might work or might not.</li>
-                        <li><strong>Try:</strong> Tries something and checks if it fails.</li>
-                        <li><strong>Catch:</strong> If it fails, this part runs to handle the problem.</li>
-                    </ul>
-                </p>
-                <p>This makes sure you always know what's happening—no surprises!</p>
-            </section>
+            body {
+                  font-family: 'Cascadia Mono', monospace;
+                  background: var(--black);
+                  color: var(--text);
+                  line-height: 1.6;
+                  min-height: 100vh;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center; /* Center horizontally */
+                  transition: all 0.3s ease;
+            }
 
-            <section>
-                <h2>Wrapping Up</h2>
-                <p>Zig is great for people who like to keep things simple and clear. It lets you control your program's memory and warns you about problems before they ruin everything. Here's the full file-reading code again:</p>
-                <pre><code>
-const std = @import("std");
+            .container {
+                  width: 100%;
+                  max-width: 800px; /* Limit max width for better readability */
+                  padding: 0 1rem;  /* Add some padding on smaller screens */
+            }
 
-fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
-    var file = try std.fs.cwd().openFile(path, .{});
-    defer file.close();
-    const size = try file.getEndPos();
-    const buffer = try allocator.alloc(u8, size);
-    _ = try file.readAll(buffer);
-    return buffer;
-}
+            nav {
+                  margin-top: 1rem;
+            }
 
-pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer gpa.deinit();
-    const allocator = gpa.allocator();
+            .home-btn {
+                  display: inline-block;
+                  padding: 0.5rem 1rem;
+                  background: var(--blue);
+                  color: var(--black);
+                  text-decoration: none;
+                  font-family: 'Cascadia Mono', monospace;
+                  border-radius: 4px;
+                  border: 1px solid var(--border);
+                  transition: background 0.2s, color 0.2s;
+            }
 
-    const stdout = std.io.getStdOut().writer();
-    const content = readFile(allocator, "example.txt") catch |err| {
-        try stdout.print("Oops! Something went wrong: {}\n", .{err});
-        return;
-    };
-    defer allocator.free(content);
-    try stdout.print("File says: {s}\n", .{content});
-}
-                </code></pre>
-                <p>Want to learn more? Check out Zig's home on <span>GitHub:</span> <a href="https://github.com/ziglang/zig" style="color: var(--blue);">https://github.com/ziglang/zig</a>. Have fun exploring Zig!</p>
-            </section>
+            .home-btn:hover {
+                  background: var(--light-blue);
+                  color: var(--red);
+            }
 
-            <section>
-                <div align="center">
-                    <h2>Thanks for Reading!</h2>
-                </div>
-            </section>
-        </article>
+            header {
+                  background: var(--darker-black);
+                  padding: 2rem;
+                  text-align: center;
+                  border-bottom: 1px solid var(--border);
+                  width: 100%;
+            }
 
-        <footer>
-            <div align="right">
-                <p>Posted in February 2025</p>
+            header h1 {
+                  font-size: 2.2rem;
+                  color: var(--red);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
+
+            header h4 {
+                  color: var(--light-blue);
+                  font-weight: 700;
+                  letter-spacing: 1px;
+            }
+
+            article {
+                  padding: 2rem;
+                  background: var(--darker-black);
+                  border-radius: 4px;
+                  margin-top: 2rem;
+                  width: 100%;
+                  max-width: 800px;
+                  text-align: center; /* Center text content */
+            }
+
+            section {
+                  margin-bottom: 2rem;
+            }
+
+            section h2 {
+                  color: var(--light-blue);
+                  margin-bottom: 1rem;
+            }
+
+            section h3 {
+                  color: var(--blue);
+            }
+
+            section h4 {
+                  color: var(--light-blue);
+            }
+
+            section p {
+                  text-align: center; /* Center paragraph text */
+                  margin-bottom: 1rem;
+            }
+
+            section ul {
+                  list-style: none;
+                  padding-left: 1.5rem;
+                  display: inline-block; /* Center bullet points */
+                  text-align: left; /* Keep list item text left-aligned */
+            }
+
+            section ul li {
+                  margin-bottom: 1rem;
+                  list-style-type: disc;
+            }
+
+            section ul li strong {
+                  color: var(--red);
+            }
+
+            img {
+                  max-width: 100%; 
+                  height: auto;
+            }
+
+            pre {
+                  text-align: left; /* Code blocks should remain left-aligned */
+                  margin: 0 auto; /* Center the code block container */
+                  max-width: 90%; /* Limit width of code blocks */
+            }
+
+            pre code {
+                  width: 100%;
+                  text-align: left;
+                  font-size: 15px;
+                  padding: 10px;
+                  font-family: 'Cascadia Mono', monospace;
+                  display: block;
+            }
+
+            span {
+                  color: var(--red);
+            }
+
+            footer {
+                  background: var(--darker-black);
+                  padding: 1rem;
+                  text-align: center;
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+                  border-top: 1px solid var(--border);
+                  width: 100%; 
+                  margin-top: 2rem;
+            }
+
+            .content-wrapper {
+                  max-width: 1100px;
+                  margin: 0 auto;
+                  padding: 0 1rem;
+            }</style>
+      </head>
+      <body>
+            <div class="theme-switcher">
+                  <button class="theme-btn" data-theme="light">Light</button>
+                  <button class="theme-btn" data-theme="nord">Nord</button>
             </div>
-        </footer>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            <div class="container">
+                  <header>
+                        <h1>Learning Zig: A Simple Guide to Its Basics</h1>
+                        <nav>
+                              <a href="../../blog.html" class="home-btn">Home</a>
+                        </nav>
+                  </header>
+                  <article>
+                        <section>
+                              <h2>Introduction</h2>
+                              <p>Zig is a modern programming language that is meant to be the successor of C programming language. Zig is a general-purpose programming language and toolchain for maintaining robust, optimal and reusable software. There is no hidden control flow, no hidden memory allocations and no preprocessors and macros as in C. Zig has a very important and maybe the standout feature of the language and a new approach to metaprogramming. In zig, we can call the functions at compile time and the datatypes can be assign the datatype at compile time and much more to it.</p>
+                        </section>
+
+                        <section>
+                              <h2>What Makes Zig Special</h2>
+                              <p>Zig is built on three big ideas: it's <strong>simple</strong>, it's <strong>fast</strong>, and it gives you <strong>control</strong>. Unlike some languages that make things complicated or force rules on you, Zig keeps things clear and lets you decide what to do.</p>
+                              <p>Here's a simple Zig program that says hello:</p>
+                              <pre><code>
+                                    const std = @import("std");
+
+                                    pub fn main() !void {
+                                    const stdout = std.io.getStdOut().writer();
+                                    try stdout.print("Hello, {s}!\n", .{"Zig"});
+                                    }
+                              </code></pre>
+                              <p>This code prints "Hello, Zig!" to your screen. The <code>!void</code> part means the program might fail, and Zig makes sure you know it. We'll talk more about that later.</p>
+                        </section>
+
+                        <section>
+                              <h2>Managing Memory in Zig</h2>
+                              <p>Memory is like space your program uses to store things. In Zig, you get to decide how to use that space—no automatic system does it for you. This makes your program fast and safe.</p>
+                              <p>Here's an example of making a list of numbers:</p>
+                              <pre><code>
+                                    const std = @import("std");
+
+                                    pub fn main() !void {
+                                    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+                                    defer gpa.deinit(); // Cleans up when done
+                                    const allocator = gpa.allocator();
+
+                                    // Make a list of 5 numbers
+                                    var numbers = try allocator.alloc(i32, 5);
+                                    defer allocator.free(numbers); // Free the list later
+
+                                    // Fill the list with numbers 0 to 4
+                                    for (numbers, 0..) |*num, i| num.* = @intCast(i32, i);
+                                    const stdout = std.io.getStdOut().writer();
+                                    try stdout.print("List: {any}\n", .{numbers});
+                                    }
+                              </code></pre>
+                              <p>What's happening here:
+                                    <ul>
+                                          <li><strong>You Choose:</strong> You tell Zig how to create and free the list.</li>
+                                          <li><strong>Cleanup:</strong> <code>defer</code> makes sure the list is deleted when you're done.</li>
+                                          <li><strong>Safety:</strong> Zig checks everything when you build the program.</li>
+                                    </ul>
+                              </p>
+                              <p>This way, you avoid mistakes like losing track of memory or using it twice by accident.</p>
+                        </section>
+
+                        <section>
+                              <h2>Handling Problems in Zig</h2>
+                              <p>Zig doesn't hide problems—it tells you when something might go wrong and helps you fix it. It uses a special way to show if a task worked or failed.</p>
+                              <p>Here's an example of reading a file:</p>
+                              <pre><code>
+                                    const std = @import("std");
+
+                                    pub fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
+                                    var file = try std.fs.cwd().openFile(path, .{});
+                                    defer file.close();
+
+                                    const size = try file.getEndPos();
+                                    const buffer = try allocator.alloc(u8, size);
+                                    _ = try file.readAll(buffer);
+                                    return buffer;
+                                    }
+
+                                    pub fn main() !void {
+                                    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+                                    defer gpa.deinit();
+                                    const allocator = gpa.allocator();
+
+                                    const stdout = std.io.getStdOut().writer();
+                                    const content = readFile(allocator, "example.txt") catch |err| {
+                                    try stdout.print("Oops! Something went wrong: {}\n", .{err});
+                                    return;
+                                    };
+                                    defer allocator.free(content);
+                                    try stdout.print("File says: {s}\n", .{content});
+                                    }
+                              </code></pre>
+                              <p>What's going on:
+                                    <ul>
+                                          <li><strong>Success or Fail:</strong> The <code>!</code> means this might work or might not.</li>
+                                          <li><strong>Try:</strong> Tries something and checks if it fails.</li>
+                                          <li><strong>Catch:</strong> If it fails, this part runs to handle the problem.</li>
+                                    </ul>
+                              </p>
+                              <p>This makes sure you always know what's happening—no surprises!</p>
+                        </section>
+
+                        <section>
+                              <h2>Wrapping Up</h2>
+                              <p>Zig is great for people who like to keep things simple and clear. It lets you control your program's memory and warns you about problems before they ruin everything. Here's the full file-reading code again:</p>
+                              <pre><code>
+                                    const std = @import("std");
+
+                                    fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
+                                    var file = try std.fs.cwd().openFile(path, .{});
+                                    defer file.close();
+                                    const size = try file.getEndPos();
+                                    const buffer = try allocator.alloc(u8, size);
+                                    _ = try file.readAll(buffer);
+                                    return buffer;
+                                    }
+
+                                    pub fn main() !void {
+                                    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+                                    defer gpa.deinit();
+                                    const allocator = gpa.allocator();
+
+                                    const stdout = std.io.getStdOut().writer();
+                                    const content = readFile(allocator, "example.txt") catch |err| {
+                                    try stdout.print("Oops! Something went wrong: {}\n", .{err});
+                                    return;
+                                    };
+                                    defer allocator.free(content);
+                                    try stdout.print("File says: {s}\n", .{content});
+                                    }
+                              </code></pre>
+                              <p>Want to learn more? Check out Zig's home on <span>GitHub:</span> <a href="https://github.com/ziglang/zig" style="color: var(--blue);">https://github.com/ziglang/zig</a>. Have fun exploring Zig!</p>
+                        </section>
+
+                        <section>
+                              <div align="center">
+                                    <h2>Thanks for Reading!</h2>
+                              </div>
+                        </section>
+                  </article>
+
+                  <footer>
+                        <div align="right">
+                              <p>Posted in February 2025</p>
+                        </div>
+                  </footer>
+            </div>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
-            
+
             const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+            if (btn.getAttribute('data-theme') === savedTheme) {
+            btn.classList.add('active');
+            } else {
+            btn.classList.remove('active');
+            }
             });
 
             themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
+            button.addEventListener('click', () => {
+            const theme = button.getAttribute('data-theme');
+            root.setAttribute('data-theme', theme);
+            themeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            localStorage.setItem('preferred-theme', theme);
             });
-        });
-    </script>
-</body>
+            });
+            });
+            </script>
+      </body>
 </html>
