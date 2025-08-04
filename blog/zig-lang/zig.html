@@ -225,12 +225,12 @@
                               <p>Zig is built on three big ideas: it’s <strong>simple</strong>, it’s <strong>fast</strong>, and it gives you <strong>control</strong>. Unlike some languages that make things complicated or force rules on you, Zig keeps things clear and lets you decide what to do.</p>
                               <p>Here’s a simple Zig program that says hello:</p>
                               <pre><code>
-                                    const std = @import("std");
+const std = @import("std");
 
-                                    pub fn main() !void {
-                                    const stdout = std.io.getStdOut().writer();
-                                    try stdout.print("Hello, {s}!\n", .{"Zig"});
-                                    }
+pub fn main() !void {
+const stdout = std.io.getStdOut().writer();
+try stdout.print("Hello, {s}!\n", .{"Zig"});
+}
                               </code></pre>
                               <p>This code prints "Hello, Zig!" to your screen. The <code>!void</code> part means the program might fail, and Zig makes sure you know it. We’ll talk more about that later.</p>
                         </section>
@@ -240,22 +240,22 @@
                               <p>Memory is like space your program uses to store things. In Zig, you get to decide how to use that space—no automatic system does it for you. This makes your program fast and safe.</p>
                               <p>Here’s an example of making a list of numbers:</p>
                               <pre><code>
-                                    const std = @import("std");
+const std = @import("std");
 
-                                    pub fn main() !void {
-                                    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-                                    defer gpa.deinit(); // Cleans up when done
-                                    const allocator = gpa.allocator();
+pub fn main() !void {
+var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+defer gpa.deinit(); // Cleans up when done
+const allocator = gpa.allocator();
 
-                                    // Make a list of 5 numbers
-                                    var numbers = try allocator.alloc(i32, 5);
-                                    defer allocator.free(numbers); // Free the list later
+// Make a list of 5 numbers
+var numbers = try allocator.alloc(i32, 5);
+defer allocator.free(numbers); // Free the list later
 
-                                    // Fill the list with numbers 0 to 4
-                                    for (numbers, 0..) |*num, i| num.* = @intCast(i32, i);
-                                    const stdout = std.io.getStdOut().writer();
-                                    try stdout.print("List: {any}\n", .{numbers});
-                                    }
+// Fill the list with numbers 0 to 4
+for (numbers, 0..) |*num, i| num.* = @intCast(i32, i);
+const stdout = std.io.getStdOut().writer();
+try stdout.print("List: {any}\n", .{numbers});
+}
                               </code></pre>
                               <p>What’s happening here:
                                     <ul>
@@ -272,31 +272,31 @@
                               <p>Zig doesn’t hide problems—it tells you when something might go wrong and helps you fix it. It uses a special way to show if a task worked or failed.</p>
                               <p>Here’s an example of reading a file:</p>
                               <pre><code>
-                                    const std = @import("std");
+const std = @import("std");
 
-                                    pub fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
-                                    var file = try std.fs.cwd().openFile(path, .{});
-                                    defer file.close();
+pub fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
+var file = try std.fs.cwd().openFile(path, .{});
+defer file.close();
 
-                                    const size = try file.getEndPos();
-                                    const buffer = try allocator.alloc(u8, size);
-                                    _ = try file.readAll(buffer);
-                                    return buffer;
-                                    }
+const size = try file.getEndPos();
+const buffer = try allocator.alloc(u8, size);
+_ = try file.readAll(buffer);
+return buffer;
+}
 
-                                    pub fn main() !void {
-                                    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-                                    defer gpa.deinit();
-                                    const allocator = gpa.allocator();
+pub fn main() !void {
+var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+defer gpa.deinit();
+const allocator = gpa.allocator();
 
-                                    const stdout = std.io.getStdOut().writer();
-                                    const content = readFile(allocator, "example.txt") catch |err| {
-                                    try stdout.print("Oops! Something went wrong: {}\n", .{err});
-                                    return;
-                                    };
-                                    defer allocator.free(content);
-                                    try stdout.print("File says: {s}\n", .{content});
-                                    }
+const stdout = std.io.getStdOut().writer();
+const content = readFile(allocator, "example.txt") catch |err| {
+try stdout.print("Oops! Something went wrong: {}\n", .{err});
+return;
+};
+defer allocator.free(content);
+try stdout.print("File says: {s}\n", .{content});
+}
                               </code></pre>
                               <p>What’s going on:
                                     <ul>
@@ -312,30 +312,30 @@
                               <h2>Wrapping Up</h2>
                               <p>Zig is great for people who like to keep things simple and clear. It lets you control your program’s memory and warns you about problems before they ruin everything. Here’s the full file-reading code again:</p>
                               <pre><code>
-                                    const std = @import("std");
+const std = @import("std");
 
-                                    fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
-                                    var file = try std.fs.cwd().openFile(path, .{});
-                                    defer file.close();
-                                    const size = try file.getEndPos();
-                                    const buffer = try allocator.alloc(u8, size);
-                                    _ = try file.readAll(buffer);
-                                    return buffer;
-                                    }
+fn readFile(allocator: std.mem.Allocator, path: []const u8) ![]u8 {
+var file = try std.fs.cwd().openFile(path, .{});
+defer file.close();
+const size = try file.getEndPos();
+const buffer = try allocator.alloc(u8, size);
+_ = try file.readAll(buffer);
+return buffer;
+}
 
-                                    pub fn main() !void {
-                                    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-                                    defer gpa.deinit();
-                                    const allocator = gpa.allocator();
+pub fn main() !void {
+var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+defer gpa.deinit();
+const allocator = gpa.allocator();
 
-                                    const stdout = std.io.getStdOut().writer();
-                                    const content = readFile(allocator, "example.txt") catch |err| {
-                                    try stdout.print("Oops! Something went wrong: {}\n", .{err});
-                                    return;
-                                    };
-                                    defer allocator.free(content);
-                                    try stdout.print("File says: {s}\n", .{content});
-                                    }
+const stdout = std.io.getStdOut().writer();
+const content = readFile(allocator, "example.txt") catch |err| {
+try stdout.print("Oops! Something went wrong: {}\n", .{err});
+return;
+};
+defer allocator.free(content);
+try stdout.print("File says: {s}\n", .{content});
+}
                               </code></pre>
                               <p>Want to learn more? Check out Zig’s home on <span>GitHub:</span> <a href="https://github.com/ziglang/zig" style="color: var(--blue);">https://github.com/ziglang/zig</a>. Have fun exploring Zig!</p>
                         </section>
