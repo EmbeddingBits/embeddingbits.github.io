@@ -41,15 +41,70 @@
                   --text-secondary: #d8dee9;
                   --border: #434c5e;
             }
+            :root[data-theme="gruvbox-light"] {
+                  --black: #fbf1c7;
+                  --darker-black: #f2e5bc;
+                  --blue: #076678;
+                  --light-blue: #427b58;
+                  --red: #cc241d;
+                  --text: #3c3836;
+                  --text-secondary: #504945;
+                  --border: #d5c4a1;
+            }
+
+            :root[data-theme="gruvbox-dark"] {
+                  --black: #282828;
+                  --darker-black: #1d2021;
+                  --blue: #83a598;
+                  --light-blue: #8ec07c;
+                  --red: #fb4934;
+                  --text: #ebdbb2;
+                  --text-secondary: #d5c4a1;
+                  --border: #504945;
+            }
 
 
-            .theme-switcher {
+                        .theme-switcher {
                   position: fixed;
                   top: 1rem;
                   right: 1rem;
                   display: flex;
+                  flex-direction: column;
                   gap: 0.5rem;
                   z-index: 1000;
+                  background: rgba(0, 0, 0, 0.1);
+                  padding: 0.5rem;
+                  border-radius: 8px;
+                  backdrop-filter: blur(10px);
+                  border: 1px solid var(--border);
+            }
+
+            .theme-family {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.5rem;
+                  padding: 0.5rem;
+                  background: rgba(0, 0, 0, 0.1);
+                  border-radius: 6px;
+                  border: 1px solid var(--border);
+                  transition: all 0.3s ease;
+            }
+
+            .theme-family:hover {
+                  background: rgba(0, 0, 0, 0.15);
+                  border-color: var(--blue);
+                  transform: translateY(-2px);
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .theme-label {
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                  color: var(--text-secondary);
+                  text-align: center;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  margin-bottom: 0.2rem;
             }
 
             .theme-btn {
@@ -215,9 +270,17 @@
             }</style>
       </head>
       <body>
-            <div class="theme-switcher">
-                  <button class="theme-btn" data-theme="light">Light</button>
-                  <button class="theme-btn" data-theme="nord">Nord</button>
+                        <div class="theme-switcher">
+                  <div class="theme-family">
+                        <div class="theme-label">Nord</div>
+                        <button class="theme-btn" data-theme="light">Light</button>
+                        <button class="theme-btn" data-theme="nord">Dark</button>
+                  </div>
+                  <div class="theme-family">
+                        <div class="theme-label">Gruvbox</div>
+                        <button class="theme-btn" data-theme="gruvbox-light">Light</button>
+                        <button class="theme-btn" data-theme="gruvbox-dark">Dark</button>
+                  </div>
             </div>
             <div class="content-wrapper">
 
@@ -234,7 +297,7 @@
                                     First of all, Let's see <span>What is Tmux? and Why is it used?</span>. Tmux stands for Terminal Multiplexer and is used in Unix-like operating systems. It allows to use multiple terminal sessions in the terminal window. Even if the actual terminal window closes, the tmux session runs in the background and can be accessed with the name of the session, which is helpful when we accidentally close the session without saving the changes.</p>
                               <p>Here is how we can use tmux:</p>
                               <div align="center">
-                                    <video src="recording.mp4" height="1000" width="1500" autoplay controls></video>
+                                    <video src="recording.mp4" height="1500" width="1000" autoplay controls></video>
                               </div>
                               <p>In the above video, I opened up a tmux session, created three split panes, created a tmux window and then and closed the terminal window and accessed back with the name of the session that I named as "test".</p>
                               <p>The default configuration for tmux is good but we can add our own plugins to it like colorschemes, custom keybinds and much more. Configuring tmux is not a tough job and is relatively easy. I use a simple minimal tmux configuration and I will take you through the steps on how to achieve them.</p>
@@ -272,12 +335,12 @@
                               <h2>Adding mouse support</h2>
                               <p>By default, tmux does not support mouse. So, it is completely keyboard-driven. But for some, it might get hard to get used to the keybinds. So we are going to add mouse support to tmux in the next line</p>
                               <pre><code>
-                                    unbind r  
-                                    bind r source-file ~/.tmux.conf
+ unbind r  
+ bind r source-file ~/.tmux.conf
 
-                                    set -g prefix C-s 
+ set -g prefix C-s 
 
-                                    set -g mouse on # Adding mouse support
+ set -g mouse on # Adding mouse support
                               </code></pre>
 
 
@@ -287,15 +350,15 @@
                               <h2>Setting tmux status bar position</h2>
                               <p>In this step, we are going to set the position of the tmux bar at the top so it does not clash and confuse us with the Vim status bar.</p>
                               <pre><code>
-                                    unbind r  
-                                    bind r source-file ~/.tmux.conf
+unbind r  
+bind r source-file ~/.tmux.conf
 
-                                    set -g prefix C-s 
+set -g prefix C-s 
 
-                                    set -g mouse on
+set -g mouse on
 
-                                    set-option -g status-position top
-                                    #Setting status bar position at the top
+set-option -g status-position top
+#Setting status bar position at the top
                               </code></pre>
 
                         </section>
@@ -310,37 +373,37 @@
                               <p>Execute the above command to clone the GitHub repo to install the Tmux Plugin Manager.</p>
                               <p>Copy the below code snippet which is from the GitHub repo to include the plugins using tmux plugin manager.</p>
                               <pre><code>
-                                    # List of plugins
+# List of plugins
 
-                                    set -g @plugin 'tmux-plugins/tpm'
-                                    set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
 
-                                    # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-                                    run '~/.tmux/plugins/tpm/tpm' # This line sources the plugins from the ~/.tmux/plugins directory
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm' # This line sources the plugins from the ~/.tmux/plugins directory
                               </code></pre>
                         </section>
                         <section>
                               <h2>Adding colorscheme</h2>
                               <p>In this step we are going to add the color scheme and to include a plugin we can include them under the "# List of plugins" line. I use the nord colorscheme all over my Linux configuration, so I will go with nord color scheme. You can choose from a variety of colorschemes and plugins. I'll leave a link down which has almost all the list of plugins.</p>
                               <pre><code>
-                                    unbind r  
-                                    bind r source-file ~/.tmux.conf
+unbind r  
+bind r source-file ~/.tmux.conf
 
-                                    set -g prefix C-s 
+set -g prefix C-s 
 
-                                    set -g mouse on
+set -g mouse on
 
-                                    set-option -g status-position top 
+set-option -g status-position top 
 
-                                    # List of plugins
+# List of plugins
 
-                                    set -g @plugin 'tmux-plugins/tpm'
-                                    set -g @plugin 'tmux-plugins/tmux-sensible'
-                                    set -g @plugin "nordtheme/tmux" # Adding the colorscheme
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin "nordtheme/tmux" # Adding the colorscheme
 
 
-                                    # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-                                    run '~/.tmux/plugins/tpm/tpm' # This line sources the plugins from the ~/.tmux/plugins directory
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm' # This line sources the plugins from the ~/.tmux/plugins directory
                               </code></pre>
 
 
@@ -349,24 +412,24 @@
                         <section>
                               <h2>Conclusion</h2>
                               <pre><code>
-                                    unbind r  
-                                    bind r source-file ~/.tmux.conf
+unbind r  
+bind r source-file ~/.tmux.conf
 
-                                    set -g prefix C-s 
+set -g prefix C-s 
 
-                                    set -g mouse on
+set -g mouse on
 
-                                    set-option -g status-position top 
+set-option -g status-position top 
 
-                                    # List of plugins
+# List of plugins
 
-                                    set -g @plugin 'tmux-plugins/tpm'
-                                    set -g @plugin 'tmux-plugins/tmux-sensible'
-                                    set -g @plugin "nordtheme/tmux" 
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin "nordtheme/tmux" 
 
 
-                                    # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-                                    run '~/.tmux/plugins/tpm/tpm'
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
                               </code></pre>
                               <p>This is our final tmux config file. I hope you got your own config that fits you too.</p>
                               <p>Here is the GitHub repo that contains all the tmux plugins</p>
@@ -394,7 +457,7 @@
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
 
-            const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
+            const savedTheme = localStorage.getItem('preferred-theme') || 'gruvbox-dark';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {

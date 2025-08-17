@@ -41,15 +41,70 @@
                   --text-secondary: #d8dee9;
                   --border: #434c5e;
             }
+            :root[data-theme="gruvbox-light"] {
+                  --black: #fbf1c7;
+                  --darker-black: #f2e5bc;
+                  --blue: #076678;
+                  --light-blue: #427b58;
+                  --red: #cc241d;
+                  --text: #3c3836;
+                  --text-secondary: #504945;
+                  --border: #d5c4a1;
+            }
+
+            :root[data-theme="gruvbox-dark"] {
+                  --black: #282828;
+                  --darker-black: #1d2021;
+                  --blue: #83a598;
+                  --light-blue: #8ec07c;
+                  --red: #fb4934;
+                  --text: #ebdbb2;
+                  --text-secondary: #d5c4a1;
+                  --border: #504945;
+            }
 
 
-            .theme-switcher {
+                        .theme-switcher {
                   position: fixed;
                   top: 1rem;
                   right: 1rem;
                   display: flex;
+                  flex-direction: column;
                   gap: 0.5rem;
                   z-index: 1000;
+                  background: rgba(0, 0, 0, 0.1);
+                  padding: 0.5rem;
+                  border-radius: 8px;
+                  backdrop-filter: blur(10px);
+                  border: 1px solid var(--border);
+            }
+
+            .theme-family {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.5rem;
+                  padding: 0.5rem;
+                  background: rgba(0, 0, 0, 0.1);
+                  border-radius: 6px;
+                  border: 1px solid var(--border);
+                  transition: all 0.3s ease;
+            }
+
+            .theme-family:hover {
+                  background: rgba(0, 0, 0, 0.15);
+                  border-color: var(--blue);
+                  transform: translateY(-2px);
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .theme-label {
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                  color: var(--text-secondary);
+                  text-align: center;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  margin-bottom: 0.2rem;
             }
 
             .theme-btn {
@@ -215,9 +270,17 @@
             }</style>
       </head>
       <body>
-            <div class="theme-switcher">
-                  <button class="theme-btn" data-theme="light">Light</button>
-                  <button class="theme-btn" data-theme="nord">Nord</button>
+                        <div class="theme-switcher">
+                  <div class="theme-family">
+                        <div class="theme-label">Nord</div>
+                        <button class="theme-btn" data-theme="light">Light</button>
+                        <button class="theme-btn" data-theme="nord">Dark</button>
+                  </div>
+                  <div class="theme-family">
+                        <div class="theme-label">Gruvbox</div>
+                        <button class="theme-btn" data-theme="gruvbox-light">Light</button>
+                        <button class="theme-btn" data-theme="gruvbox-dark">Dark</button>
+                  </div>
             </div>
 
             <div class="content-wrapper">
@@ -306,7 +369,7 @@
             const root = document.documentElement;
             const themeButtons = document.querySelectorAll('.theme-btn');
 
-            const savedTheme = localStorage.getItem('preferred-theme') || 'nord';
+            const savedTheme = localStorage.getItem('preferred-theme') || 'gruvbox-dark';
             root.setAttribute('data-theme', savedTheme);
 
             themeButtons.forEach(btn => {
