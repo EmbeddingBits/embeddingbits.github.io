@@ -1,345 +1,341 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="gruvbox-dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amiitesh's Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
-    <style>
-        /* Theme definitions */
-        :root[data-theme="gruvbox-light"] {
-            --black: #fbf1c7;
-            --text: #3c3836;
-            --text-secondary: #504945;
-            --blue: #076678;
-            --light-blue: #427b58;
-            --red: #cc241d;
-        }
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Amiitesh's Portfolio</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+            <style>
+            /* Theme definitions */
+            :root[data-theme="gruvbox-light"] {
+                  --black: #fbf1c7;
+                  --text: #3c3836;
+                  --text-secondary: #504945;
+                  --blue: #076678;
+                  --light-blue: #427b58;
+                  --red: #cc241d;
+            }
 
-        :root[data-theme="gruvbox-dark"] {
-            --black: #282828;
-            --text: #ebdbb2;
-            --text-secondary: #d5c4a1;
-            --blue: #83a598;
-            --light-blue: #8ec07c;
-            --red: #fb4934;
-        }
+            :root[data-theme="gruvbox-dark"] {
+                  --black: #282828;
+                  --text: #ebdbb2;
+                  --text-secondary: #d5c4a1;
+                  --blue: #83a598;
+                  --light-blue: #8ec07c;
+                  --red: #fb4934;
+            }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
+            body {
+                  font-family: 'JetBrains Mono', monospace;
+                  background: var(--black);
+                  color: var(--text);
+                  line-height: 1.6;
+                  min-height: 100vh;
+            }
 
-        header {
-            padding: 1rem;
-            text-align: center;
-        }
+            header {
+                  padding: 1rem;
+                  text-align: center;
+            }
 
-        header h1 {
-            font-size: 3rem;
-            color: var(--red);
-            font-weight: 700;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        nav a {
-            color: var(--light-blue);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: var(--red);
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        section {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-        }
-
-        section:not(:last-child) {
-            border-bottom: 1px solid var(--text-secondary);
-        }
-
-        h2 {
-            color: var(--light-blue);
-            font-size: 30px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        h3 {
-            color: var(--red);
-            font-size: 1.1rem;
-            font-weight: 550;
-            margin: 1rem 0;
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 18px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: var(--text);
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover {
-            color: var(--red);
-        }
-
-        a {
-            color: var(--light-blue);
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: var(--red);
-        }
-
-        footer {
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        code {
-            color: var(--light-blue);
-            font-size: 0.9em;
-        }
-
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-        }
-
-        .theme-btn:hover {
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            color: var(--red);
-            font-weight: bold;
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
             header h1 {
-                font-size: 1.3rem;
+                  font-size: 3rem;
+                  color: var(--red);
+                  font-weight: 700;
             }
 
             nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
+                  list-style: none;
+                  display: flex;
+                  justify-content: center;
+                  gap: 1.5rem;
+                  margin-top: 1rem;
+            }
+
+            nav a {
+                  color: var(--light-blue);
+                  text-decoration: none;
+                  font-weight: 500;
+            }
+
+            nav a:hover {
+                  color: var(--red);
             }
 
             main {
-                margin: 1rem auto;
-                padding: 0 0.5rem;
+                  max-width: 1000px;
+                  margin: 2rem auto;
+                  padding: 0 1rem;
+            }
+
+            section {
+                  margin-bottom: 2rem;
+                  padding-bottom: 2rem;
+            }
+
+            section:not(:last-child) {
+                  border-bottom: 1px solid var(--text-secondary);
             }
 
             h2 {
-                font-size: 1.2rem;
+                  color: var(--light-blue);
+                  font-size: 30px;
+                  font-weight: 600;
+                  margin-bottom: 1rem;
             }
 
             h3 {
-                font-size: 1rem;
+                  color: var(--red);
+                  font-size: 1.1rem;
+                  font-weight: 550;
+                  margin: 1rem 0;
             }
 
             p {
-                font-size: 14px;
+                  color: var(--text-secondary);
+                  margin-bottom: 1rem;
+                  font-size: 18px;
+            }
+
+            .social-links {
+                  display: flex;
+                  justify-content: center;
+                  gap: 1.5rem;
+                  margin-top: 1rem;
+            }
+
+            .social-links a {
+                  color: var(--text);
+                  font-size: 1.2rem;
+            }
+
+            .social-links a:hover {
+                  color: var(--red);
+            }
+
+            a {
+                  color: var(--light-blue);
+                  text-decoration: none;
+            }
+
+            a:hover {
+                  color: var(--red);
+            }
+
+            footer {
+                  padding: 1rem;
+                  text-align: center;
+                  color: var(--text-secondary);
+                  font-size: 0.9rem;
+            }
+
+            code {
+                  color: var(--light-blue);
+                  font-size: 0.9em;
             }
 
             .theme-switcher {
-                top: auto;
-                bottom: 1rem;
-                right: 1rem;
+                  position: fixed;
+                  top: 1rem;
+                  right: 1rem;
+                  display: flex;
+                  gap: 0.5rem;
             }
 
             .theme-btn {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.1rem;
-            }
-
-            nav ul {
-                gap: 0.3rem;
+                  padding: 0.5rem 1rem;
+                  background: none;
+                  border: none;
+                  color: var(--text);
+                  cursor: pointer;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 0.8rem;
             }
 
-            h2 {
-                font-size: 1.1rem;
+            .theme-btn:hover {
+                  color: var(--red);
             }
 
-            h3 {
-                font-size: 0.9rem;
+            .theme-btn.active {
+                  color: var(--red);
+                  font-weight: bold;
             }
 
-            p {
-                font-size: 14px;
+            /* Mobile Responsive Styles */
+            @media (max-width: 768px) {
+                  header h1 {
+                        font-size: 1.3rem;
+                  }
+
+                  nav ul {
+                        flex-direction: column;
+                        gap: 0.5rem;
+                  }
+
+                  main {
+                        margin: 1rem auto;
+                        padding: 0 0.5rem;
+                  }
+
+                  h2 {
+                        font-size: 1.2rem;
+                  }
+
+                  h3 {
+                        font-size: 1rem;
+                  }
+
+                  p {
+                        font-size: 14px;
+                  }
+
+                  .theme-switcher {
+                        top: auto;
+                        bottom: 1rem;
+                        right: 1rem;
+                  }
+
+                  .theme-btn {
+                        padding: 0.3rem 0.6rem;
+                        font-size: 0.75rem;
+                  }
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="gruvbox-light">Light</button>
-        <button class="theme-btn" data-theme="gruvbox-dark">Dark</button>
-    </div>
 
-    <header>
-        <nav>
-            <h1>eBits</h1>
-            <ul>
-                <li><a href="#about">~/about</a></li>
-                <li><a href="#projects">~/projects</a></li>
-                <li><a href="#skills">~/skills</a></li>
-                <li><a href="#contact">~/contact</a></li>
-                <li><a href="https://github.com/embeddingbits"> <i class="fab fa-github"></i> GitHub</a></li>
-                <li><a href="blog.html">~/blog</a></li>
-            </ul>
-        </nav>
-    </header>
+            @media (max-width: 480px) {
+                  header h1 {
+                        font-size: 1.1rem;
+                  }
 
-    <main>
-        <section id="about">
-            <h2>>>> whoami</h2>
-            <h3 style="font-size: 25px">Hi, Myself Amiitesh</h3>
-            <p><span style="color:#b16286; font-weight: bold">>></span> I'm an Open Source Enthusiast and a very ardent Linux and Neovim user. I'm a supporter of FOSS and I aim to contribute to Open Source as much as possible.
-            <p><span style="color:#b16286; font-weight: bold">>></span> I contribute to projects in domains like Embedded Systems, Computer Networks, Linux Kernel and a decent amount of other systems programming projects.</p>
-            <p><span style="color:#b16286; font-weight: bold">>></span> I write blogs when I find time in my topics of interests like Embedded Systems, System Design, Low Level programming and Computer Networks.</p>
-            <p><span style="color:#b16286; font-weight: bold">>></span> I'm a classical pianist and a diehard fan of Chopin's classical pieces and his preference of melancholy in his repertoire.</p>
-            <p><span style="color:#b16286; font-weight: bold">>></span> I also like to rice my <a href="https://github.com/embeddingbits/arch_dotfiles" style="color: #458588">Arch Config</a></span>  
-        </section>
+                  nav ul {
+                        gap: 0.3rem;
+                  }
 
-        <section id="skills">
-            <h2>ls ~/skills</h2>
-            <p><span style="color:#b8bb26">Languages:</span> C, Zig, Golang, C++, Java, Python, Bash, Fish Shell, Verilog, Assembly (ARM, RISC-V)</p>
-            <p><span style="color:#b8bb26">Tools:</span> Git, Linux, Docker, LateX, Markdown</p>
-            <p><span style="color:#b8bb26">Misc:</span> Embedded Systems, Operating Systems, VLSI, Computer Networks</p>
-        </section>
+                  h2 {
+                        font-size: 1.1rem;
+                  }
 
-        <section id="projects">
-            <h2>ls ~/projects</h2>
-            <div class="project">
-                <a href="https://github.com/EmbeddingBits/GortScanner" target="_blank">
-                    <h3>./Gort_Scanner</h3>
-                    <p>This is a simple implementation of a port scanner made in Golang with Goroutines and Channeling</p>
-                    <div class="stack">Technologies: Golang | Linux | Networks</div>
-                </a>
+                  h3 {
+                        font-size: 0.9rem;
+                  }
+
+                  p {
+                        font-size: 14px;
+                  }
+            }
+            </style>
+      </head>
+      <body>
+            <div class="theme-switcher">
+                  <button class="theme-btn" data-theme="gruvbox-light">Light</button>
+                  <button class="theme-btn" data-theme="gruvbox-dark">Dark</button>
             </div>
-            <div class="project">
-                <a href="https://github.com/EmbeddingBits/vat-viewer" target="_blank">
-                    <h3>./Vat-Viewer</h3>
-                    <p>This is a better version of <code>cat</code> file reader made on Golang which features Nord-theme syntax highlighting and Line numbering or better code readability.</p>
-                    <div class="stack">Technologies: Go | Lexers</div>
-                </a>
-            </div>
-            <div class="project">
-                <a href="https://github.com/EmbeddingBits/simple-processor-simulation" target="_blank">
-                    <h3>./4-bit_processor_simulation</h3>
-                    <p>A simple 4-bit processor for learning purposes</p>
-                    <div class="stack">Technologies: Verilog, gtkwave</div>
-                </a>
-            </div>
-            <div class="project">
-                <a href="https://github.com/EmbeddingBits/multi-threaded-file-downloader" target="_blank">
-                    <h3>./Threaded_File_Downloader</h3>
-                    <p>This is a multi threaded file downloaded made in Golang which splits a file into smaller parts, installs them parallely and joins it together dinally, which significantly increases installation periods.</p>
-                    <div class="stack">Technologies: Golang</div>
-                </a>
-            </div>
-        </section>
 
-        <section id="contact">
-            <h2>contact --init</h2>
-            <p>For contacting and with collaborating me:</p>
-            <p>>> Mail: <a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a></p>
-            <p>>> LinkedIn: <a href="https://www.linkedin.com/in/amiitesh-pradeep-kumar-582bb831a/">Amiitesh Pradeep Kumar</a></p>
-            <p>>> Resume: <a href="https://embeddingbits.is-a.dev/resume.pdf">PDF</a></p>
-        </section>
-    </main>
+            <header>
+                  <nav>
+                        <h1>eBits</h1>
+                        <ul>
+                              <li><a href="#about">~/about</a></li>
+                              <li><a href="#projects">~/projects</a></li>
+                              <li><a href="#skills">~/skills</a></li>
+                              <li><a href="#contact">~/contact</a></li>
+                              <li><a href="https://github.com/embeddingbits"> <i class="fab fa-github"></i> GitHub</a></li>
+                              <li><a href="blog.html">~/blog</a></li>
+                        </ul>
+                  </nav>
+            </header>
 
-    <footer>
-        <p>© All rights reserved</p>
-    </footer>
+            <main>
+                  <section id="about">
+                        <h2>>>> whoami</h2>
+                        <h3 style="font-size: 25px">Hi, Myself Amiitesh</h3>
+                        <p><span style="color:#b16286; font-weight: bold">>></span> I'm an Open Source Enthusiast and a very ardent Linux and Neovim user. I'm a supporter of FOSS and I aim to contribute to Open Source as much as possible.
+                        <p><span style="color:#b16286; font-weight: bold">>></span> I contribute to projects in domains like Embedded Systems, Computer Networks, Linux Kernel and a decent amount of other systems programming projects.</p>
+                        <p><span style="color:#b16286; font-weight: bold">>></span> I write blogs when I find time in my topics of interests like Embedded Systems, System Design, Low Level programming and Computer Networks.</p>
+                        <p><span style="color:#b16286; font-weight: bold">>></span> I'm a classical pianist and a diehard fan of Chopin's classical pieces and his preference of melancholy in his repertoire.</p>
+                        <p><span style="color:#b16286; font-weight: bold">>></span> I also like to rice my <a href="https://github.com/embeddingbits/arch_dotfiles" style="color: #458588">Arch Config</a></span>  
+                  </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const root = document.documentElement;
-            const themeButtons = document.querySelectorAll('.theme-btn');
+                  <section id="skills">
+                        <h2>ls ~/skills</h2>
+                        <p><span style="color:#b8bb26">Languages:</span> C, Zig, Golang, C++, Java, Python, Bash, Fish Shell, Verilog, Assembly (ARM, RISC-V)</p>
+                        <p><span style="color:#b8bb26">Tools:</span> Git, Linux, Docker, LateX, Markdown</p>
+                        <p><span style="color:#b8bb26">Misc:</span> Embedded Systems, Operating Systems, VLSI, Computer Networks</p>
+                  </section>
 
-            const savedTheme = localStorage.getItem('preferred-theme') || 'gruvbox-dark';
-            root.setAttribute('data-theme', savedTheme);
+                  <section id="projects">
+                        <h2>ls ~/projects</h2>
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/GortScanner" target="_blank">
+                                    <h3>./Gort_Scanner</h3></a>
+                              <p>This is a simple implementation of a port scanner made in Golang with Goroutines and Channeling</p>
+                              <div style="color: #b8bb26">Technologies: Golang | Linux | Networks</div>
+                        </div>
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/vat-viewer" target="_blank">
+                                    <h3>./Vat-Viewer</h3></a>
+                              <p>This is a better version of <code>cat</code> file reader made on Golang which features Nord-theme syntax highlighting and Line numbering or better code readability.</p>
+                              <div style="color: #b8bb26">Technologies: Go | Lexers</div>
+                        </div>
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/simple-processor-simulation" target="_blank">
+                                    <h3>./4-bit_processor_simulation</h3></a>
+                              <p>A simple 4-bit processor for learning purposes</p>
+                              <div style="color: #b8bb26">Technologies: Verilog, gtkwave</div>
+                        </div>
+                        <div class="project">
+                              <a href="https://github.com/EmbeddingBits/multi-threaded-file-downloader" target="_blank">
+                                    <h3>./Threaded_File_Downloader</h3></a>
+                              <p>This is a multi threaded file downloaded made in Golang which splits a file into smaller parts, installs them parallely and joins it together dinally, which significantly increases installation periods.</p>
+                              <div style="color: #b8bb26">Technologies: Golang</div>
+                        </div>
+                  </section>
 
-            themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                  <section id="contact">
+                        <h2>contact --init</h2>
+                        <p>For contacting and with collaborating me:</p>
+                        <p>>> Mail: <a href="mailto:tspamiitesh@gmail.com">tspamiitesh@gmail.com</a></p>
+                        <p>>> LinkedIn: <a href="https://www.linkedin.com/in/amiitesh-pradeep-kumar-582bb831a/">Amiitesh Pradeep Kumar</a></p>
+                        <p>>> Resume: <a href="https://embeddingbits.is-a.dev/resume.pdf">PDF</a></p>
+                  </section>
+            </main>
+
+            <footer>
+                  <p>© All rights reserved</p>
+            </footer>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                  const root = document.documentElement;
+                  const themeButtons = document.querySelectorAll('.theme-btn');
+
+                  const savedTheme = localStorage.getItem('preferred-theme') || 'gruvbox-dark';
+                  root.setAttribute('data-theme', savedTheme);
+
+                  themeButtons.forEach(btn => {
+                        if (btn.getAttribute('data-theme') === savedTheme) {
+                              btn.classList.add('active');
+                        } else {
+                              btn.classList.remove('active');
+                        }
+                  });
+
+                  themeButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                              const theme = button.getAttribute('data-theme');
+                              root.setAttribute('data-theme', theme);
+                              themeButtons.forEach(btn => btn.classList.remove('active'));
+                              button.classList.add('active');
+                              localStorage.setItem('preferred-theme', theme);
+                        });
+                  });
             });
-
-            themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
-            });
-        });
-    </script>
-</body>
+            </script>
+      </body>
 </html>
