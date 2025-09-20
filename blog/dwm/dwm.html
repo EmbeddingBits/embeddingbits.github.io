@@ -13,7 +13,9 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
             <title>DWM (Dynamic Window Manager)</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+            <link rel="stylesheet" href="../../css/shared.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/nord.min.css"> 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
             <script>hljs.highlightAll();</script>
@@ -63,59 +65,11 @@
                   --border: #504945;
             }
 
-
-                        .theme-switcher {
-                  position: fixed;
-                  top: 1rem;
-                  right: 1rem;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 0.5rem;
-                  z-index: 1000;
-                  background: rgba(0, 0, 0, 0.1);
-                  padding: 0.5rem;
-                  border-radius: 8px;
-                  backdrop-filter: blur(10px);
-                  border: 1px solid var(--border);
-            }
-
-            .theme-family {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 0.5rem;
-                  padding: 0.5rem;
-                  background: rgba(0, 0, 0, 0.1);
-                  border-radius: 6px;
-                  border: 1px solid var(--border);
-                  transition: all 0.3s ease;
-            }
-
             .theme-family:hover {
                   background: rgba(0, 0, 0, 0.15);
                   border-color: var(--blue);
                   transform: translateY(-2px);
                   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-
-            .theme-label {
-                  font-size: 0.8rem;
-                  font-weight: 600;
-                  color: var(--text-secondary);
-                  text-align: center;
-                  text-transform: uppercase;
-                  letter-spacing: 0.5px;
-                  margin-bottom: 0.2rem;
-            }
-
-            .theme-btn {
-                  padding: 0.5rem 1rem;
-                  border: 1px solid var(--border);
-                  background: var(--darker-black);
-                  color: var(--text);
-                  cursor: pointer;
-                  border-radius: 4px;
-                  font-family: 'JetBrains Mono', monospace;
-                  transition: all 0.2s ease;
             }
 
             .theme-btn:hover {
@@ -193,14 +147,12 @@
                   letter-spacing: 1px;
             }
 
-
             article {
                   padding: 2rem;
                   background: var(--darker-black);
                   border-radius: 4px;
                   margin-top: 2rem;
             }
-
 
             section {
                   margin-bottom: 2rem;
@@ -252,7 +204,6 @@
                   color: var(--red);
             }
 
-
             footer {
                   background: var(--darker-black);
                   padding: 1rem;
@@ -262,7 +213,6 @@
                   border-top: 1px solid var(--border);
             }
 
-
             .content-wrapper {
                   max-width: 1100px;
                   margin: 0 auto;
@@ -270,22 +220,9 @@
             }</style>
       </head>
       <body>
-                        <div class="theme-switcher">
-                  <div class="theme-family">
-                  <div class="theme-family">
-                        <div class="theme-label">Gruvbox</div>
-                        <button class="theme-btn" data-theme="gruvbox-light">Light</button>
-                        <button class="theme-btn" data-theme="gruvbox-dark">Dark</button>
-                  </div>
-            </div>
 
             <div class="content-wrapper">
-                  <header>
-                        <h1>DWM, A window manager made in C to reduce bloat as much as possible</h1>
-                        <nav>
-                              <a href="../../blog.html" class="home-btn">Home</a>
-                        </nav>
-                  </header>
+                  
                   <article>
                         <section>
                               <h2>Introduction</h2>
@@ -350,9 +287,7 @@
                               </div>
                         </section>
 
-
                   </article>
-
 
                   <footer>
                         <div align="right">
@@ -360,32 +295,11 @@
                         </div>
                   </footer>
             </div>
+            
+            <script src="../../js/shared.js"></script>
             <script>
-            document.addEventListener('DOMContentLoaded', () => {
-            const root = document.documentElement;
-            const themeButtons = document.querySelectorAll('.theme-btn');
-
-            const savedTheme = localStorage.getItem('preferred-theme') || 'gruvbox-dark';
-            root.setAttribute('data-theme', savedTheme);
-
-            themeButtons.forEach(btn => {
-            if (btn.getAttribute('data-theme') === savedTheme) {
-            btn.classList.add('active');
-            } else {
-            btn.classList.remove('active');
-            }
-            });
-
-            themeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-            const theme = button.getAttribute('data-theme');
-            root.setAttribute('data-theme', theme);
-            themeButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            localStorage.setItem('preferred-theme', theme);
-            });
-            });
-            });
+            // Load components when page loads
+            loadComponents("DWM Window Manager");
             </script>
       </body>
 </html>

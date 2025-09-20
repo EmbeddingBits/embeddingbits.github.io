@@ -6,76 +6,8 @@
     <title>Amiitesh's Projects</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
+    <link rel="stylesheet" href="css/shared.css">
     <style>
-        /* Theme definitions */
-        :root[data-theme="gruvbox-light"] {
-            --black: #fbf1c7;
-            --text: #3c3836;
-            --text-secondary: #504945;
-            --blue: #076678;
-            --light-blue: #427b58;
-            --red: #cc241d;
-        }
-
-        :root[data-theme="gruvbox-dark"] {
-            --black: #282828;
-            --text: #ebdbb2;
-            --text-secondary: #d5c4a1;
-            --blue: #83a598;
-            --light-blue: #8ec07c;
-            --red: #fb4934;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--black);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        header {
-            padding: 1rem;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            color: var(--red);
-            font-weight: 700;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: var(--light-blue);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: var(--red);
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
         .project {
             margin-bottom: 2rem;
             padding: 1.5rem 0;
@@ -145,121 +77,9 @@
             text-decoration: none;
             color: inherit;
         }
-
-        .theme-switcher {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .theme-btn {
-            padding: 0.5rem 1rem;
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-        }
-
-        .theme-btn:hover {
-            color: var(--red);
-        }
-
-        .theme-btn.active {
-            color: var(--red);
-            font-weight: bold;
-        }
-
-        footer {
-            padding: 1rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--text-secondary);
-            margin-top: 2rem;
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-                align-items: center;
-            }
-
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-
-            main {
-                margin: 1rem auto;
-                padding: 0 0.5rem;
-            }
-
-            .project {
-                padding: 1.5rem 0;
-            }
-
-            .project-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .theme-switcher {
-                top: auto;
-                bottom: 1rem;
-                right: 1rem;
-            }
-
-            .theme-btn {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            nav ul {
-                gap: 0.3rem;
-            }
-
-            .project h2 {
-                font-size: 1.2rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="theme-switcher">
-        <button class="theme-btn" data-theme="gruvbox-light">Light</button>
-        <button class="theme-btn" data-theme="gruvbox-dark">Dark</button>
-    </div>
-
-    <header>
-        <nav>
-            <h1>~/projects</h1>
-            <ul>
-                <li><a href="index.html">~/home</a></li>
-                <li><a href="about.html">~/about</a></li>
-                <li><a href="projects.html">~/projects</a></li>
-                <li><a href="blog.html">~/blog</a></li>
-                <li><a href="#contact">~/contact</a></li>
-                <li><a href="https://github.com/embeddingbits"> <i class="fab fa-github"></i> GitHub</a></li>
-            </ul>
-        </nav>
-    </header>
 
     <main>
 
@@ -359,32 +179,10 @@
         <p>© 2024 Amiitesh's Projects. All rights reserved.</p>
     </footer>
 
+    <script src="js/shared.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const root = document.documentElement;
-            const themeButtons = document.querySelectorAll('.theme-btn');
-
-            const savedTheme = localStorage.getItem('preferred-theme') || 'gruvbox-dark';
-            root.setAttribute('data-theme', savedTheme);
-
-            themeButtons.forEach(btn => {
-                if (btn.getAttribute('data-theme') === savedTheme) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    root.setAttribute('data-theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    localStorage.setItem('preferred-theme', theme);
-                });
-            });
-        });
+        // Load components when page loads
+        loadComponents("~/projects");
     </script>
 </body>
 </html>
