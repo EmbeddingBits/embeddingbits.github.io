@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amiitesh's Blog</title>
+    <title>Amiitesh's Projects</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css">
     <style>
@@ -69,26 +69,25 @@
         nav a:hover {
             color: var(--red);
         }
-        
+
         main {
             max-width: 1000px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-
-        .post {
+        .project {
             margin-bottom: 2rem;
             padding: 1.5rem 0;
             border-bottom: 1px solid #444;
             transition: all 0.3s ease;
         }
 
-        .post:last-child {
+        .project:last-child {
             border-bottom: none;
         }
 
-        .post h2 {
+        .project h2 {
             color: #d79921;
             font-size: 1.3rem;
             margin-bottom: 0.8rem;
@@ -97,34 +96,52 @@
             display: inline-block;
         }
 
-        .post h2:hover {
+        .project h2:hover {
             color: #fabd2f;
         }
 
-        .post p {
+        .project p {
             color: var(--text-secondary);
             margin-bottom: 1rem;
             font-size: 0.95rem;
         }
 
-        .post-meta {
+        .project-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: var(--text-secondary);
             font-size: 0.9rem;
             margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .post-date {
-            color: var(--text-secondary);
+        .tech-stack {
+            color: var(--light-blue);
+            font-weight: 500;
         }
 
-        .read-time {
-            color: var(--text-secondary);
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
-        a.post-title-link {
+        .project-links a {
+            color: var(--blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        .project-links a:hover {
+            color: var(--red);
+        }
+
+        a.project-title-link {
             text-decoration: none;
             color: inherit;
         }
@@ -182,31 +199,19 @@
                 text-align: center;
             }
 
-            .dropdown-content {
-                position: static;
-                display: none;
-                box-shadow: none;
-                border: none;
-                background: transparent;
-                margin-top: 0.5rem;
-            }
-
-            .dropdown-content a {
-                padding: 0.5rem 0;
-                border-bottom: 1px solid var(--text-secondary);
-            }
-
-            .dropdown.active .dropdown-content {
-                display: block;
-            }
-
             main {
                 margin: 1rem auto;
                 padding: 0 0.5rem;
             }
 
-            .post {
-                padding: 1.5rem;
+            .project {
+                padding: 1.5rem 0;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
 
             .theme-switcher {
@@ -230,7 +235,7 @@
                 gap: 0.3rem;
             }
 
-            .post h2 {
+            .project h2 {
                 font-size: 1.2rem;
             }
         }
@@ -243,117 +248,115 @@
     </div>
 
     <header>
-            <nav>
-                <h1>eBits's Blog</h1>
-                    <ul>
-                          <li><a href="#about">~/about</a></li>
-                          <li><a href="./projects.html">~/projects</a></li>
-                          <li><a href="https://embeddingbits.is-a.dev/#skills">~/skills</a></li>
-                          <li><a href="#contact">~/contact</a></li>
-                          <li><a href="https://github.com/embeddingbits"> <i class="fab fa-github"></i> GitHub</a></li>
-                          <li><a href="blog.html">~/blog</a></li>
-                    </ul>
-            </nav>
+        <nav>
+            <h1>~/projects</h1>
+            <ul>
+                <li><a href="index.html">~/home</a></li>
+                <li><a href="about.html">~/about</a></li>
+                <li><a href="projects.html">~/projects</a></li>
+                <li><a href="blog.html">~/blog</a></li>
+                <li><a href="#contact">~/contact</a></li>
+                <li><a href="https://github.com/embeddingbits"> <i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        
-        <section class="post">
-            <a href="blog/workflow.html" class="post-title-link">
-                <h2>My Developer Workflow: OS, DE/WM, Editor and Tools</h2>
+
+        <section class="project">
+            <a href="https://github.com/EmbeddingBits/GortScanner" class="project-title-link" target="_blank">
+                <h2>Gort Scanner</h2>
             </a>
-            <p>In this blog, I will be discussing about the software and tools I use to develop projects.</p>
-            <div class="post-meta">
-                <span class="post-date">Sep 15, 2025</span>
-                <span class="read-time">8 min</span>
+            <p>A high-performance port scanner implementation in Go featuring concurrent goroutines and channel-based communication. Efficiently scans network ports with customizable threading and timeout configurations.</p>
+            <div class="project-meta">
+                <span class="tech-stack">Go • Networking • Concurrency</span>
+                <div class="project-links">
+                    <a href="https://github.com/EmbeddingBits/GortScanner" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="post">
-            <a href="blog/vim_nvim.html" class="post-title-link">
-                <h2>Vim vs Neovim, What are the differences?</h2>
+        <section class="project">
+            <a href="https://github.com/EmbeddingBits/vat-viewer" class="project-title-link" target="_blank">
+                <h2>Vat Viewer</h2>
             </a>
-            <p>In this blog, I will be discussing the differences between Vim and Neovim. And which is better to use...</p>
-            <div class="post-meta">
-                <span class="post-date">Sep 10, 2025</span>
-                <span class="read-time">12 min</span>
+            <p>An enhanced file reader utility written in Go that improves upon the traditional 'cat' command. Features Nord-theme syntax highlighting, line numbering, and better code readability for developers.</p>
+            <div class="project-meta">
+                <span class="tech-stack">Go • Lexers • CLI Tools</span>
+                <div class="project-links">
+                    <a href="https://github.com/EmbeddingBits/vat-viewer" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="post">
-            <a href="blog/why_linux.html" class="post-title-link">
-                <h2>What is Linux and why is it a better option for a daily driver?</h2>
+        <section class="project">
+            <a href="https://github.com/EmbeddingBits/simple-processor-simulation" class="project-title-link" target="_blank">
+                <h2>4-bit Processor Simulation</h2>
             </a>
-            <p>In this blog, I will be discussing what Linux is and why it is a better choice for a daily driver experience.</p>
-            <div class="post-meta">
-                <span class="post-date">Sep 5, 2025</span>
-                <span class="read-time">15 min</span>
+            <p>A educational 4-bit processor design implemented in Verilog for learning computer architecture fundamentals. Includes instruction set design, ALU operations, and memory management simulation.</p>
+            <div class="project-meta">
+                <span class="tech-stack">Verilog • VLSI • Computer Architecture</span>
+                <div class="project-links">
+                    <a href="https://github.com/EmbeddingBits/simple-processor-simulation" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="post">
-            <a href="blog/go_phil.html" class="post-title-link">
-                <h2>What is Golang and how to get started?</h2>
+        <section class="project">
+            <a href="https://github.com/EmbeddingBits/multi-threaded-file-downloader" class="project-title-link" target="_blank">
+                <h2>Multi-threaded File Downloader</h2>
             </a>
-            <p>In this blog, I will be discussing about Golang and covering the basics of The Go Programming Language.</p>
-            <div class="post-meta">
-                <span class="post-date">Aug 28, 2025</span>
-                <span class="read-time">18 min</span>
+            <p>A high-speed file downloader built in Go that leverages multi-threading to split files into chunks, download them in parallel, and reassemble them. Significantly reduces download times for large files.</p>
+            <div class="project-meta">
+                <span class="tech-stack">Go • HTTP • Concurrency • File I/O</span>
+                <div class="project-links">
+                    <a href="https://github.com/EmbeddingBits/multi-threaded-file-downloader" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="post">
-            <a href="blog/tmux_config.html" class="post-title-link">
-                <h2>Configuring Tmux</h2>
+        <section class="project">
+            <a href="#" class="project-title-link">
+                <h2>RISC-V Assembly Projects</h2>
             </a>
-            <p>This blog is about configuring tmux from scratch, from setting custom keybinds to plugins manager</p>
-            <div class="post-meta">
-                <span class="post-date">Aug 20, 2025</span>
-                <span class="read-time">10 min</span>
+            <p>Collection of RISC-V assembly language programs and utilities for learning computer organization and low-level programming concepts. Includes bootloaders and basic OS components.</p>
+            <div class="project-meta">
+                <span class="tech-stack">RISC-V Assembly • Computer Architecture • Systems Programming</span>
+                <div class="project-links">
+                    <span style="color: var(--text-secondary); font-size: 0.8rem;">Coming Soon</span>
+                </div>
             </div>
         </section>
 
-        <section class="post">
-            <a href="blog/dwm/dwm.html" class="post-title-link">
-                <h2>DWM, A bloat-free Window Manager made in C</h2>
-            </a>
-            <p>This blog is about DWM, a window manager made in C to reduce bloat as much as possible</p>
-            <div class="post-meta">
-                <span class="post-date">Aug 15, 2025</span>
-                <span class="read-time">14 min</span>
+        <section id="contact" class="project">
+            <h2 style="text-decoration: none; cursor: default;">Get In Touch</h2>
+            <p>Interested in collaborating on a project or discussing technology? Feel free to reach out!</p>
+            <div class="project-meta">
+                <div class="project-links">
+                    <a href="mailto:tspamiitesh@gmail.com">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/amiitesh-pradeep-kumar-582bb831a/" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/embeddingbits" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
             </div>
-        </section>
-
-        <section class="post">
-            <a href="blog/Networks/intro.html" class="post-title-link">
-                <h2>Computer Networks</h2>
-            </a>
-            <p>In this blog, I will be discussing about computer network basics from theory to network programming in C.</p>
-            <div class="post-meta">
-                <span class="post-date">Aug 10, 2025</span>
-                <span class="read-time">22 min</span>
-            </div>
-        </section>
-
-        <section class="post">
-            <a href="blog/zig-lang/zig.html" class="post-title-link">
-                <h2>Zig Programming Language: A better alternative for C...</h2>
-            </a>
-            <p>In this blog, I will be discussing about the advantages of Zig programming over C and its features that might change the way of programming.</p>
-            <div class="post-meta">
-                <span class="post-date">Aug 5, 2025</span>
-                <span class="read-time">16 min</span>
-            </div>
-        </section>
-
-        <section id="contact" class="post">
-            <h2>Contact</h2>
-            <p>If you'd like to collaborate or have any questions, feel free to reach out to me via email at <a href="mailto:tspamiitesh@gmail.com" style="color: var(--light-blue);">tspamiitesh@gmail.com</a>.</p>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 Amiitesh's Blog. All rights reserved.</p>
+        <p>© 2024 Amiitesh's Projects. All rights reserved.</p>
     </footer>
 
     <script>
@@ -381,17 +384,6 @@
                     localStorage.setItem('preferred-theme', theme);
                 });
             });
-
-            // Mobile dropdown functionality
-            if (window.innerWidth <= 768) {
-                const dropdown = document.querySelector('.dropdown > a');
-                const dropdownContent = document.querySelector('.dropdown-content');
-                
-                dropdown.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    dropdown.parentElement.classList.toggle('active');
-                });
-            }
         });
     </script>
 </body>
