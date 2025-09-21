@@ -12,7 +12,6 @@
 
             :root[data-theme="light"] {
                   --black: #ffffff;
-                  --darker-black: #f0f0f0;
                   --blue: #2760d8;
                   --light-blue: #1e88e5;
                   --red: #d32f2f;
@@ -23,7 +22,7 @@
 
             :root[data-theme="nord"] {
                   --black: #2e3440;
-                  --darker-black: #242933;
+                  --black: #242933;
                   --blue: #5e81ac;
                   --light-blue: #88c0d0;
                   --red: #bf616a;
@@ -34,7 +33,7 @@
 
             :root[data-theme="gruvbox-light"] {
                   --black: #fbf1c7;
-                  --darker-black: #f2e5bc;
+                  --black: #f2e5bc;
                   --blue: #076678;
                   --light-blue: #427b58;
                   --red: #cc241d;
@@ -45,7 +44,6 @@
 
             :root[data-theme="gruvbox-dark"] {
                   --black: #282828;
-                  --darker-black: #1d2021;
                   --blue: #83a598;
                   --light-blue: #8ec07c;
                   --red: #fb4934;
@@ -91,10 +89,6 @@
                   transition: all 0.3s ease;
             }
 
-            nav {
-                  margin-top: 1rem;
-            }
-
             .home-btn {
                   display: inline-block;
                   padding: 0.5rem 1rem;
@@ -112,27 +106,6 @@
                   color: var(--red);
             }
 
-            header {
-                  background: var(--darker-black);
-                  padding: 2rem;
-                  text-align: center;
-                  border-bottom: 1px solid var(--border);
-            }
-
-            header h1 {
-                  font-size: 2.2rem;
-                  color: var(--red);
-                  font-weight: 700;
-                  letter-spacing: 1px;
-            }
-
-            header h4 {
-
-                  color: var(--light-blue);
-                  font-weight: 700;
-                  letter-spacing: 1px;
-            }
-
             .content-wrapper {
                   max-width: 1100px;
                   margin: 0 auto;
@@ -141,7 +114,7 @@
 
             article {
                   padding: 2rem;
-                  background: var(--darker-black);
+                  background: var(--black);
                   border-radius: 4px;
                   margin-top: 2rem;
             }
@@ -187,7 +160,7 @@
             }
 
             footer {
-                  background: var(--darker-black);
+                  background: var(--black);
                   padding: 1rem;
                   text-align: center;
                   color: var(--text-secondary);
@@ -199,6 +172,12 @@
       <body>
 
             <div class="content-wrapper">
+            <div class="back-to-blog">
+                  <a href="../blog.html" class="back-button">
+                        <i class="fas fa-arrow-left"></i> Back to Blog
+                  </a>
+            </div>
+
                   
                   <article>
                         <section>
