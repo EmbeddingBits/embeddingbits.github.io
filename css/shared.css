@@ -225,3 +225,41 @@ code {
         font-size: 14px;
     }
 }
+
+/* Back button styles */
+.back-to-blog {
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--text-secondary);
+    color: var(--black);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.back-button:hover {
+    background: var(--red);
+    color: var(--black);
+    transform: translateX(-4px);
+    border-color: var(--red);
+}
+
+.back-button i {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .back-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
